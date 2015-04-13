@@ -8,7 +8,7 @@ public class Event {
     String created;
     String modified;
     String event_title;
-    String event_desctiption;
+    String event_description;
     String event_start_datetime;
     String event_stop_datetime;
     int timeline;
@@ -48,12 +48,12 @@ public class Event {
         this.event_title = event_title;
     }
 
-    public String getEvent_desctiption() {
-        return event_desctiption;
+    public String getEvent_description() {
+        return event_description;
     }
 
-    public void setEvent_desctiption(String event_desctiption) {
-        this.event_desctiption = event_desctiption;
+    public void setEvent_description(String event_description) {
+        this.event_description = event_description;
     }
 
     public String getEvent_start_datetime() {
