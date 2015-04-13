@@ -48,7 +48,7 @@ public class SessionHandler {
     public SessionHandler() {}
 
     public Boolean loginUser(String username, String password){
-        String url = "http://127.0.0.1:8000/api-token-auth/";
+        String url = "http://herrlintech.se:8000/api-token-auth/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
         LocalDateTime localDateTime = LocalDateTime.now();
@@ -94,7 +94,7 @@ public class SessionHandler {
 
         try {
             //URL url = new URL("http://herrlintech.se:8000/users/.json");
-            URL url = new URL("http://10.0.0.110:8000/users/.json");
+            URL url = new URL("http://herrlintech.se:8000/users/.json");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
             ObjectMapper mapper = new ObjectMapper();
@@ -141,7 +141,7 @@ public class SessionHandler {
         Timeline[] timelineList;
 
         try {
-            URL url = new URL("http://10.0.0.110:8000/timelines/.json");
+            URL url = new URL("http://herrlintech.se:8000/timelines/.json");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
             ObjectMapper mapper = new ObjectMapper();
@@ -186,7 +186,7 @@ public class SessionHandler {
 
     public void createTimeline(String title, String description){
 
-        String url = "http://10.0.0.110:8000/timelines/";
+        String url = "http://herrlintech.se:8000/timelines/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
         LocalDateTime localDateTime = LocalDateTime.now();

@@ -16,7 +16,7 @@ import org.json.JSONObject;
 public class UserRegistration {
 
     public void register(String username, String password1, String password2, String email){
-        String url = "http://127.0.0.1:8000/rest-auth/registration/";
+        String url = "http://herrlintech.se:8000/rest-auth/registration/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
 
