@@ -27,6 +27,7 @@ import java.util.ArrayList;
 public class login extends Application {
 
     PopOver newTimeorEvent;
+    PopOver ConfigPop;
     double top = 0;
     ArrayList<Label> labelList = new ArrayList<Label>();
 
@@ -236,8 +237,8 @@ public class login extends Application {
 
                 config.setOnMouseEntered(new EventHandler<MouseEvent>() {
                     public void handle(MouseEvent event) {
-                        PopOver ConfigPop = new PopOver();
-
+                        ConfigPop = new PopOver();
+                        config.setFill(Paint.valueOf("ffffff"));
                         ConfigPop.setContentNode(ConfPane);
                         ConfigPop.show(config);
                     }
@@ -289,8 +290,14 @@ public class login extends Application {
                  gpane.setOnMouseClicked(new EventHandler<MouseEvent>() {
                      @Override
                      public void handle(MouseEvent event) {
-                         newTimeorEvent.hide();
-                         plus.setFill(Paint.valueOf("19b225"));
+                         if(newTimeorEvent.isShowing()){
+                             newTimeorEvent.hide();
+                             plus.setFill(Paint.valueOf("19b225"));
+                         }
+                         if(ConfigPop.isShowing()){
+                             ConfigPop.hide();
+                             config.setFill(Paint.valueOf("19b225"));
+                         }
                      }
                  });
 
