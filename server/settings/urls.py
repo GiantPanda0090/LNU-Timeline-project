@@ -9,7 +9,7 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     # Timeline
-    #url(r'^api/v1/', include(admin.site.urls)),
+    url(r'^api/v1/', include('timeline.urls')),
     
     # Admin site
     url(r'^admin/', include(admin.site.urls)),

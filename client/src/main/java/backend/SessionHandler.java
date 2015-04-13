@@ -38,14 +38,43 @@ import java.util.ArrayList;
 
 public class SessionHandler {
 
+
+    /*
+     * token it the logged in users authentication token
+     * the token should be sent in any request that requires when
+     * authorized resources are requested
+     */
     String token;
+
+
+    /*
+     * user is the user that is logged in to the session
+     */
     User user;
+
+
+    /*
+     * timeline_id is the id of the currently selected timeline
+     * This id is used to request events or if event is created
+     * this value is used to assign the event to a timeline
+     */
+    int timeline_id;
+
+    /*
+     * An arraylist with the users timelines
+     */
     ArrayList<Timeline> timelineArrayList = new ArrayList<Timeline>();
+
+
+    /*
+     * An arraylist with all the events that belongs to a timeline that is connected to a user
+     */
     ArrayList<Event> eventArrayList = new ArrayList<Event>();
 
 
     // Empty contructor
     public SessionHandler() {}
+
 
     public Boolean loginUser(String username, String password){
         String url = "http://herrlintech.se:8000/api-token-auth/";
@@ -77,6 +106,7 @@ public class SessionHandler {
                 //System.out.println(entity.toString());
                 JSONObject result = new JSONObject(content);
                 token = result.get("token").toString();
+                getUser(username);
                 return true;
             }
         }catch (Exception ex) {
@@ -94,7 +124,7 @@ public class SessionHandler {
 
         try {
             //URL url = new URL("http://herrlintech.se:8000/users/.json");
-            URL url = new URL("http://herrlintech.se:8000/users/.json");
+            URL url = new URL("http://herrlintech.se:8000/api/v1/users/.json");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
             ObjectMapper mapper = new ObjectMapper();
@@ -141,7 +171,7 @@ public class SessionHandler {
         Timeline[] timelineList;
 
         try {
-            URL url = new URL("http://herrlintech.se:8000/timelines/.json");
+            URL url = new URL("http://herrlintech.se:8000/api/v1/timelines/.json");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
             ObjectMapper mapper = new ObjectMapper();
@@ -186,7 +216,7 @@ public class SessionHandler {
 
     public void createTimeline(String title, String description){
 
-        String url = "http://herrlintech.se:8000/timelines/";
+        String url = "http://herrlintech.se:8000/api/v1/timelines/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
         LocalDateTime localDateTime = LocalDateTime.now();
@@ -226,12 +256,15 @@ public class SessionHandler {
     // Example usage
     public static void main(String[] args) {
         SessionHandler sessionHandler = new SessionHandler();
-        //sessionHandler.getTimelines();
-        if(sessionHandler.loginUser("john", "password")){
+
+        if(sessionHandler.loginUser("nils", "password")){
             System.out.println(sessionHandler.token);
         }
-        //sessionHandler.createTimeline("First SessionHandler Title", "First SessionHandler Description");
 
-        //sessionHandler.createTimeline();
+
+        sessionHandler.createTimeline("Nils first timeline", "Nils first timeline description");
+
+        sessionHandler.getTimelines();
+
     }
 }
