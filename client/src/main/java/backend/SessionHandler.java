@@ -77,7 +77,7 @@ public class SessionHandler {
 
 
     public Boolean loginUser(String username, String password){
-        String url = "http://127.0.0.1:8000/api-token-auth/";
+        String url = "http://herrlintech.se:8000/api-token-auth/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
         LocalDateTime localDateTime = LocalDateTime.now();
@@ -124,8 +124,8 @@ public class SessionHandler {
         User[] userList;
 
         try {
-            //URL url = new URL("http://127.0.0.1:8000/users/.json");
-            URL url = new URL("http://127.0.0.1:8000/api/v1/users/.json");
+            //URL url = new URL("http://herrlintech.se:8000/users/.json");
+            URL url = new URL("http://herrlintech.se:8000/api/v1/users/.json");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
             ObjectMapper mapper = new ObjectMapper();
@@ -173,7 +173,7 @@ public class SessionHandler {
         Timeline[] timelineList;
 
         try {
-            URL url = new URL("http://127.0.0.1:8000/api/v1/timelines/.json");
+            URL url = new URL("http://herrlintech.se:8000/api/v1/timelines/.json");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
             ObjectMapper mapper = new ObjectMapper();
@@ -219,7 +219,7 @@ public class SessionHandler {
 
     public void createTimeline(String title, String description){
 
-        String url = "http://127.0.0.1:8000/api/v1/timelines/";
+        String url = "http://herrlintech.se:8000/api/v1/timelines/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
         LocalDateTime localDateTime = LocalDateTime.now();
@@ -255,7 +255,7 @@ public class SessionHandler {
         Event[] eventList;
 
         try {
-            URL url = new URL("http://127.0.0.1:8000/api/v1/events/.json");
+            URL url = new URL("http://herrlintech.se:8000/api/v1/events/.json");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
             ObjectMapper mapper = new ObjectMapper();
@@ -300,7 +300,7 @@ public class SessionHandler {
     }
 
     public void createEvent(String title, String description){
-        String url = "http://127.0.0.1:8000/api/v1/events/";
+        String url = "http://herrlintech.se:8000/api/v1/events/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
         LocalDateTime localDateTime = LocalDateTime.now();
