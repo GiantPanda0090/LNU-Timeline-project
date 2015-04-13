@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'rest_auth.registration',
 
     'timeline',
+    'core',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -115,7 +116,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 REST_SESSION_LOGIN = False
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
@@ -136,7 +138,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'EMAIL'
-EMAIL_HOST_PASSWORD = 'PASSWORD'
+EMAIL_HOST_PASSWORD = 'EMAIL'
 DEFAULT_FROM_EMAIL = 'EMAIL'
 
 

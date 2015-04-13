@@ -8,6 +8,9 @@ urlpatterns = [
     # url(r'^$', 'settings.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
+    # Core view
+    url(r'^', include('core.urls', namespace='core', app_name='core')),
+
     # Timeline
     url(r'^api/v1/', include('timeline.urls')),
     
