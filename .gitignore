@@ -18,3 +18,5 @@ client/.idea
 # Maven
 log/
 target/
+
+*.sqlite3
