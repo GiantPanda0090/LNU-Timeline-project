@@ -1,0 +1,44 @@
+.root {
+    -fx-background-color: #40FF88;
+}
+
+.label{
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #787878;
+    -fx-opacity: 0.6;
+}
+.label-bright {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #14CC26;
+    -fx-opacity: 1;
+}
+#nametime{
+    -fx-font-weight: bold;
+    -fx-opacity: 0.7;
+    -fx-border-color: #ffffff;
+}
+
+#okrect{
+    -fx-opacity: 0.2;
+}
+#okrect:hover{
+    -fx-opacity: 1;
+}
+#cancelrect{
+    -fx-opacity: 0.2;
+}
+#cancelrect:hover{
+    -fx-opacity: 1;
+}
+#oktext{
+    -fx-font-weight: bold;
+    -fx-font-size: 16pt;
+    -fx-fill: #787878;
+}
+#canceltext{
+    -fx-font-weight: bold;
+    -fx-font-size: 16pt;
+    -fx-fill: #787878;
+}
