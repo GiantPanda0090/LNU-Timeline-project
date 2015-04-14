@@ -119,7 +119,7 @@ public class login extends Application {
         buttonBox.setSpacing(12);
         buttonBox.setPadding(new Insets(20, 20, 20, 20));
         final Button signUp = new Button("Sign up!");
-        Button signCancel = new Button("Cancel");
+        final Button signCancel = new Button("Cancel");
         buttonBox.getChildren().addAll(signUp, signCancel);
         regBox.getChildren().addAll(newUserName, firstPassword, secondPassword, userEmail);
         regPane.setCenter(regBox);
@@ -138,6 +138,13 @@ public class login extends Application {
                     public void handle(ActionEvent event) {
                         newUser = new UserRegistration();
                         newUser.register(newUserName.getText().toString(), firstPassword.getText().toString(), secondPassword.getText().toString(), userEmail.getText().toString());
+                        regPop.hide();
+                    }
+                });
+                signCancel.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        regPop.hide();
                     }
                 });
             }
