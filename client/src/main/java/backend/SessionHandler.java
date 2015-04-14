@@ -58,18 +58,18 @@ public class SessionHandler {
      * This id is used to request events or if event is created
      * this value is used to assign the event to a timeline
      */
-    int timeline_id;
+    public int timeline_id;
 
     /*
      * An arraylist with the users timelines
      */
-    ArrayList<Timeline> timelineArrayList = new ArrayList<Timeline>();
+    public ArrayList<Timeline> timelineArrayList = new ArrayList<Timeline>();
 
 
     /*
      * An arraylist with all the events that belongs to a timeline that is connected to a user
      */
-    ArrayList<Event> eventArrayList = new ArrayList<Event>();
+    public ArrayList<Event> eventArrayList = new ArrayList<Event>();
 
 
     // Empty contructor
