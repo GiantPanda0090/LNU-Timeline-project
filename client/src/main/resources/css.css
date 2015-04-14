@@ -11,6 +11,12 @@
     -fx-text-fill: #14CC26;
     -fx-opacity: 0.6;
 }
+#regBtn{
+    -fx-font-size: 14pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #14CC26;
+    -fx-opacity: 1.0;
+}
 
 #labelLogo {
     -fx-font-size: 30pt;
