@@ -36,10 +36,10 @@ a single block in the template.
 }
 
 .navbar {
-  background: #2C2C2C;
+  background: #48677B;
   color: white;
   border: none;
-  border-top: 5px solid #A30000;
+  border-top: 5px solid #48677B;
   border-radius: 0px;
 }
 
@@ -48,16 +48,16 @@ a single block in the template.
 }
 
 .nav-list > .active > a, .nav-list > .active > a:hover {
-  background: #2C2C2C;
+  background: #48677B;
 }
 
 .navbar .dropdown-menu li a, .navbar .dropdown-menu li {
-  color: #A30000;
+  color: #48677B;
 }
 
 .navbar .dropdown-menu li a:hover {
   background: #EEEEEE;
-  color: #C20000;
+  color: #48677B;
 }
 
 .pagination>.disabled>a,
@@ -90,8 +90,9 @@ html {
 }*/
 
 body {
-  background: url("../img/grid.png") repeat-x;
-  background-attachment: fixed;
+  /*background: url("../img/grid.png") repeat-x;*/
+    background: url("../img/background.png") repeat-x;
+
 }
 
 #content {
