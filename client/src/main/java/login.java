@@ -4,6 +4,7 @@
 */
 import backend.SessionHandler;
 import backend.Timeline;
+import backend.UserRegistration;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -32,8 +33,10 @@ public class login extends Application {
 
     PopOver newTimeorEvent;
     PopOver ConfigPop;
+    PopOver regPop;
     double top = 0;
     ArrayList<Timeline> labelList = new ArrayList<Timeline>();
+    UserRegistration newUser;
 
     Insets labelInsets;
 
@@ -75,7 +78,7 @@ public class login extends Application {
         Button button = new Button("Log in");
         button.setMinWidth(200);
 
-        Label regBtn = new Label("Sign up");
+        final Label regBtn = new Label("Sign up");
         regBtn.setId("regBtn");
 
         // Config Icon
@@ -96,6 +99,49 @@ public class login extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        /*
+          ...
+          DATA FOR REGISTRATION
+          ...
+         */
+        final BorderPane regPane = new BorderPane();
+        regPane.setMinSize(200, 200);
+        VBox regBox = new VBox();
+        regBox.setSpacing(12);
+        regBox.setPadding(new Insets(20, 20, 20, 20));
+        final TextField newUserName = new TextField("Enter username");
+        final TextField firstPassword = new TextField("Enter password");
+        final TextField secondPassword = new TextField("Repeat password");
+        final TextField userEmail = new TextField("Email");
+
+        HBox buttonBox = new HBox();
+        buttonBox.setSpacing(12);
+        buttonBox.setPadding(new Insets(20, 20, 20, 20));
+        final Button signUp = new Button("Sign up!");
+        Button signCancel = new Button("Cancel");
+        buttonBox.getChildren().addAll(signUp, signCancel);
+        regBox.getChildren().addAll(newUserName, firstPassword, secondPassword, userEmail);
+        regPane.setCenter(regBox);
+        regPane.setBottom(buttonBox);
+
+
+        regBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                regPop = new PopOver();
+                regPop.setContentNode(regPane);
+                regPop.show(regBtn);
+
+                signUp.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        newUser = new UserRegistration();
+                        newUser.register(newUserName.getText().toString(), firstPassword.getText().toString(), secondPassword.getText().toString(), userEmail.getText().toString());
+                    }
+                });
+            }
+        });
 
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
