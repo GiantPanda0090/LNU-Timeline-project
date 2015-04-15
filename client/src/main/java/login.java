@@ -2,10 +2,14 @@
  * Created by Johan on 2015-04-08.
  * AS OF RIGHT NOW EVERYTHING WORKS
 */
+
 import backend.SessionHandler;
 import backend.Timeline;
 import backend.UserRegistration;
 import javafx.application.Application;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -26,6 +30,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.controlsfx.control.PopOver;
 
+
+import javafx.beans.value.ChangeListener;
+
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+
+
 import java.util.ArrayList;
 
 
@@ -36,6 +47,8 @@ public class login extends Application {
     PopOver regPop;
     double top = 0;
     ArrayList<Timeline> labelList = new ArrayList<Timeline>();
+    ObservableList<String> entries = FXCollections.observableArrayList();
+    ListView<String> list = new ListView<String>();
     UserRegistration newUser;
 
     Insets labelInsets;
@@ -214,10 +227,34 @@ public class login extends Application {
                     gpane.setMargin(config, new Insets(0, 0, 880, 1570));
 
                     // Search field
-                    final TextField search = new TextField("Search your timelines");
+                    TextField search = new TextField();
+                    search.setPromptText("Search your timeline");;
+                    search.textProperty().addListener(new ChangeListener<Object>() {
+                        public void changed(ObservableValue<?> observable, Object oldVal,
+                                            Object newVal) {
+                            search((String) oldVal, (String) newVal);
+                        }
+                    });
+
+                    list.setMaxHeight(180);
+                    for (int i = 0; i < 100; i++) {
+                        entries.add("Item " + i);
+                    }
+                    entries.add("A");
+                    entries.add("B");
+                    entries.add("C");
+                    entries.add("D");
+                    list.setItems(entries);
+                    HBox root = new HBox();
+                    root.setPadding(new Insets(10, 10, 10, 10));
+                    root.setSpacing(2);
+                    root.getChildren().addAll(search, list);
+
                     search.setFont(new Font("System", 12));
                     search.setMaxWidth(200);
                     search.setMaxHeight(30);
+                    primaryStage.setScene(new Scene(root, 300, 250));
+                    primaryStage.show();
                     gpane.setMargin(search, new Insets(-610, 0, 100, 60));
 
 
@@ -298,8 +335,12 @@ public class login extends Application {
                     // Get user Timelines
                     sessionHandler.getTimelines();
                     int size = sessionHandler.timelineArrayList.size();
+
+
+
                     for(int i = 0; i<size; i++){
                         Label timelineLabel = new Label(sessionHandler.timelineArrayList.get(i).getTimeline_title());
+
                         timelineLabel.setId("timelineLabel");
                         gpane.setMargin(timelineLabel, new Insets(top, 0, 500, 60));
                         gpane.setColumnIndex(timelineLabel, 0);
@@ -396,6 +437,26 @@ public class login extends Application {
                 }
             }
         });
+    }
+
+    public void search(String oldVal, String newVal) {
+        if (oldVal != null && (newVal.length() < oldVal.length())) {
+            list.setItems(entries);
+        }
+        String value = newVal.toUpperCase();
+        ObservableList<String> subentries = FXCollections.observableArrayList();
+        for (Object entry : list.getItems()) {
+            boolean match = true;
+            String entryText = (String) entry;
+            if (!entryText.toUpperCase().contains(value)) {
+                match = false;
+                break;
+            }
+            if (match == true) {
+                subentries.add(entryText);
+            }
+        }
+        list.setItems(subentries);
     }
     public static void main(String[] args){
         launch(args);
