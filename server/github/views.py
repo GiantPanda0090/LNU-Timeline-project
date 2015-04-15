@@ -87,7 +87,55 @@ def getReposFromGithubAndSaveIfNotInDatabase():
                 new_contributor.save()
                 new_contributor.repos.add(new_repo)
 
+    else:
+        print("Okey... Updateing repo details and contributers then")
+        updateRepoDetails()
+        updateContributersOnAllRepos()
+
+
     return True
+
+def updateRepoDetails():
+    repo = getThingsFromGithubAPI()
+    dbRepo = Repo.objects.all()[0]
+    print(dbRepo.name)
+
+    dbRepo.github_id = repo['id']
+    dbRepo.name = repo['name']
+    dbRepo.description = repo['description']
+    dbRepo.html_url = repo['svn_url']
+    dbRepo.watchers = repo['watchers']
+    dbRepo.language = repo['language']
+    dbRepo.open_issues = repo['open_issues_count']
+    dbRepo.repo_stars = repo['stargazers_count']
+    dbRepo.save()
+
+    print('Repo updated')
+
+
+def updateContributersOnAllRepos():
+
+    for i in Repo.objects.all():
+        contributors = getContributors(i.name)
+        for j in contributors:
+            #print(j['author']['login']+' contributes to '+i.name)
+
+            # If contributor dont exist in database, add her
+            if ( int(j['author']['id']) not in [k.github_id for k in Contributor.objects.all()]):
+                    new_contributor = Contributor(
+                        name = j['author']['login'],
+                        github_id = j['author']['id'],
+                        slug = j['author']['login'],
+                        html_url = j['author']['html_url'],
+                        avatar_url = j['author']['avatar_url'],
+                    )
+
+                    new_contributor.save()
+                    new_contributor.repos.add(i)
+
+            if ( int(j['author']['id']) in [k.github_id for k in Contributor.objects.all()]):
+                contributer = Contributor.objects.get(github_id=j['author']['id'])
+                contributer.repos.add(i)
 
 
 def github_hook(request):

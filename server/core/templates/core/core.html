@@ -26,10 +26,24 @@
 
     {% endfor %}
 </div>
+
 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" align="center">
     <h3 style="font-family: 'Indie Flower', cursive;">Contributors:</h3>
     {% for c in contributors %}
-        <h4 style="font-family: 'Indie Flower', cursive;">{{ c.name }}</h4>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 20px">
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" align="right" style="margin-top: 18px">
+                <div style="font-family: 'Indie Flower', cursive; font-size: large">{{ c.name }}</div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" align="left">
+                <img src="{{ c.avatar_url }}" class="img-responsive" alt="Responsive image" style="height: 50px; width: 50px;">
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <!-- more info about the user -->
+                </div>
+            </div>
+
+        </div>
     {% endfor %}
 </div>
 
