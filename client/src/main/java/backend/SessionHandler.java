@@ -5,6 +5,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
@@ -46,10 +47,17 @@ public class SessionHandler {
      */
     String token;
 
+    public int getTimeline_id() {
+        return timeline_id;
+    }
+
+    public void setTimeline_id(int timeline_id) {
+        this.timeline_id = timeline_id;
+    }
 
     /*
-     * user is the user that is logged in to the session
-     */
+         * user is the user that is logged in to the session
+         */
     User user;
 
 
@@ -180,7 +188,7 @@ public class SessionHandler {
 
             httpURLConnection.setRequestMethod("GET");
             httpURLConnection.setRequestProperty("User-Agent", "Timeline-Java-Client");
-            httpURLConnection.setRequestProperty("Authorization", "Token "+token);
+            httpURLConnection.setRequestProperty("Authorization", "Token " + token);
 
             int responseCore = httpURLConnection.getResponseCode();
 
@@ -246,6 +254,38 @@ public class SessionHandler {
             System.out.println(response);
         }catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            httpClient.getConnectionManager().shutdown();
+        }
+    }
+
+    public void updateTimeline(String title, String description){
+        HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
+
+        LocalDateTime localDateTime = LocalDateTime.now();
+
+        try {
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("timeline_title", title);
+            jsonObject.put("timeline_description", description);
+            jsonObject.put("timeline_start_datetime", localDateTime.now());
+            jsonObject.put("timeline_stop_datetime", localDateTime.now());
+
+            HttpPut request = new HttpPut("http://herrlintech.se:8000/api/v1/timelines/"+timeline_id+"/");
+
+            request.addHeader("User-Agent", "Timeline-Client");
+            request.addHeader("Accept", "application/json");
+            request.addHeader("Content-Type", "application/json; charset=UTF-8");
+            request.addHeader("Authorization", "Token "+token);
+            request.setEntity(new StringEntity(jsonObject.toString()));
+            HttpResponse response = httpClient.execute(request);
+
+            System.out.println(response);
+
+        }catch (Exception ex) {
+            ex.printStackTrace();
+
         } finally {
             httpClient.getConnectionManager().shutdown();
         }
@@ -334,46 +374,6 @@ public class SessionHandler {
     }
 
 
-    public void updateTimeline(String title, String description, int timeline_id){
-
-        String url = "http://herrlintech.se:8000/api/v1/timelines/";
-
-
-
-        HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
-
-        LocalDateTime localDateTime = LocalDateTime.now();
-        System.out.println(localDateTime);
-
-     //   timelineArrayList.remove(timeline_id);
-
-        try {
-
-
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("user", user.getId());
-            jsonObject.put("timeline_title", title);
-            jsonObject.put("timeline_description", description);
-            jsonObject.put("timeline_start_datetime", localDateTime.now());
-            jsonObject.put("timeline_stop_datetime", localDateTime.now());
-
-            HttpPost request = new HttpPost(url);
-
-            request.addHeader("User-Agent", "Timeline-Client");
-            request.addHeader("Accept", "application/json");
-            request.addHeader("Content-Type", "application/json; charset=UTF-8");
-            request.addHeader("Authorization", "Token "+token);
-            request.setEntity(new StringEntity(jsonObject.toString()));
-            HttpResponse response = httpClient.execute(request);
-
-            System.out.println(response);
-        }catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            httpClient.getConnectionManager().shutdown();
-        }
-    }
-
     public String toString(){
         return user.getUsername();
     }
@@ -388,8 +388,8 @@ public class SessionHandler {
 
 
 
-
-        sessionHandler.updateTimeline("New Timeline", "pls work", 7);
+        sessionHandler.setTimeline_id(7);
+        sessionHandler.updateTimeline("John trying out updateTimeline", "is it working?");
 
 
 
