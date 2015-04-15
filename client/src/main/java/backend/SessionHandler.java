@@ -132,7 +132,7 @@ public class SessionHandler {
 
             httpURLConnection.setRequestMethod("GET");
             httpURLConnection.setRequestProperty("User-Agent", "Timeline-Java-Client");
-            httpURLConnection.setRequestProperty("Authorization", "Token "+token);
+            httpURLConnection.setRequestProperty("Authorization", "Token " + token);
 
             int responseCore = httpURLConnection.getResponseCode();
 
@@ -262,7 +262,7 @@ public class SessionHandler {
 
             httpURLConnection.setRequestMethod("GET");
             httpURLConnection.setRequestProperty("User-Agent", "Timeline-Java-Client");
-            httpURLConnection.setRequestProperty("Authorization", "Token "+token);
+            httpURLConnection.setRequestProperty("Authorization", "Token " + token);
 
             int responseCore = httpURLConnection.getResponseCode();
 
@@ -334,6 +334,46 @@ public class SessionHandler {
     }
 
 
+    public void updateTimeline(String title, String description, int timeline_id){
+
+        String url = "http://herrlintech.se:8000/api/v1/timelines/";
+
+
+
+        HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
+
+        LocalDateTime localDateTime = LocalDateTime.now();
+        System.out.println(localDateTime);
+
+     //   timelineArrayList.remove(timeline_id);
+
+        try {
+
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("user", user.getId());
+            jsonObject.put("timeline_title", title);
+            jsonObject.put("timeline_description", description);
+            jsonObject.put("timeline_start_datetime", localDateTime.now());
+            jsonObject.put("timeline_stop_datetime", localDateTime.now());
+
+            HttpPost request = new HttpPost(url);
+
+            request.addHeader("User-Agent", "Timeline-Client");
+            request.addHeader("Accept", "application/json");
+            request.addHeader("Content-Type", "application/json; charset=UTF-8");
+            request.addHeader("Authorization", "Token "+token);
+            request.setEntity(new StringEntity(jsonObject.toString()));
+            HttpResponse response = httpClient.execute(request);
+
+            System.out.println(response);
+        }catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            httpClient.getConnectionManager().shutdown();
+        }
+    }
+
     public String toString(){
         return user.getUsername();
     }
@@ -342,25 +382,27 @@ public class SessionHandler {
     public static void main(String[] args) {
         SessionHandler sessionHandler = new SessionHandler();
 
-        if(sessionHandler.loginUser("nils", "password")){
+        if(sessionHandler.loginUser("austin", "password")){
             System.out.println(sessionHandler.token);
         }
 
 
-        //sessionHandler.createTimeline("Nils first timeline", "Nils first timeline description");
+
+
+        sessionHandler.updateTimeline("New Timeline", "pls work", 7);
+
+
+
+
+
+
 
         sessionHandler.getTimelines();
 
-        sessionHandler.timeline_id = 1;
-        sessionHandler.createEvent("Nils first eventtitle", "Nils first event description");
-        sessionHandler.createEvent("Nils first eventtitle", "Nils first event description");
-        sessionHandler.createEvent("Nils first eventtitle", "Nils first event description");
-        sessionHandler.createEvent("Nils first eventtitle", "Nils first event description");
-        sessionHandler.createEvent("Nils first eventtitle", "Nils first event description");
 
-        sessionHandler.getEvents();
 
-        for (Event e : sessionHandler.eventArrayList){
+
+        for (Timeline e : sessionHandler.timelineArrayList){
             System.out.println(e.id);
         }
 

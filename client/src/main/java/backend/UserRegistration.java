@@ -66,6 +66,6 @@ public class UserRegistration {
     // Example usage
     public static void main(String[] args) {
         UserRegistration userRegistration = new UserRegistration();
-        userRegistration.register("nils", "password", "password", "jh222jx@student.lnu.se");
+        userRegistration.register("austin", "password", "password", "ap222ti@student.lnu.se");
     }
 }
