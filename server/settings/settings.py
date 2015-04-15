@@ -51,6 +51,8 @@ INSTALLED_APPS = (
 
     'timeline',
     'core',
+
+    'github',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -117,8 +119,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = '/var/www/static/'
 
 REST_SESSION_LOGIN = False
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'

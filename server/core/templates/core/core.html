@@ -15,9 +15,27 @@
 </head>
 <body>
 
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" align="center">
+    {% for r in repo %}
+        <h3 style="font-family: 'Indie Flower', cursive;">Repo name : {{ r.name }}</h3>
+        <h4 style="font-family: 'Indie Flower', cursive;">Description : {{ r.description }}</h4>
+        <h4 style="font-family: 'Indie Flower', cursive;">url : {{ r.html_url }}</h4>
+        <h4 style="font-family: 'Indie Flower', cursive;">Watchers : {{ r.watchers }}</h4>
+        <h4 style="font-family: 'Indie Flower', cursive;">Open issues : {{ r.open_issues }}</h4>
+        <h4 style="font-family: 'Indie Flower', cursive;">Stars : {{ r.repo_stars }}</h4>
+
+    {% endfor %}
+</div>
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" align="center">
+    <h3 style="font-family: 'Indie Flower', cursive;">Contributors:</h3>
+    {% for c in contributors %}
+        <h4 style="font-family: 'Indie Flower', cursive;">{{ c.name }}</h4>
+    {% endfor %}
+</div>
+
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" align="center">
 
-    <h1 style="font-family: 'Indie Flower', cursive; margin-top: 200px;">Group2 Timeline-project</h1>
+    <h1 style="font-family: 'Indie Flower', cursive; margin-top: 100px;">Group2 Timeline-project</h1>
     <h1 style="font-family: 'Indie Flower', cursive; margin-top: 20px;">Navigations:</h1>
 
     <a href="https://github.com/jherrlin/timeline-project">

@@ -1,9 +1,9 @@
 from django.conf.urls import url
 
-from .views import CoreTemplateView
+from .views import CoreTemplateView, core
 
 urlpatterns = [
 
-    url(r'^$', CoreTemplateView.as_view() , name='core'),
+    url(r'^$', core , name='core'),
 
 ]

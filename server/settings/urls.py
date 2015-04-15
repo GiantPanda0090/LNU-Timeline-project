@@ -3,10 +3,15 @@ from django.contrib import admin
 
 from rest_framework.authtoken import views
 
+from github.views import github_hook
+
 urlpatterns = [
     # Examples:
     # url(r'^$', 'settings.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
+
+    # github hook
+    url(r'^github-hook/$', github_hook),
 
     # Core view
     url(r'^', include('core.urls', namespace='core', app_name='core')),
