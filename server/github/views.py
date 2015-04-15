@@ -4,8 +4,9 @@ import string
 import base64
 
 from django.http import HttpResponse
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView, TemplateView, View
 from django.core import serializers
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import Repo, Contributor
 
@@ -137,10 +138,23 @@ def updateContributersOnAllRepos():
                 contributer = Contributor.objects.get(github_id=j['author']['id'])
                 contributer.repos.add(i)
 
+class GithubHookView(View):
+    def get(self, request, *args, **kwargs):
+        return HttpResponse('This is GET request')
 
+    @csrf_exempt
+    def post(self, request, *args, **kwargs):
+        print("in post")
+        #getReposFromGithubAndSaveIfNotInDatabase()
+        return HttpResponse('This is POST request')
+
+@csrf_exempt
 def github_hook(request):
+    print("Handling request")
+    print(request)
+
     if getReposFromGithubAndSaveIfNotInDatabase() == True:
-          return HttpResponse(json.dumps({'status':'ok'}), content_type='application/json')
+        return HttpResponse(json.dumps({'status':'ok'}), content_type='application/json')
     else:
         return HttpResponse(json.dumps({'status':'fail'}), content_type='application/json')
 
