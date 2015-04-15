@@ -9,6 +9,7 @@ from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import Repo, Contributor
+from settings.settings import GITHUB_USER, GITHUB_PASSWORD
 
 # Removing unwanted chars to slug
 def create_slug(text):
@@ -21,8 +22,8 @@ def create_slug(text):
 def getThingsFromGithubAPI():
     connection = httplib.HTTPSConnection('api.github.com')
 
-    username = 'jherrlin'
-    password = 'Gjoher(#2717)'
+    username = GITHUB_USER
+    password = GITHUB_PASSWORD
 
     auth = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
 
@@ -38,8 +39,8 @@ def getContributors(repo):
     #data = getThingsFromGithubAPI('/repos/videumcodeup/'+repo+'/stats/contributors')
     connection = httplib.HTTPSConnection('api.github.com')
 
-    username = 'jherrlin'
-    password = 'Gjoher(#2717)'
+    username = GITHUB_USER
+    password = GITHUB_PASSWORD
 
     auth = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
 
