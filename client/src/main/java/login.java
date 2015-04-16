@@ -3,9 +3,8 @@
  * AS OF RIGHT NOW EVERYTHING WORKS
 */
 
-import backend.SessionHandler;
-import backend.Timeline;
-import backend.UserRegistration;
+import backend.*;
+import gui.Config;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -44,6 +43,7 @@ public class login extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
+
         final SessionHandler sessionHandler = new SessionHandler();
 
         BorderPane pane = new BorderPane();
@@ -90,8 +90,10 @@ public class login extends Application {
         config.setScaleX(0.7);
         config.setScaleY(0.7);
 
+        final Button configButton = new Button("API config");
+
         login.getChildren().addAll(logo, username, password, button);
-        register.getChildren().addAll(regBtn, config);
+        register.getChildren().addAll(regBtn, config, configButton);
 
         pane.setTop(fillTop);
         pane.setCenter(login);
@@ -153,10 +155,17 @@ public class login extends Application {
             }
         });
 
+        configButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                Config configGui = new Config();
+                configGui.config().show();
+            }
+        });
+
         button.setOnAction(new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent event) {
-                if(sessionHandler.loginUser(username.getText(), password.getText())) {
+                if (sessionHandler.loginUser(username.getText(), password.getText())) {
                     Stage stage = new Stage();
                     final BorderPane bpane = new BorderPane();
                     bpane.setPadding(new Insets(40, 40, 40, 40));
@@ -192,7 +201,8 @@ public class login extends Application {
 
                     // Search field
                     TextField search = new TextField();
-                    search.setPromptText("Search your timeline");;
+                    search.setPromptText("Search your timeline");
+                    ;
 
                     search.setFont(new Font("System", 12));
                     search.setMaxWidth(200);
@@ -216,9 +226,9 @@ public class login extends Application {
                     bottomFill.setMinHeight(40);
                     bottomFill.setMaxHeight(10);
                     HBox configbox = new HBox();
-                    configbox.setPadding(new Insets(10, 10, 10,10));
+                    configbox.setPadding(new Insets(10, 10, 10, 10));
                     configbox.setSpacing(5.0);
-                    configbox.getChildren().addAll(plus,config);
+                    configbox.getChildren().addAll(plus, config);
 
                     bannerView.getChildren().addAll(logo);
                     timelineList.getChildren().addAll(configbox, search);
@@ -229,15 +239,15 @@ public class login extends Application {
                     bpane.setCenter(timelineView);
 
                     stage.setScene(new Scene(bpane, 1000, 600));
-stage.setFullScreen(true);
+                    stage.setFullScreen(true);
                     // Search field
-                   // TextField search = new TextField();
-                   // search.setPromptText("Search your timeline");;
-                   // search.textProperty().addListener(new ChangeListener<Object>() {
-                   //     public void changed(ObservableValue<?> observable, Object oldVal,
+                    // TextField search = new TextField();
+                    // search.setPromptText("Search your timeline");;
+                    // search.textProperty().addListener(new ChangeListener<Object>() {
+                    //     public void changed(ObservableValue<?> observable, Object oldVal,
                     //                        Object newVal) {
-                     //       search((String) oldVal, (String) newVal);
-                     //   }
+                    //       search((String) oldVal, (String) newVal);
+                    //   }
                     //});
 
                     list.setMaxHeight(180);
@@ -336,8 +346,7 @@ stage.setFullScreen(true);
                     int size = sessionHandler.timelineArrayList.size();
 
 
-
-                    for(int i = 0; i<size; i++){
+                    for (int i = 0; i < size; i++) {
                         Label timelineLabel = new Label(sessionHandler.timelineArrayList.get(i).getTimeline_title());
 
                         timelineLabel.setId("timelineLabel");
@@ -387,7 +396,7 @@ stage.setFullScreen(true);
                         }
                     });
 
-                }else{
+                } else {
                     username.setText("false");
                 }
             }
