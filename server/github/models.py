@@ -9,6 +9,9 @@ class Repo(models.Model):
     language = models.CharField(max_length=254, blank=True, null=True)
     open_issues = models.IntegerField(default=0)
     repo_stars = models.IntegerField(default=0)
+    subscribers_count = models.IntegerField(default=0)
+    created_at = models.DateTimeField()
+    pushed_at = models.DateTimeField()
 
     def __unicode__(self):
         return self.name

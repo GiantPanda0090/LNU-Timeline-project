@@ -22,7 +22,9 @@
         <h4 style="font-family: 'Indie Flower', cursive;">url : {{ r.html_url }}</h4>
         <h4 style="font-family: 'Indie Flower', cursive;">Watchers : {{ r.watchers }}</h4>
         <h4 style="font-family: 'Indie Flower', cursive;">Open issues : {{ r.open_issues }}</h4>
-        <h4 style="font-family: 'Indie Flower', cursive;">Stars : {{ r.repo_stars }}</h4>
+        <h4 style="font-family: 'Indie Flower', cursive;">Subscribers : {{ r.subscribers_count }}</h4>
+        <h4 style="font-family: 'Indie Flower', cursive;">Created at : {{ r.created_at }}</h4>
+        <h4 style="font-family: 'Indie Flower', cursive;">Last push was : {{ r.pushed_at }}</h4>
 
     {% endfor %}
 </div>
@@ -32,17 +34,15 @@
     {% for c in contributors %}
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 20px">
 
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" align="right" style="margin-top: 18px">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" align="right" style="margin-top: 0px">
                 <div style="font-family: 'Indie Flower', cursive; font-size: large">{{ c.name }}</div>
+                        <a href="{{ c.html_url }}">
+                            <h4 style="font-family: 'Indie Flower', cursive;">{{ c.html_url }}</h4>
+                        </a>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" align="left">
                 <img src="{{ c.avatar_url }}" class="img-responsive" alt="Responsive image" style="height: 50px; width: 50px;">
-
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <!-- more info about the user -->
-                </div>
             </div>
-
         </div>
     {% endfor %}
 </div>

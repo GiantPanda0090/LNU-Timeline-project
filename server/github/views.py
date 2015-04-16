@@ -11,13 +11,6 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Repo, Contributor
 from settings.settings import GITHUB_USER, GITHUB_PASSWORD
 
-# Removing unwanted chars to slug
-def create_slug(text):
-    slug_string = ''
-    for i in text:
-        if i in string.ascii_letters:
-            slug_string += i
-    return slug_string
 
 def getThingsFromGithubAPI():
     connection = httplib.HTTPSConnection('api.github.com')
@@ -35,8 +28,8 @@ def getThingsFromGithubAPI():
 
     return data
 
-def getContributors(repo):
-    #data = getThingsFromGithubAPI('/repos/videumcodeup/'+repo+'/stats/contributors')
+def getContributors():
+
     connection = httplib.HTTPSConnection('api.github.com')
 
     username = GITHUB_USER
@@ -56,6 +49,7 @@ def getContributors(repo):
 # returns a JSON object
 def getReposFromGithubAndSaveIfNotInDatabase():
     repo = getThingsFromGithubAPI()
+    print(repo)
 
     # If repo not in database, add it and its contributers
     if repo['id'] not in [j.github_id for j in Repo.objects.all()]:
@@ -68,13 +62,15 @@ def getReposFromGithubAndSaveIfNotInDatabase():
             language = repo['language'],
             open_issues = repo['open_issues_count'],
             repo_stars = repo['stargazers_count'],
-
+            subscribers_count = repo['subscribers_count'],
+            created_at = repo['created_at'],
+            pushed_at = repo['pushed_at'],
         )
         new_repo.save()
         print('Repo saved')
 
         # Get contributors from repo
-        contributers = getContributors(repo['name'])
+        contributers = getContributors()
 
         for k in contributers:
             if k['author']['id'] not in [j.github_id for j in Contributor.objects.all()]:
@@ -110,6 +106,9 @@ def updateRepoDetails():
     dbRepo.language = repo['language']
     dbRepo.open_issues = repo['open_issues_count']
     dbRepo.repo_stars = repo['stargazers_count']
+    dbRepo.subscribers_count = repo['subscribers_count'],
+    dbRepo.created_at = repo['created_at'],
+    dbRepo.pushed_at = repo['pushed_at'],
     dbRepo.save()
 
     print('Repo updated')
@@ -139,54 +138,11 @@ def updateContributersOnAllRepos():
                 contributer = Contributor.objects.get(github_id=j['author']['id'])
                 contributer.repos.add(i)
 
-class GithubHookView(View):
-    def get(self, request, *args, **kwargs):
-        return HttpResponse('This is GET request')
-
-    @csrf_exempt
-    def post(self, request, *args, **kwargs):
-        print("in post")
-        #getReposFromGithubAndSaveIfNotInDatabase()
-        return HttpResponse('This is POST request')
-
 @csrf_exempt
 def github_hook(request):
-    print("Handling request")
-    print(request)
+    print("Handling request.....")
 
     if getReposFromGithubAndSaveIfNotInDatabase() == True:
         return HttpResponse(json.dumps({'status':'ok'}), content_type='application/json')
     else:
         return HttpResponse(json.dumps({'status':'fail'}), content_type='application/json')
-
-def allReposAndContributersJSON(request):
-
-    repos_list = []
-    contributers_list = []
-
-    for repo in Repo.objects.all():
-        repo = {
-            'id' : repo.id,
-            'name' : repo.name,
-            'description' : repo.description,
-            'html_url' : repo.html_url,
-            'watchers' : repo.watchers,
-            'language' : repo.language
-        }
-        repos_list.append(repo)
-
-    for con in Contributor.objects.all():
-        contributer = {
-            'name' : con.name,
-            'html_url' : con.html_url,
-            'avatar_url' : con.avatar_url,
-            'repos' : [r.id for r in con.repos.all()]
-        }
-        contributers_list.append(contributer)
-
-    data = {
-        'repos':repos_list,
-        'contributers':contributers_list
-    }
-
-    return HttpResponse(json.dumps(data), content_type='application/json')

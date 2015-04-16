@@ -3,7 +3,7 @@ from django.contrib import admin
 
 from rest_framework.authtoken import views
 
-from github.views import github_hook, GithubHookView
+from github.views import github_hook
 
 urlpatterns = [
     # Examples:
