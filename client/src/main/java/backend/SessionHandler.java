@@ -9,6 +9,8 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+
+
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -19,6 +21,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import org.apache.log4j.Logger;
+
+
 
 /**
  * This class is made to handling a session.
@@ -38,6 +44,12 @@ import java.util.ArrayList;
 
 
 public class SessionHandler {
+
+    /*
+     * Logging
+     */
+    private static final Logger LOG = Logger.getLogger(SessionHandler.class);
+
 
     /*
      * Reading from config file
@@ -87,7 +99,16 @@ public class SessionHandler {
     public SessionHandler() {}
 
 
+    /*
+     * This function tries to log in the user
+     * Username and password as arguments
+     * If login successfully getUser(username) is called.
+     * getUsername() applies the token to the user.
+     * This token is sent within the HTTP head in every request made to the API
+     */
     public Boolean loginUser(String username, String password){
+
+
         String url = "http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api-token-auth/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
@@ -111,19 +132,31 @@ public class SessionHandler {
             HttpEntity entity = response.getEntity();
 
             String content = EntityUtils.toString(entity);
-            //String content = EntityUtils.toString(entity);
-            //System.out.println(content);
 
-            if (entity != null){
-                //System.out.println(entity.toString());
+            int response_code = response.getStatusLine().getStatusCode();
+
+            if (response_code == 200){
+
                 JSONObject result = new JSONObject(content);
                 token = result.get("token").toString();
                 getUser(username);
+
+                LOG.info("User successfully signed in");
+
                 return true;
             }
-        }catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
+
+            if (response_code != 200){
+                LOG.info("User login failure");
+            }
+        }
+
+        catch (Exception e) {
+            e.printStackTrace();
+            LOG.error(e);
+        }
+
+        finally {
             httpClient.getConnectionManager().shutdown();
         }
         return false;
@@ -171,10 +204,12 @@ public class SessionHandler {
 
         catch (MalformedURLException e){
             e.printStackTrace();
+            LOG.error(e);
         }
 
         catch (IOException e){
             e.printStackTrace();
+            LOG.error(e);
         }
 
     }
@@ -221,10 +256,12 @@ public class SessionHandler {
 
         catch (MalformedURLException e){
             e.printStackTrace();
+            LOG.error(e);
         }
 
         catch (IOException e){
             e.printStackTrace();
+            LOG.error(e);
         }
     }
 
@@ -260,9 +297,14 @@ public class SessionHandler {
             System.out.println(result.get("status_code").toString());
 
             //System.out.println(response);
-        }catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
+        }
+
+        catch (Exception e) {
+            e.printStackTrace();
+            LOG.error(e);
+        }
+
+        finally {
             httpClient.getConnectionManager().shutdown();
         }
     }
@@ -291,10 +333,15 @@ public class SessionHandler {
 
             System.out.println(response);
 
-        }catch (Exception ex) {
-            ex.printStackTrace();
+        }
 
-        } finally {
+        catch (Exception e) {
+            e.printStackTrace();
+            LOG.error(e);
+
+        }
+
+        finally {
             httpClient.getConnectionManager().shutdown();
         }
     }
@@ -340,10 +387,12 @@ public class SessionHandler {
 
         catch (MalformedURLException e){
             e.printStackTrace();
+            LOG.error(e);
         }
 
         catch (IOException e){
             e.printStackTrace();
+            LOG.error(e);
         }
     }
 
@@ -381,9 +430,14 @@ public class SessionHandler {
             JSONObject result = new JSONObject(content);
             System.out.println(result.get("detail"));
 
-        }catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
+        }
+
+        catch (Exception e) {
+            e.printStackTrace();
+            LOG.error(e);
+        }
+
+        finally {
             httpClient.getConnectionManager().shutdown();
         }
     }
@@ -405,12 +459,6 @@ public class SessionHandler {
 
         sessionHandler.setTimeline_id(7);
         sessionHandler.updateTimeline("Austin confirming the update", "it is working");
-
-        sessionHandler.getTimelines();
-
-        for (Timeline e : sessionHandler.timelineArrayList){
-            System.out.println(e.id);
-        }
 
     }
 }
