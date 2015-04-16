@@ -101,7 +101,7 @@ public class login extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.show();
-        primaryStage.setMaxHeight(400.0);
+        primaryStage.setMaxHeight(600.0);
         primaryStage.setMaxWidth(400.0);
 
         /*
@@ -179,7 +179,7 @@ public class login extends Application {
 
                     // Parent for timeline view
                     ScrollPane timelinePane = new ScrollPane();
-                    timelinePane.setPrefSize(1500, 800);
+                    timelinePane.setPrefSize(1000, 800);
 
                     // Config button (just a button right now)
                     final Button config = new Button("Config");
