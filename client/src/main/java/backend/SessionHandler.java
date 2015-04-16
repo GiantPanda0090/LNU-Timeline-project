@@ -39,6 +39,10 @@ import java.util.ArrayList;
 
 public class SessionHandler {
 
+    /*
+     * Reading from config file
+     */
+    private API apiConfig = APIConfigReader.read();
 
     /*
      * token it the logged in users authentication token
@@ -46,14 +50,6 @@ public class SessionHandler {
      * authorized resources are requested
      */
     String token;
-
-    public int getTimeline_id() {
-        return timeline_id;
-    }
-
-    public void setTimeline_id(int timeline_id) {
-        this.timeline_id = timeline_id;
-    }
 
     /*
          * user is the user that is logged in to the session
@@ -67,6 +63,13 @@ public class SessionHandler {
      * this value is used to assign the event to a timeline
      */
     public int timeline_id;
+    public int getTimeline_id() {
+        return timeline_id;
+    }
+    public void setTimeline_id(int timeline_id) {
+        this.timeline_id = timeline_id;
+    }
+
 
     /*
      * An arraylist with the users timelines
@@ -85,7 +88,7 @@ public class SessionHandler {
 
 
     public Boolean loginUser(String username, String password){
-        String url = "http://herrlintech.se:8000/api-token-auth/";
+        String url = "http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api-token-auth/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
         LocalDateTime localDateTime = LocalDateTime.now();
@@ -132,8 +135,8 @@ public class SessionHandler {
         User[] userList;
 
         try {
-            //URL url = new URL("http://herrlintech.se:8000/users/.json");
-            URL url = new URL("http://herrlintech.se:8000/api/v1/users/.json");
+
+            URL url = new URL("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/users/.json");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
             ObjectMapper mapper = new ObjectMapper();
@@ -145,7 +148,7 @@ public class SessionHandler {
             int responseCore = httpURLConnection.getResponseCode();
 
             //System.out.println("Sending 'GET' request to UTL : " + url.toString());
-            System.out.println("Responsecode : " + responseCore);
+            //System.out.println("Responsecode : " + responseCore);
 
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
             String inputLine;
@@ -181,7 +184,7 @@ public class SessionHandler {
         Timeline[] timelineList;
 
         try {
-            URL url = new URL("http://herrlintech.se:8000/api/v1/timelines/.json");
+            URL url = new URL("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/timelines/.json");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
             ObjectMapper mapper = new ObjectMapper();
@@ -193,7 +196,7 @@ public class SessionHandler {
             int responseCore = httpURLConnection.getResponseCode();
 
             //System.out.println("Sending 'GET' request to UTL : " + url.toString());
-            System.out.println("Responsecode : " + responseCore);
+            //System.out.println("Responsecode : " + responseCore);
 
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
             String inputLine;
@@ -227,11 +230,11 @@ public class SessionHandler {
 
     public void createTimeline(String title, String description){
 
-        String url = "http://herrlintech.se:8000/api/v1/timelines/";
+        String url = "http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/timelines/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
         LocalDateTime localDateTime = LocalDateTime.now();
-        System.out.println(localDateTime);
+        //System.out.println(localDateTime);
 
         try {
 
@@ -251,7 +254,12 @@ public class SessionHandler {
             request.setEntity(new StringEntity(jsonObject.toString()));
             HttpResponse response = httpClient.execute(request);
 
-            System.out.println(response);
+            HttpEntity entity = response.getEntity();
+            String content = EntityUtils.toString(entity);
+            JSONObject result = new JSONObject(content);
+            System.out.println(result.get("status_code").toString());
+
+            //System.out.println(response);
         }catch (Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -272,7 +280,7 @@ public class SessionHandler {
             jsonObject.put("timeline_start_datetime", localDateTime.now());
             jsonObject.put("timeline_stop_datetime", localDateTime.now());
 
-            HttpPut request = new HttpPut("http://herrlintech.se:8000/api/v1/timelines/"+timeline_id+"/");
+            HttpPut request = new HttpPut("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/timelines/"+timeline_id+"/");
 
             request.addHeader("User-Agent", "Timeline-Client");
             request.addHeader("Accept", "application/json");
@@ -295,7 +303,7 @@ public class SessionHandler {
         Event[] eventList;
 
         try {
-            URL url = new URL("http://herrlintech.se:8000/api/v1/events/.json");
+            URL url = new URL("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/events/.json");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
             ObjectMapper mapper = new ObjectMapper();
@@ -340,7 +348,7 @@ public class SessionHandler {
     }
 
     public void createEvent(String title, String description){
-        String url = "http://herrlintech.se:8000/api/v1/events/";
+        String url = "http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/events/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
         LocalDateTime localDateTime = LocalDateTime.now();
@@ -361,11 +369,18 @@ public class SessionHandler {
             request.addHeader("User-Agent", "Timeline-Client");
             request.addHeader("Accept", "application/json");
             request.addHeader("Content-Type", "application/json; charset=UTF-8");
-            request.addHeader("Authorization", "Token "+token);
+            request.addHeader("Authorization", "Token " + token);
             request.setEntity(new StringEntity(jsonObject.toString()));
             HttpResponse response = httpClient.execute(request);
 
+
             System.out.println(response);
+
+            HttpEntity entity = response.getEntity();
+            String content = EntityUtils.toString(entity);
+            JSONObject result = new JSONObject(content);
+            System.out.println(result.get("detail"));
+
         }catch (Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -386,21 +401,12 @@ public class SessionHandler {
             System.out.println(sessionHandler.token);
         }
 
-
+        sessionHandler.createTimeline("Johns title", "Johns description");
 
         sessionHandler.setTimeline_id(7);
         sessionHandler.updateTimeline("Austin confirming the update", "it is working");
 
-
-
-
-
-
-
         sessionHandler.getTimelines();
-
-
-
 
         for (Timeline e : sessionHandler.timelineArrayList){
             System.out.println(e.id);
