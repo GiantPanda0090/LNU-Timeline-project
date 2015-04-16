@@ -1,9 +1,18 @@
 .root {
     -fx-background-color: #40FF88;
 }
+#gpanemain{ -fx-background-image: url("45110-blue-waves.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 
+}
 #gpane{
-    -fx-background-color: #40FF88;
+    -fx-background-image: url("Blue-Background-86.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 800 600;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 }
 .label{
     -fx-font-size: 11pt;
@@ -42,7 +51,7 @@
 
 #timelineLabel {
     -fx-font-size: 18pt;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #000000;
     -fx-opacity: 1;
 }
 

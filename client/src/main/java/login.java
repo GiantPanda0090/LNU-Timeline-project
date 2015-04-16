@@ -41,6 +41,7 @@ public class login extends Application {
 
     Insets labelInsets;
 
+
     @Override
     public void start(final Stage primaryStage) throws Exception {
         final SessionHandler sessionHandler = new SessionHandler();
@@ -89,7 +90,7 @@ public class login extends Application {
         config.setScaleX(0.7);
         config.setScaleY(0.7);
 
-        login.getChildren().addAll(logo, username, password,button);
+        login.getChildren().addAll(logo, username, password, button);
         register.getChildren().addAll(regBtn, config);
 
         pane.setTop(fillTop);
@@ -100,6 +101,8 @@ public class login extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.show();
+        primaryStage.setMaxHeight(400.0);
+        primaryStage.setMaxWidth(400.0);
 
         /*
           ...
@@ -157,10 +160,10 @@ public class login extends Application {
                     Stage stage = new Stage();
                     final BorderPane bpane = new BorderPane();
                     bpane.setPadding(new Insets(40, 40, 40, 40));
-                    primaryStage.setMinWidth(1000);
+                    primaryStage.setMinWidth(800);
                     primaryStage.setMinHeight(600);
 
-                    bpane.setId("gpane");
+                    bpane.setId("gpanemain");
                     bpane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
 
                     final Label logo = new Label("MiTime");
