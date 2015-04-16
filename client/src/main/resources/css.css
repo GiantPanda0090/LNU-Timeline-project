@@ -1,7 +1,7 @@
 .root {
     -fx-background-color: #40FF88;
 }
-#gpanemain{ -fx-background-image: url("45110-blue-waves.jpg");
+#gpanemain{ -fx-background-image: url("Blue-Background-86.jpg");
     -fx-background-repeat: stretch;
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
