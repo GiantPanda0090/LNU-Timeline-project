@@ -80,7 +80,7 @@ public class login extends Application {
         Label logo = new Label("MiTime");
         logo.setId("labelLogo");
 
-        final TextField username = new TextField("username");
+        final TextField username = new TextField("austin");
         username.setFont(new Font("System", 18));
         username.setMaxWidth(200);
 
@@ -140,14 +140,13 @@ public class login extends Application {
 
 
         regBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
             public void handle(MouseEvent event) {
                 regPop = new PopOver();
                 regPop.setContentNode(regPane);
                 regPop.show(regBtn);
 
                 signUp.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
+
                     public void handle(ActionEvent event) {
                         newUser = new UserRegistration();
                         newUser.register(newUserName.getText().toString(), firstPassword.getText().toString(), secondPassword.getText().toString(), userEmail.getText().toString());
@@ -155,7 +154,7 @@ public class login extends Application {
                     }
                 });
                 signCancel.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
+
                     public void handle(ActionEvent event) {
                         regPop.hide();
                     }
@@ -164,7 +163,7 @@ public class login extends Application {
         });
 
         button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
+
             public void handle(ActionEvent event) {
                 if(sessionHandler.loginUser(username.getText(), password.getText())) {
                     Stage stage = new Stage();
@@ -382,7 +381,7 @@ public class login extends Application {
                      */
 
                     plus.setOnMouseEntered(new EventHandler<MouseEvent>() {
-                        @Override
+
                         public void handle(MouseEvent event) {
                             plus.setFill(Paint.valueOf("ffffff"));
                             newTimeorEvent = new PopOver();
@@ -393,7 +392,7 @@ public class login extends Application {
                             newTimeorEvent.show(plus);
 
                             okRect.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                                @Override
+
                                 public void handle(MouseEvent event) {
                                     newTimeorEvent.hide();
                                     Label timelineLabel = new Label(name.getText().toString());
@@ -411,7 +410,7 @@ public class login extends Application {
                     });
 
                     cancelRect.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
+
                         public void handle(MouseEvent event) {
                             newTimeorEvent.hide();
                             plus.setFill(Paint.valueOf("19b225"));
@@ -419,7 +418,7 @@ public class login extends Application {
                     });
 
                     gpane.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
+
                         public void handle(MouseEvent event) {
                             if (newTimeorEvent.isShowing()) {
                                 newTimeorEvent.hide();
