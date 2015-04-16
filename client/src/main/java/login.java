@@ -225,7 +225,7 @@ public class login extends Application {
                     bpane.setCenter(timelineView);
 
                     stage.setScene(new Scene(bpane, 1000, 600));
-
+stage.setFullScreen(true);
                     // Search field
                    // TextField search = new TextField();
                    // search.setPromptText("Search your timeline");;
