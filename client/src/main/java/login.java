@@ -160,8 +160,8 @@ public class login extends Application {
                     Stage stage = new Stage();
                     final BorderPane bpane = new BorderPane();
                     bpane.setPadding(new Insets(40, 40, 40, 40));
-                    primaryStage.setMinWidth(800);
-                    primaryStage.setMinHeight(600);
+                    stage.setMinWidth(800);
+                    stage.setMinHeight(600);
 
                     bpane.setId("gpanemain");
                     bpane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
@@ -213,7 +213,7 @@ public class login extends Application {
                     rightFill.setMinWidth(40);
 
                     HBox bottomFill = new HBox();
-                    bottomFill.setMinHeight(40);
+                    bottomFill.setMinHeight(200);
                     bottomFill.setMaxHeight(10);
 
                     bannerView.getChildren().addAll(logo, config);
@@ -225,7 +225,7 @@ public class login extends Application {
                     bpane.setCenter(timelineView);
 
                     stage.setScene(new Scene(bpane, 1000, 600));
-stage.setFullScreen(true);
+                    stage.setFullScreen(true);
                     // Search field
                    // TextField search = new TextField();
                    // search.setPromptText("Search your timeline");;
