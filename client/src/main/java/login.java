@@ -7,7 +7,6 @@ import backend.SessionHandler;
 import backend.Timeline;
 import backend.UserRegistration;
 import javafx.application.Application;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,26 +15,15 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.controlsfx.control.PopOver;
-
-
-import javafx.beans.value.ChangeListener;
-
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-
 
 import java.util.ArrayList;
 
@@ -167,73 +155,83 @@ public class login extends Application {
             public void handle(ActionEvent event) {
                 if(sessionHandler.loginUser(username.getText(), password.getText())) {
                     Stage stage = new Stage();
-                    // Gridpane
-                    final GridPane gpane = new GridPane();
+                    final BorderPane bpane = new BorderPane();
+                    bpane.setPadding(new Insets(40, 40, 40, 40));
+                    primaryStage.setMinWidth(1000);
+                    primaryStage.setMinHeight(600);
 
-                    gpane.setId("gpane");
-                    gpane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
-                    gpane.setCenterShape(true);
+                    bpane.setId("gpane");
+                    bpane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
 
-                    // Line 1
-                    Line line1 = new Line();
-                    line1.setStartX(500);
-                    line1.setStartY(-70);
-                    line1.setEndX(500);
-                    line1.setEndY(820);
-                    line1.setStrokeWidth(3);
-                    line1.setStroke(Paint.valueOf("14cc23"));
-                    gpane.setMargin(line1, new Insets(50, 0, 50, 400));
-
-
-                    // Line 2
-                    Line line2 = new Line();
-                    line2.setStartX(-100);
-                    line2.setStartY(0);
-                    line2.setEndX(1185);
-                    line2.setEndY(0);
-                    line2.setStrokeWidth(3);
-                    line2.setStroke(Paint.valueOf("14cc23"));
-                    gpane.setMargin(line2, new Insets(-600, 0, 200, 350));
-
-
-                    // Rectangle
-                    Rectangle rect = new Rectangle();
-                    rect.setArcWidth(5);
-                    rect.setFill(Color.WHITE);
-                    rect.setStroke(Color.BLACK);
-                    rect.setWidth(1219);
-                    rect.setHeight(820);
-                    gpane.setMargin(rect, new Insets(50, 0, 0, 420));
+                    final Label logo = new Label("MiTime");
+                    logo.setId("labelLogo");
 
                     // Label
                     Label label = new Label("MiTime");
                     label.setId("createlabelLogo");
-                    gpane.setMargin(label, new Insets(0, 0, 900, 60));
 
-                    // Plus icon
-                    final SVGPath plus = new SVGPath();
-                    plus.setContent("M992 384h-352v-352c0-17.672-14.328-32-32-32h-192c-17.672 0-32 14.328-32 32v352h-352c-17.672 0-32 14.328-32 32v192c0 17.672 14.328 32 32 32h352v352c0 17.672 14.328 32 32 32h192c17.672 0 32-14.328 32-32v-352h352c17.672 0 32-14.328 32-32v-192c0-17.672-14.328-32-32-32z");
-                    plus.setFill(Paint.valueOf("19b225"));
-                    plus.setScaleX(0.025);
-                    plus.setScaleY(0.025);
-                    plus.setScaleZ(1);
-                    gpane.setMargin(plus, new Insets(-350, 0, 450, -430));
+                    // Plus icon (as of right now, just a button)
+                    final Button plus = new Button("New");
+                    plus.setMinWidth(100);
 
-                    // Config Icon
-                    final SVGPath config = new SVGPath();
-                    config.setContent("M31.229,17.736c0.064-0.571,0.104-1.148,0.104-1.736s-0.04-1.166-0.104-1.737l-4.377-1.557c-0.218-0.716-0.504-1.401-0.851-2.05l1.993-4.192c-0.725-0.91-1.549-1.734-2.458-2.459l-4.193,1.994c-0.647-0.347-1.334-0.632-2.049-0.849l-1.558-4.378C17.165,0.708,16.588,0.667,16,0.667s-1.166,0.041-1.737,0.105L12.707,5.15c-0.716,0.217-1.401,0.502-2.05,0.849L6.464,4.005C5.554,4.73,4.73,5.554,4.005,6.464l1.994,4.192c-0.347,0.648-0.632,1.334-0.849,2.05l-4.378,1.557C0.708,14.834,0.667,15.412,0.667,16s0.041,1.165,0.105,1.736l4.378,1.558c0.217,0.715,0.502,1.401,0.849,2.049l-1.994,4.193c0.725,0.909,1.549,1.733,2.459,2.458l4.192-1.993c0.648,0.347,1.334,0.633,2.05,0.851l1.557,4.377c0.571,0.064,1.148,0.104,1.737,0.104c0.588,0,1.165-0.04,1.736-0.104l1.558-4.377c0.715-0.218,1.399-0.504,2.049-0.851l4.193,1.993c0.909-0.725,1.733-1.549,2.458-2.458l-1.993-4.193c0.347-0.647,0.633-1.334,0.851-2.049L31.229,17.736zM16,20.871c-2.69,0-4.872-2.182-4.872-4.871c0-2.69,2.182-4.872,4.872-4.872c2.689,0,4.871,2.182,4.871,4.872C20.871,18.689,18.689,20.871,16,20.871z");
-                    config.setFill(Paint.valueOf("19b225"));
-                    gpane.setMargin(config, new Insets(0, 0, 880, 1570));
+                    // Parent for timeline view
+                    ScrollPane timelinePane = new ScrollPane();
+                    timelinePane.setPrefSize(1500, 800);
+
+                    // Config button (just a button right now)
+                    final Button config = new Button("Config");
+                    config.setMinWidth(100);
+
+                    // Listview for timelines
+                    ListView<String> labelList = new ListView<String>();
+                    ObservableList<String> listtest = FXCollections.observableArrayList("test", "funkar");
+                    labelList.setItems(listtest);
 
                     // Search field
                     TextField search = new TextField();
                     search.setPromptText("Search your timeline");;
-                    search.textProperty().addListener(new ChangeListener<Object>() {
-                        public void changed(ObservableValue<?> observable, Object oldVal,
-                                            Object newVal) {
-                            search((String) oldVal, (String) newVal);
-                        }
-                    });
+
+                    search.setFont(new Font("System", 12));
+                    search.setMaxWidth(200);
+                    search.setMaxHeight(30);
+
+                    final VBox timelineList = new VBox();
+                    timelineList.setSpacing(12);
+                    timelineList.setVgrow(plus, Priority.ALWAYS);
+                    timelineList.setVgrow(search, Priority.ALWAYS);
+
+                    VBox timelineView = new VBox();
+                    timelineView.setPadding(new Insets(40, 40, 100, 40));
+
+                    HBox bannerView = new HBox();
+                    bannerView.setMinWidth(200);
+
+                    HBox rightFill = new HBox();
+                    rightFill.setMinWidth(40);
+
+                    HBox bottomFill = new HBox();
+                    bottomFill.setMinHeight(40);
+                    bottomFill.setMaxHeight(10);
+
+                    bannerView.getChildren().addAll(logo, config);
+                    timelineList.getChildren().addAll(plus, search);
+                    timelineView.getChildren().addAll(timelinePane);
+
+                    bpane.setTop(bannerView);
+                    bpane.setLeft(timelineList);
+                    bpane.setCenter(timelineView);
+
+                    stage.setScene(new Scene(bpane, 1000, 600));
+
+                    // Search field
+                   // TextField search = new TextField();
+                   // search.setPromptText("Search your timeline");;
+                   // search.textProperty().addListener(new ChangeListener<Object>() {
+                   //     public void changed(ObservableValue<?> observable, Object oldVal,
+                    //                        Object newVal) {
+                     //       search((String) oldVal, (String) newVal);
+                     //   }
+                    //});
 
                     list.setMaxHeight(180);
                     for (int i = 0; i < 100; i++) {
@@ -252,13 +250,8 @@ public class login extends Application {
                     search.setFont(new Font("System", 12));
                     search.setMaxWidth(200);
                     search.setMaxHeight(30);
-                    primaryStage.setScene(new Scene(root, 300, 250));
-                    primaryStage.show();
-                    gpane.setMargin(search, new Insets(-610, 0, 100, 60));
 
 
-                    gpane.getChildren().addAll(line1, line2, rect, label, plus, config, search);
-                    stage.setScene(new Scene(gpane, 1657, 951));
                     primaryStage.close();
                     stage.show();
 
@@ -341,10 +334,7 @@ public class login extends Application {
                         Label timelineLabel = new Label(sessionHandler.timelineArrayList.get(i).getTimeline_title());
 
                         timelineLabel.setId("timelineLabel");
-                        gpane.setMargin(timelineLabel, new Insets(top, 0, 500, 60));
-                        gpane.setColumnIndex(timelineLabel, 0);
-                        gpane.setRowIndex(timelineLabel, 0);
-                        gpane.getChildren().addAll(timelineLabel);
+                        timelineList.getChildren().addAll(timelineLabel);
                         top += 100;
                     }
 
@@ -352,27 +342,6 @@ public class login extends Application {
                     popPane.getChildren().addAll(firstDate, secondDate, firstLbl, secondLbl, name, okRect, cancelRect, okText, cancelText);
 
 
-                    /*
-                    * Data for Config Button(The one to the Right)
-                    */
-
-                    final GridPane ConfPane = new GridPane();
-                    popPane.setMinSize(300, 400);
-
-                    Button butt = new Button();
-                    butt.setMinWidth(50);
-
-
-                    ConfPane.getChildren().add(butt);
-
-                    config.setOnMouseEntered(new EventHandler<MouseEvent>() {
-                        public void handle(MouseEvent event) {
-                            ConfigPop = new PopOver();
-                            config.setFill(Paint.valueOf("ffffff"));
-                            ConfigPop.setContentNode(ConfPane);
-                            ConfigPop.show(config);
-                        }
-                    });
 
                     /*
                     ...
@@ -380,10 +349,9 @@ public class login extends Application {
                     ...
                      */
 
-                    plus.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    plus.setOnAction(new EventHandler<ActionEvent>() {
 
-                        public void handle(MouseEvent event) {
-                            plus.setFill(Paint.valueOf("ffffff"));
+                        public void handle(ActionEvent event) {
                             newTimeorEvent = new PopOver();
                             newTimeorEvent.setOpacity(0.99);
 
@@ -397,12 +365,8 @@ public class login extends Application {
                                     newTimeorEvent.hide();
                                     Label timelineLabel = new Label(name.getText().toString());
                                     timelineLabel.setId("timelineLabel");
-                                    gpane.setMargin(timelineLabel, new Insets(top, 0, 500, 60));
-                                    gpane.setColumnIndex(timelineLabel, 0);
-                                    gpane.setRowIndex(timelineLabel, 0);
-                                    gpane.getChildren().addAll(timelineLabel);
+                                    timelineList.getChildren().addAll(timelineLabel);
                                     top += 100;
-                                    plus.setFill(Paint.valueOf("19b225"));
                                     sessionHandler.createTimeline(name.getText().toString(), "description");
                                 }
                             });
@@ -413,21 +377,6 @@ public class login extends Application {
 
                         public void handle(MouseEvent event) {
                             newTimeorEvent.hide();
-                            plus.setFill(Paint.valueOf("19b225"));
-                        }
-                    });
-
-                    gpane.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-                        public void handle(MouseEvent event) {
-                            if (newTimeorEvent.isShowing()) {
-                                newTimeorEvent.hide();
-                                plus.setFill(Paint.valueOf("19b225"));
-                            }
-                            if (ConfigPop.isShowing()) {
-                                ConfigPop.hide();
-                                config.setFill(Paint.valueOf("19b225"));
-                            }
                         }
                     });
 
