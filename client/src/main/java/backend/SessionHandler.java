@@ -389,7 +389,7 @@ public class SessionHandler {
 
 
         sessionHandler.setTimeline_id(7);
-        sessionHandler.updateTimeline("John trying out updateTimeline", "is it working?");
+        sessionHandler.updateTimeline("Austin confirming the update", "it is working");
 
 
 
