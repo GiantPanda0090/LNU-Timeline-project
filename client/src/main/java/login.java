@@ -215,9 +215,13 @@ public class login extends Application {
                     HBox bottomFill = new HBox();
                     bottomFill.setMinHeight(40);
                     bottomFill.setMaxHeight(10);
+                    HBox configbox = new HBox();
+                    configbox.setPadding(new Insets(10, 10, 10,10));
+                    configbox.setSpacing(5.0);
+                    configbox.getChildren().addAll(plus,config);
 
-                    bannerView.getChildren().addAll(logo, config);
-                    timelineList.getChildren().addAll(plus, search);
+                    bannerView.getChildren().addAll(logo);
+                    timelineList.getChildren().addAll(configbox, search);
                     timelineView.getChildren().addAll(timelinePane);
 
                     bpane.setTop(bannerView);
