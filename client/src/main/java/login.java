@@ -3,9 +3,13 @@
  * AS OF RIGHT NOW EVERYTHING WORKS
 */
 
-import backend.*;
+import backend.SessionHandler;
+import backend.Timeline;
+import backend.UserRegistration;
 import gui.Config;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,8 +38,8 @@ public class login extends Application {
     PopOver regPop;
     double top = 0;
     ArrayList<Timeline> labelList = new ArrayList<Timeline>();
-    ObservableList<String> entries = FXCollections.observableArrayList();
-    ListView<String> list = new ListView<String>();
+    ListView<Label> list = new ListView<Label>();
+    ObservableList<Label> items = FXCollections.observableArrayList();
     UserRegistration newUser;
 
     Insets labelInsets;
@@ -230,13 +234,13 @@ public class login extends Application {
                     configbox.getChildren().addAll(plus, config);
 
                     // Listview for timelines
-                    ListView<Label> labelView = new ListView<Label>();
+
 
                     // Get user Timelines
                     sessionHandler.getTimelines();
                     int size = sessionHandler.timelineArrayList.size();
 
-                    ObservableList<Label> items = FXCollections.observableArrayList();
+
 
                     for (int i = 0; i < size; i++) {
                         Label timelineLabel = new Label(sessionHandler.timelineArrayList.get(i).getTimeline_title());
@@ -245,38 +249,30 @@ public class login extends Application {
                         top += 100;
                     }
 
-                    labelView.setItems(items);
+                    list.setItems(items);
 
                     // Search field
                     TextField Search = new TextField();
                     Search.setPromptText("Search your timeline");;
-                    // search.textProperty().addListener(new ChangeListener<Object>() {
-                    //     public void changed(ObservableValue<?> observable, Object oldVal,
-                    //                        Object newVal) {
-                    //       search((String) oldVal, (String) newVal);
-                    //   }
-                    //});
+                     search.textProperty().addListener(new ChangeListener<Object>() {
+                        public void changed(ObservableValue<?> observable, Object oldVal,
+                                            Object newVal) {
+                           search((String) oldVal, (String) newVal);
+                       }
+                    });
 
-                    list.setMaxHeight(180);
-                    for (int i = 0; i < 100; i++) {
-                        entries.add("Item " + i);
-                    }
-                    entries.add("A");
-                    entries.add("B");
-                    entries.add("C");
-                    entries.add("D");
-                    list.setItems(entries);
-                    HBox root = new HBox();
-                    root.setPadding(new Insets(10, 10, 10, 10));
-                    root.setSpacing(2);
-                    root.getChildren().addAll(search, list);
+
+                    //HBox root = new HBox();
+                    //root.setPadding(new Insets(10, 10, 10, 10));
+                    //root.setSpacing(2);
+                    //root.getChildren().addAll(search, list);
 
                     search.setFont(new Font("System", 12));
                     search.setMaxWidth(200);
                     search.setMaxHeight(30);
 
                     bannerView.getChildren().addAll(logo);
-                    timelineList.getChildren().addAll(configbox, Search, labelView);
+                    timelineList.getChildren().addAll(configbox, Search, list);
                     timelineView.getChildren().addAll(timelinePane);
 
                     bpane.setTop(bannerView);
@@ -409,12 +405,12 @@ public class login extends Application {
         });
     }
 
-    public void searchTimeline(String oldVal, String newVal) {
+    public void search(String oldVal, String newVal) {
         if (oldVal != null && (newVal.length() < oldVal.length())) {
-            list.setItems(entries);
+            list.setItems(items);
         }
         String value = newVal.toUpperCase();
-        ObservableList<String> subentries = FXCollections.observableArrayList();
+        ObservableList subentries = FXCollections.observableArrayList();
         for (Object entry : list.getItems()) {
             boolean match = true;
             String entryText = (String) entry;
@@ -423,6 +419,7 @@ public class login extends Application {
                 break;
             }
             if (match == true) {
+
                 subentries.add(entryText);
             }
         }
