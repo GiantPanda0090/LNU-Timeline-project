@@ -57,12 +57,12 @@ public class login extends Application {
         login.setId("loginBox");
         HBox insideLogin = new HBox();
         insideLogin.setPadding(new Insets(0, 0, 0, 30));
-        insideLogin.setSpacing(12);
+        insideLogin.setSpacing(50);
 
-        HBox register = new HBox();
-        register.setPadding(new Insets(0, 0, 30, 30));
-        register.setSpacing(20);
-        register.setMinHeight(25);
+        HBox bottomFill = new HBox();
+        bottomFill.setPadding(new Insets(0, 0, 30, 30));
+        bottomFill.setSpacing(20);
+        bottomFill.setMinHeight(25);
 
 
         HBox fillLeft = new HBox();
@@ -92,6 +92,7 @@ public class login extends Application {
 
         final Label regBtn = new Label("Sign up");
         regBtn.setId("regBtn");
+        regBtn.setPadding(new Insets(0, 0, 0, -25));
 
         final Button configButton = new Button("API");
 
@@ -102,7 +103,7 @@ public class login extends Application {
         pane.setCenter(login);
         pane.setRight(fillRight);
         pane.setLeft(fillLeft);
-        pane.setBottom(register);
+        pane.setBottom(bottomFill);
 
         primaryStage.setScene(scene);
         primaryStage.show();

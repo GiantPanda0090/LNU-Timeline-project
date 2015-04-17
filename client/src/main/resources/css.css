@@ -45,10 +45,14 @@
     -fx-opacity: 0.6;
 }
 #regBtn{
-    -fx-font-size: 12pt;
+    -fx-font-size: 15pt;
     -fx-font-weight: bold;
     -fx-text-fill: rgba(29, 29, 29, 0.86);
     -fx-opacity: 1.0;
+}
+
+#regBtn:hover{
+    -fx-text-fill: #59AAA9;
 }
 
 #labelLogo {
