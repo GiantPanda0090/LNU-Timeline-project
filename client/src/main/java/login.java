@@ -170,7 +170,7 @@ public class login extends Application {
                     final BorderPane bpane = new BorderPane();
                     bpane.setPadding(new Insets(40, 40, 40, 40));
                     stage.setMinWidth(800);
-                    stage.setMinHeight(600);
+                    stage.setMinHeight(100);
 
                     bpane.setId("gpanemain");
                     bpane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
@@ -202,7 +202,6 @@ public class login extends Application {
                     // Search field
                     TextField search = new TextField();
                     search.setPromptText("Search your timeline");
-                    ;
 
                     search.setFont(new Font("System", 12));
                     search.setMaxWidth(200);
@@ -230,19 +229,27 @@ public class login extends Application {
                     configbox.setSpacing(5.0);
                     configbox.getChildren().addAll(plus, config);
 
-                    bannerView.getChildren().addAll(logo);
-                    timelineList.getChildren().addAll(configbox, search);
-                    timelineView.getChildren().addAll(timelinePane);
+                    // Listview for timelines
+                    ListView<Label> labelView = new ListView<Label>();
 
-                    bpane.setTop(bannerView);
-                    bpane.setLeft(timelineList);
-                    bpane.setCenter(timelineView);
+                    // Get user Timelines
+                    sessionHandler.getTimelines();
+                    int size = sessionHandler.timelineArrayList.size();
 
-                    stage.setScene(new Scene(bpane, 1000, 600));
-                    stage.setFullScreen(true);
+                    ObservableList<Label> items = FXCollections.observableArrayList();
+
+                    for (int i = 0; i < size; i++) {
+                        Label timelineLabel = new Label(sessionHandler.timelineArrayList.get(i).getTimeline_title());
+                        items.add(i, timelineLabel);
+                        timelineLabel.setId("timelineLabel");
+                        top += 100;
+                    }
+
+                    labelView.setItems(items);
+
                     // Search field
-                    // TextField search = new TextField();
-                    // search.setPromptText("Search your timeline");;
+                    TextField Search = new TextField();
+                    Search.setPromptText("Search your timeline");;
                     // search.textProperty().addListener(new ChangeListener<Object>() {
                     //     public void changed(ObservableValue<?> observable, Object oldVal,
                     //                        Object newVal) {
@@ -267,6 +274,18 @@ public class login extends Application {
                     search.setFont(new Font("System", 12));
                     search.setMaxWidth(200);
                     search.setMaxHeight(30);
+
+                    bannerView.getChildren().addAll(logo);
+                    timelineList.getChildren().addAll(configbox, Search, labelView);
+                    timelineView.getChildren().addAll(timelinePane);
+
+                    bpane.setTop(bannerView);
+                    bpane.setLeft(timelineList);
+                    bpane.setCenter(timelineView);
+
+                    stage.setScene(new Scene(bpane, 1000, 600));
+                    stage.setFullScreen(true);
+
 
 
                     primaryStage.close();
@@ -341,19 +360,6 @@ public class login extends Application {
                     popPane.setMargin(cancelText, new Insets(300, 0, 0, 220));
                     cancelText.setId("canceltext");
 
-                    // Get user Timelines
-                    sessionHandler.getTimelines();
-                    int size = sessionHandler.timelineArrayList.size();
-
-
-                    for (int i = 0; i < size; i++) {
-                        Label timelineLabel = new Label(sessionHandler.timelineArrayList.get(i).getTimeline_title());
-
-                        timelineLabel.setId("timelineLabel");
-                        timelineList.getChildren().addAll(timelineLabel);
-                        top += 100;
-                    }
-
 
                     popPane.getChildren().addAll(firstDate, secondDate, firstLbl, secondLbl, name, okRect, cancelRect, okText, cancelText);
 
@@ -403,7 +409,7 @@ public class login extends Application {
         });
     }
 
-    public void search(String oldVal, String newVal) {
+    public void searchTimeline(String oldVal, String newVal) {
         if (oldVal != null && (newVal.length() < oldVal.length())) {
             list.setItems(entries);
         }
