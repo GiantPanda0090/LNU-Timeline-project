@@ -1,5 +1,5 @@
 .root {
-    -fx-background-color: #40FF88;
+    -fx-background-color: #F7FBF2;
 }
 #gpanemain{ /*-fx-background-image: url("Blue-Background-86.jpg");
     -fx-background-repeat: stretch;
@@ -7,7 +7,7 @@
     -fx-te: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
     -fx-background-size: stretch;
     -fx-background-repeat: no-repeat;*/
-    -fx-background-color: #ffffff;
+    -fx-background-color: #f3f3f3;
 
 }
 #gpane{
@@ -17,33 +17,65 @@
     -fx-background-size: 800 600;
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);*/
+    -fx-background-color: #f3f3f3;
+}
+
+#scrollpane > .viewport {
+     -fx-background-color: transparent;
+}
+
+#scrollpane{
     -fx-background-color: #ffffff;
 }
+
+#loginBox{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12px;
+}
+
+#listBox{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12px;
+}
+
 .label{
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #42b8dd;
+    -fx-text-fill: #CC617C;
     -fx-opacity: 0.6;
 }
 #regBtn{
     -fx-font-size: 12pt;
     -fx-font-weight: bold;
-    -fx-text-fill: #42b8dd;
+    -fx-text-fill: rgba(29, 29, 29, 0.86);
     -fx-opacity: 1.0;
 }
 
 #labelLogo {
     -fx-font-size: 30pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #42b8dd;
-    -fx-opacity: 0.6;
+    -fx-text-fill: rgba(29, 29, 29, 0.86);
+    -fx-opacity: 1.0;
 }
 
 #createlabelLogo{
     -fx-font-size: 50pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #42b8dd;
-    -fx-opacity: 0.6;
+    -fx-text-fill: rgba(29, 29, 29, 0.86);
+    -fx-opacity: 1.0;
+}
+
+#newTimelineButton{
+    -fx-padding: 5 22 5 22;
+    -fx-border-width: 2;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 11px;
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+    -fx-max-height: 15px;
+    -fx-background-color: #CC617C;
+    -fx-text-fill: #ffffff;
+    -fx-opacity: 1.0;
 }
 
 
@@ -56,7 +88,7 @@
 
 #timelineLabel {
     -fx-font-size: 18pt;
-    -fx-text-fill: #42b8dd;
+    -fx-text-fill: #CC617C;
     -fx-opacity: 1;
 }
 
@@ -69,7 +101,7 @@
 .label-bright {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #42b8dd;
+    -fx-text-fill: #CC617C;
     -fx-opacity: 1;
 }
 
@@ -77,10 +109,11 @@
     -fx-padding: 5 22 5 22;
     -fx-border-width: 2;
     -fx-border-radius: 15px;
-    -fx-background-radius: 12px;
+    -fx-background-radius: 11px;
     -fx-font-size: 12pt;
     -fx-font-weight: bold;
-    -fx-background-color: #42b8dd;
+    -fx-max-height: 15px;
+    -fx-background-color: #59AAA9;
     -fx-text-fill: #ffffff;
     -fx-opacity: 1.0;
 }
@@ -90,9 +123,8 @@
 }
 
 .button:pressed, .button:default:hover:pressed {
-    -fx-background-color: white;
-    -fx-text-fill: #1d1d1d;
-}
+
+ }
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;

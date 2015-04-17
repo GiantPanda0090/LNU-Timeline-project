@@ -6,7 +6,6 @@
 import backend.SessionHandler;
 import backend.Timeline;
 import backend.UserRegistration;
-import gui.Config;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -20,9 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -56,22 +53,31 @@ public class login extends Application {
         pane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
 
         VBox login = new VBox();
+        login.setPadding(new Insets(20, 20, 20, 80));
+        login.setId("loginBox");
+        HBox insideLogin = new HBox();
+        insideLogin.setPadding(new Insets(0, 0, 0, 30));
+        insideLogin.setSpacing(12);
+
         HBox register = new HBox();
         register.setPadding(new Insets(0, 0, 30, 30));
         register.setSpacing(20);
+        register.setMinHeight(25);
 
 
         HBox fillLeft = new HBox();
-        fillLeft.setMinWidth(100);
+        fillLeft.setMinWidth(25);
         fillLeft.setMinHeight(200);
         HBox fillRight = new HBox();
+        fillRight.setMinWidth(25);
         HBox fillTop = new HBox();
-        fillTop.setMinHeight(50);
+        fillTop.setMinHeight(25);
 
         login.setSpacing(20);
 
         Label logo = new Label("MiTime");
         logo.setId("labelLogo");
+        logo.setPadding(new Insets(0, 0, 0, 20));
 
         final TextField username = new TextField("austin");
         username.setFont(new Font("System", 18));
@@ -87,17 +93,10 @@ public class login extends Application {
         final Label regBtn = new Label("Sign up");
         regBtn.setId("regBtn");
 
-        // Config Icon
-        final SVGPath config = new SVGPath();
-        config.setContent("M31.229,17.736c0.064-0.571,0.104-1.148,0.104-1.736s-0.04-1.166-0.104-1.737l-4.377-1.557c-0.218-0.716-0.504-1.401-0.851-2.05l1.993-4.192c-0.725-0.91-1.549-1.734-2.458-2.459l-4.193,1.994c-0.647-0.347-1.334-0.632-2.049-0.849l-1.558-4.378C17.165,0.708,16.588,0.667,16,0.667s-1.166,0.041-1.737,0.105L12.707,5.15c-0.716,0.217-1.401,0.502-2.05,0.849L6.464,4.005C5.554,4.73,4.73,5.554,4.005,6.464l1.994,4.192c-0.347,0.648-0.632,1.334-0.849,2.05l-4.378,1.557C0.708,14.834,0.667,15.412,0.667,16s0.041,1.165,0.105,1.736l4.378,1.558c0.217,0.715,0.502,1.401,0.849,2.049l-1.994,4.193c0.725,0.909,1.549,1.733,2.459,2.458l4.192-1.993c0.648,0.347,1.334,0.633,2.05,0.851l1.557,4.377c0.571,0.064,1.148,0.104,1.737,0.104c0.588,0,1.165-0.04,1.736-0.104l1.558-4.377c0.715-0.218,1.399-0.504,2.049-0.851l4.193,1.993c0.909-0.725,1.733-1.549,2.458-2.458l-1.993-4.193c0.347-0.647,0.633-1.334,0.851-2.049L31.229,17.736zM16,20.871c-2.69,0-4.872-2.182-4.872-4.871c0-2.69,2.182-4.872,4.872-4.872c2.689,0,4.871,2.182,4.871,4.872C20.871,18.689,18.689,20.871,16,20.871z");
-        config.setFill(Paint.valueOf("42caef"));
-        config.setScaleX(0.7);
-        config.setScaleY(0.7);
+        final Button configButton = new Button("API");
 
-        final Button configButton = new Button("API config");
-
-        login.getChildren().addAll(logo, username, password, button);
-        register.getChildren().addAll(regBtn, config, configButton);
+        insideLogin.getChildren().addAll(regBtn, configButton);
+        login.getChildren().addAll(logo, username, password, button, insideLogin);
 
         pane.setTop(fillTop);
         pane.setCenter(login);
@@ -107,9 +106,10 @@ public class login extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.show();
-        primaryStage.setMaxHeight(600.0);
-        primaryStage.setMaxWidth(400.0);
-       primaryStage.setResizable(false);
+        primaryStage.setMaxHeight(550);
+       // primaryStage.setMinHeight(500.0);
+        primaryStage.setMaxWidth(450);
+        primaryStage.setResizable(false);
 
         /*
           ...
@@ -189,14 +189,17 @@ public class login extends Application {
 
                     // Plus icon (as of right now, just a button)
                     final Button plus = new Button("New");
+                    plus.setId("newTimelineButton");
                     plus.setMinWidth(100);
 
                     // Parent for timeline view
                     ScrollPane timelinePane = new ScrollPane();
+                    timelinePane.setId("scrollpane");
                     timelinePane.setPrefSize(1000, 800);
 
                     // Config button (just a button right now)
                     final Button config = new Button("Config");
+                    config.setId("configButton");
                     config.setMinWidth(100);
 
                     // Listview for timelines
@@ -214,11 +217,13 @@ public class login extends Application {
 
                     final VBox timelineList = new VBox();
                     timelineList.setSpacing(12);
+                    timelineList.setId("listBox");
+                    timelineList.setPadding(new Insets(30, 30, 30, 30));
                     timelineList.setVgrow(plus, Priority.ALWAYS);
                     timelineList.setVgrow(search, Priority.ALWAYS);
 
                     VBox timelineView = new VBox();
-                    timelineView.setPadding(new Insets(40, 40, 100, 40));
+                    timelineView.setPadding(new Insets(0, 40, 100, 40));
 
                     HBox bannerView = new HBox();
                     bannerView.setMinWidth(200);
@@ -253,13 +258,21 @@ public class login extends Application {
                     list.setItems(items);
 
                     // Search field
-                    TextField Search = new TextField();
+                    final TextField Search = new TextField();
                     Search.setPromptText("Search your timeline");;
                      search.textProperty().addListener(new ChangeListener<Object>() {
                         public void changed(ObservableValue<?> observable, Object oldVal,
                                             Object newVal) {
                            search((String) oldVal, (String) newVal);
                        }
+                    });
+
+                    Search.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            Label l = items.get(johanSearch(Search.getText()));
+                            list.scrollTo(l);
+                        }
                     });
 
 
@@ -281,8 +294,8 @@ public class login extends Application {
                     bpane.setCenter(timelineView);
 
                     stage.setScene(new Scene(bpane, 1280, 600));
-                    stage.setFullScreen(true);
-stage.setResizable(false);
+                    stage.setMinWidth(900);
+                    stage.setMinHeight(400);
 
 
                     primaryStage.close();
@@ -426,6 +439,18 @@ stage.setResizable(false);
         }
         list.setItems(subentries);
     }
+
+    // Alternate method for searching through the listview
+    public int johanSearch(String str){
+        int index = 0;
+        for(int i = 0; i<items.size(); i++){
+            if(items.get(i).getText().equals(str)){
+                index = i;
+            }
+        }
+        return index;
+    }
+
     public static void main(String[] args){
         launch(args);
     }
