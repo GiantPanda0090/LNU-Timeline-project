@@ -6,7 +6,6 @@
 import backend.SessionHandler;
 import backend.Timeline;
 import backend.UserRegistration;
-import gui.Config;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
