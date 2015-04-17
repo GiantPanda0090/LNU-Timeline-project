@@ -258,13 +258,21 @@ public class login extends Application {
                     list.setItems(items);
 
                     // Search field
-                    TextField Search = new TextField();
+                    final TextField Search = new TextField();
                     Search.setPromptText("Search your timeline");;
                      search.textProperty().addListener(new ChangeListener<Object>() {
                         public void changed(ObservableValue<?> observable, Object oldVal,
                                             Object newVal) {
                            search((String) oldVal, (String) newVal);
                        }
+                    });
+
+                    Search.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            Label l = items.get(johanSearch(Search.getText()));
+                            list.scrollTo(l);
+                        }
                     });
 
 
@@ -431,6 +439,18 @@ public class login extends Application {
         }
         list.setItems(subentries);
     }
+
+    // Alternate method for searching through the listview
+    public int johanSearch(String str){
+        int index = 0;
+        for(int i = 0; i<items.size(); i++){
+            if(items.get(i).getText().equals(str)){
+                index = i;
+            }
+        }
+        return index;
+    }
+
     public static void main(String[] args){
         launch(args);
     }
