@@ -105,6 +105,7 @@ public class login extends Application {
         primaryStage.show();
         primaryStage.setMaxHeight(600.0);
         primaryStage.setMaxWidth(400.0);
+       primaryStage.setResizable(false);
 
         /*
           ...
@@ -283,9 +284,9 @@ public class login extends Application {
                     bpane.setLeft(timelineList);
                     bpane.setCenter(timelineView);
 
-                    stage.setScene(new Scene(bpane, 1000, 600));
+                    stage.setScene(new Scene(bpane, 1280, 600));
                     stage.setFullScreen(true);
-
+stage.setResizable(false);
 
 
                     primaryStage.close();
