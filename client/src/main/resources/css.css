@@ -1,45 +1,48 @@
 .root {
     -fx-background-color: #40FF88;
 }
-#gpanemain{ -fx-background-image: url("Blue-Background-86.jpg");
+#gpanemain{ /*-fx-background-image: url("Blue-Background-86.jpg");
     -fx-background-repeat: stretch;
     -fx-background-position: center center;
-    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+    -fx-te: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
     -fx-background-size: stretch;
-    -fx-background-repeat: no-repeat;
+    -fx-background-repeat: no-repeat;*/
+    -fx-background-color: #ffffff;
 
 }
 #gpane{
+    /*
     -fx-background-image: url("Blue-Background-86.jpg");
     -fx-background-repeat: stretch;
     -fx-background-size: 800 600;
     -fx-background-position: center center;
-    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);*/
+    -fx-background-color: #ffffff;
 }
 .label{
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #14CC26;
+    -fx-text-fill: #42b8dd;
     -fx-opacity: 0.6;
 }
 #regBtn{
-    -fx-font-size: 14pt;
+    -fx-font-size: 12pt;
     -fx-font-weight: bold;
-    -fx-text-fill: #14CC26;
+    -fx-text-fill: #42b8dd;
     -fx-opacity: 1.0;
 }
 
 #labelLogo {
     -fx-font-size: 30pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #14CC26;
+    -fx-text-fill: #42b8dd;
     -fx-opacity: 0.6;
 }
 
 #createlabelLogo{
     -fx-font-size: 50pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #14CC26;
+    -fx-text-fill: #42b8dd;
     -fx-opacity: 0.6;
 }
 
@@ -47,13 +50,13 @@
 #labelID{
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #14CC26;
+    -fx-text-fill: #42b8dd;
     -fx-opacity: 0.6;
 }
 
 #timelineLabel {
     -fx-font-size: 18pt;
-    -fx-text-fill: #000000;
+    -fx-text-fill: #42b8dd;
     -fx-opacity: 1;
 }
 
@@ -66,25 +69,24 @@
 .label-bright {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #14CC26;
+    -fx-text-fill: #42b8dd;
     -fx-opacity: 1;
 }
 
 .button {
     -fx-padding: 5 22 5 22;
-    -fx-border-color: #ffffff;
     -fx-border-width: 2;
     -fx-border-radius: 15px;
-    -fx-background-radius: 15px;
-    -fx-background-color: #14CC26;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 14pt;
+    -fx-background-radius: 12px;
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+    -fx-background-color: #42b8dd;
     -fx-text-fill: #ffffff;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-opacity: 1.0;
 }
 
 .button:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #42caef;
 }
 
 .button:pressed, .button:default:hover:pressed {
