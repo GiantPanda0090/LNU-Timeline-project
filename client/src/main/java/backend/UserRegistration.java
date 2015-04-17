@@ -7,6 +7,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
 /**
@@ -15,8 +16,19 @@ import org.json.JSONObject;
  */
 public class UserRegistration {
 
+    /*
+     * Reading from config file
+     */
+    private API apiConfig = APIConfigReader.read();
+
+    /*
+     * Logger
+     */
+    private static final Logger LOG = Logger.getLogger(UserRegistration.class);
+
+
     public void register(String username, String password1, String password2, String email){
-        String url = "http://herrlintech.se:8000/rest-auth/registration/";
+        String url = "http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/rest-auth/registration/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
 
@@ -36,26 +48,20 @@ public class UserRegistration {
             request.setEntity(new StringEntity(jsonObject.toString()));
             HttpResponse response = httpClient.execute(request);
 
-
-            System.out.println(response.toString());
-            HttpEntity entity = response.getEntity();
-
             int response_code = response.getStatusLine().getStatusCode();
-            System.out.println(response_code);
 
-            String content = EntityUtils.toString(entity);
-
-            if (entity != null){
-                System.out.println(entity.toString());
-                JSONObject result = new JSONObject(content);
-                String status = result.get("status").toString();
-                System.out.println(status);
+            if (response_code == 201){
+                LOG.info("User registration sent");
+            }
+            else {
+                LOG.error("Something whent wrong in registration\nResponse code:"+response_code);
             }
 
         }
 
         catch (Exception ex) {
             ex.printStackTrace();
+            LOG.error(ex);
         }
 
         finally {
