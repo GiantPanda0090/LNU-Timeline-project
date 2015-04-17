@@ -3,7 +3,9 @@ package backend;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
@@ -108,12 +110,10 @@ public class SessionHandler {
      */
     public Boolean loginUser(String username, String password){
 
-
         String url = "http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api-token-auth/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
         LocalDateTime localDateTime = LocalDateTime.now();
-        //System.out.println(localDateTime);
 
         try {
 
@@ -137,11 +137,11 @@ public class SessionHandler {
 
             if (response_code == 200){
 
+                LOG.info("User successfully signed in");
+
                 JSONObject result = new JSONObject(content);
                 token = result.get("token").toString();
                 getUser(username);
-
-                LOG.info("User successfully signed in");
 
                 return true;
             }
@@ -178,27 +178,36 @@ public class SessionHandler {
             httpURLConnection.setRequestProperty("User-Agent", "Timeline-Java-Client");
             httpURLConnection.setRequestProperty("Authorization", "Token " + token);
 
-            int responseCore = httpURLConnection.getResponseCode();
+            int response_code = httpURLConnection.getResponseCode();
 
-            //System.out.println("Sending 'GET' request to UTL : " + url.toString());
-            //System.out.println("Responsecode : " + responseCore);
 
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
+            if (response_code == 200) {
 
-            while ((inputLine = bufferedReader.readLine()) != null){
-                response.append(inputLine);
-            }
+                LOG.info("User found and assigned to user session");
 
-            userList = mapper.readValue(response.toString(), User[].class);
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
 
-            for (User u: userList){
-                if (u.getUsername().equals(username)){
-                    user = u;
+
+                while ((inputLine = bufferedReader.readLine()) != null) {
+                    response.append(inputLine);
                 }
+
+
+                userList = mapper.readValue(response.toString(), User[].class);
+
+                for (User u : userList) {
+                    if (u.getUsername().equals(username)) {
+                        user = u;
+                    }
+                }
+
             }
 
+            else {
+                LOG.error("Something went wrong when trying to get user.\n\t Response code: " + response_code);
+            }
             httpURLConnection.disconnect();
         }
 
@@ -228,28 +237,32 @@ public class SessionHandler {
             httpURLConnection.setRequestProperty("User-Agent", "Timeline-Java-Client");
             httpURLConnection.setRequestProperty("Authorization", "Token " + token);
 
-            int responseCore = httpURLConnection.getResponseCode();
+            int response_code = httpURLConnection.getResponseCode();
 
-            //System.out.println("Sending 'GET' request to UTL : " + url.toString());
-            //System.out.println("Responsecode : " + responseCore);
+            // If response if OK!
+            if ( response_code == 200) {
 
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
 
-            while ((inputLine = bufferedReader.readLine()) != null){
-                response.append(inputLine);
-            }
-
-            timelineList = mapper.readValue(response.toString(), Timeline[].class);
-
-            for ( Timeline t : timelineList){
-                if (t.getUser() == user.getId()){
-                    timelineArrayList.add(t);
+                while ((inputLine = bufferedReader.readLine()) != null) {
+                    response.append(inputLine);
                 }
-            }
 
-            System.out.println(timelineArrayList.size() + " timelines found for the user");
+                timelineList = mapper.readValue(response.toString(), Timeline[].class);
+
+                for (Timeline t : timelineList) {
+                    if (t.getUser() == user.getId()) {
+                        timelineArrayList.add(t);
+                    }
+                }
+                LOG.info("Timelines requested succesfully");
+            }
+            // If respones is NOT OK!
+            else {
+                LOG.error("Not possible to get timelines.\n\tResponse code: " + response_code);
+            }
 
             httpURLConnection.disconnect();
         }
@@ -287,20 +300,23 @@ public class SessionHandler {
             request.addHeader("User-Agent", "Timeline-Client");
             request.addHeader("Accept", "application/json");
             request.addHeader("Content-Type", "application/json; charset=UTF-8");
-            request.addHeader("Authorization", "Token "+token);
+            request.addHeader("Authorization", "Token " + token);
             request.setEntity(new StringEntity(jsonObject.toString()));
             HttpResponse response = httpClient.execute(request);
 
-            HttpEntity entity = response.getEntity();
-            String content = EntityUtils.toString(entity);
-            JSONObject result = new JSONObject(content);
-            System.out.println(result.get("status_code").toString());
 
-            //System.out.println(response);
+            int response_code = response.getStatusLine().getStatusCode();
+
+            if (response_code == 201){
+                LOG.info("Timeline created");
+            }
+
+            else {
+                LOG.info("Something went wrong when createing timeline.\n\tResponse code: "+response_code);
+            }
         }
 
         catch (Exception e) {
-            e.printStackTrace();
             LOG.error(e);
         }
 
@@ -327,18 +343,23 @@ public class SessionHandler {
             request.addHeader("User-Agent", "Timeline-Client");
             request.addHeader("Accept", "application/json");
             request.addHeader("Content-Type", "application/json; charset=UTF-8");
-            request.addHeader("Authorization", "Token "+token);
+            request.addHeader("Authorization", "Token " + token);
             request.setEntity(new StringEntity(jsonObject.toString()));
             HttpResponse response = httpClient.execute(request);
 
-            System.out.println(response);
+            int response_code = response.getStatusLine().getStatusCode();
 
+            if (response_code == 200){
+                LOG.info("Timeline updated!");
+            }
+
+            else {
+                LOG.info("Something went wrong when updating timeline.\n\tResponse code: "+response_code);
+            }
         }
 
         catch (Exception e) {
-            e.printStackTrace();
             LOG.error(e);
-
         }
 
         finally {
@@ -359,39 +380,44 @@ public class SessionHandler {
             httpURLConnection.setRequestProperty("User-Agent", "Timeline-Java-Client");
             httpURLConnection.setRequestProperty("Authorization", "Token " + token);
 
-            int responseCore = httpURLConnection.getResponseCode();
+            int response_code = httpURLConnection.getResponseCode();
 
-            //System.out.println("Sending 'GET' request to UTL : " + url.toString());
-            System.out.println("Responsecode : " + responseCore);
+            if (response_code == 200) {
 
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
 
-            while ((inputLine = bufferedReader.readLine()) != null){
-                response.append(inputLine);
-            }
-
-            eventList = mapper.readValue(response.toString(), Event[].class);
-
-            for ( Event e : eventList){
-                if (e.timeline == timeline_id){
-                    eventArrayList.add(e);
+                while ((inputLine = bufferedReader.readLine()) != null) {
+                    response.append(inputLine);
                 }
+
+                eventList = mapper.readValue(response.toString(), Event[].class);
+
+                for (Event e : eventList) {
+                    if (e.timeline == timeline_id) {
+                        eventArrayList.add(e);
+                    }
+                }
+                LOG.info("Events request succesfully");
             }
 
-            System.out.println(timelineArrayList.size() + " timelines found for the user");
+            else {
+                LOG.info("Something went wrong when trying to get events");
+            }
 
             httpURLConnection.disconnect();
         }
 
         catch (MalformedURLException e){
-            e.printStackTrace();
             LOG.error(e);
         }
 
         catch (IOException e){
-            e.printStackTrace();
+            LOG.error(e);
+        }
+
+        catch (Exception e){
             LOG.error(e);
         }
     }
@@ -401,7 +427,6 @@ public class SessionHandler {
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
         LocalDateTime localDateTime = LocalDateTime.now();
-        System.out.println(localDateTime);
 
         try {
 
@@ -422,18 +447,27 @@ public class SessionHandler {
             request.setEntity(new StringEntity(jsonObject.toString()));
             HttpResponse response = httpClient.execute(request);
 
+            int response_code = response.getStatusLine().getStatusCode();
 
+            if (response_code == 201){
+                LOG.info("Event created successfully!");
+            }
+
+            else {
+                LOG.info("Something went wrong when trying to update event.\n\tResponse code: " +response_code);
+            }
+
+            /* Save this if we are handeling JSON responses later
             System.out.println(response);
-
             HttpEntity entity = response.getEntity();
             String content = EntityUtils.toString(entity);
             JSONObject result = new JSONObject(content);
             System.out.println(result.get("detail"));
+            */
 
         }
 
         catch (Exception e) {
-            e.printStackTrace();
             LOG.error(e);
         }
 
@@ -442,23 +476,34 @@ public class SessionHandler {
         }
     }
 
-
-    public String toString(){
-        return user.getUsername();
-    }
-
     // Example usage
     public static void main(String[] args) {
         SessionHandler sessionHandler = new SessionHandler();
 
         if(sessionHandler.loginUser("austin", "password")){
-            System.out.println(sessionHandler.token);
+
         }
 
-        sessionHandler.createTimeline("Johns title", "Johns description");
 
-        sessionHandler.setTimeline_id(7);
-        sessionHandler.updateTimeline("Austin confirming the update", "it is working");
+        //sessionHandler.getTimelines();
+        //sessionHandler.createTimeline("Johns title", "Johns description");
+
+        sessionHandler.setTimeline_id(5);
+        sessionHandler.updateTimeline("test", "test");
+        sessionHandler.getEvents();
+        sessionHandler.createEvent("event test", "event desc");
+
+        sessionHandler.setTimeline_id(6);
+        sessionHandler.createEvent("event test", "event desc");
+
+        sessionHandler.setTimeline_id(2);
+        sessionHandler.createEvent("event test", "event desc");
+
+        sessionHandler.setTimeline_id(2);
+        sessionHandler.createEvent("event test", "event desc");
+
+        //sessionHandler.setTimeline_id(7);
+        // sessionHandler.updateTimeline("Austin confirming the update", "it is working");
 
     }
 }
