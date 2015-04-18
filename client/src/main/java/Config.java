@@ -19,7 +19,7 @@ public class Config {
 
     public Stage config(){
 
-        API api = APIConfigReader.read();
+        final API api = APIConfigReader.read();
 
         final Stage stage = new Stage();
         Group root = new Group();
@@ -53,7 +53,7 @@ public class Config {
 
         final TextField portTextField = new TextField(api.getPort());
 
-        final Button saveButton = new Button("Save(not implemented)");
+        final Button saveButton = new Button("Save");
 
         saveButton.setPrefSize(100,10);
 
@@ -67,7 +67,7 @@ public class Config {
         gridPane.add(portText, 0, 2);
 
         /*
-        Horizontal view for buttons. 
+        Horizontal view for buttons.
          */
         HBox hbox = new HBox();
         hbox.setSpacing(25);
@@ -78,6 +78,13 @@ public class Config {
             @Override
             public void handle(ActionEvent event) {
                 stage.close();
+            }
+        });
+        saveButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                api.setHost(hostTextField.getText());
+                api.setPort(portTextField.getText());
             }
         });
 
