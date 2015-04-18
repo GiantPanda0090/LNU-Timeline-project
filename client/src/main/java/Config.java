@@ -67,7 +67,7 @@ public class Config {
         gridPane.add(portText, 0, 2);
 
         /*
-        ... Alignment set horizontal. 
+        Horizontal view for buttons. 
          */
         HBox hbox = new HBox();
         hbox.setSpacing(25);

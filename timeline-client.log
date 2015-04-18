@@ -82,3 +82,6 @@
 2015-04-18 14:35:46 INFO  SessionHandler:140 - User successfully signed in
 2015-04-18 14:35:46 INFO  SessionHandler:186 - User found and assigned to user session
 2015-04-18 14:35:46 INFO  SessionHandler:260 - Timelines requested succesfully
+2015-04-18 14:45:28 INFO  SessionHandler:140 - User successfully signed in
+2015-04-18 14:45:28 INFO  SessionHandler:186 - User found and assigned to user session
+2015-04-18 14:45:28 INFO  SessionHandler:260 - Timelines requested succesfully
