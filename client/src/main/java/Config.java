@@ -1,12 +1,14 @@
 import backend.API;
 import backend.APIConfigReader;
-import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -53,19 +55,31 @@ public class Config {
 
         final Button saveButton = new Button("Save(not implemented)");
 
-        saveButton.setPrefSize(200,10);
+        saveButton.setPrefSize(100,10);
 
-        final Button cancelButton = new Button("Cancel(not implemented)");
+        final Button cancelButton = new Button("Cancel");
 
-        cancelButton.setPrefSize(200,10);
+        cancelButton.setPrefSize(100,10);
         gridPane.add(headerText, 1, 0);
         gridPane.add(hostTextField, 1, 1);
         gridPane.add(hostText, 0, 1);
         gridPane.add(portTextField, 1, 2);
         gridPane.add(portText, 0, 2);
 
-        gridPane.add(saveButton, 1, 3);
-        gridPane.add(cancelButton, 1, 4);
+        /*
+        ... Alignment set horizontal. 
+         */
+        HBox hbox = new HBox();
+        hbox.setSpacing(25);
+        hbox.getChildren().addAll(saveButton, cancelButton);
+        gridPane.add(hbox, 1, 4);
+
+        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                stage.close();
+            }
+        });
 
         root.getChildren().add(gridPane);
         stage.setScene(scene);

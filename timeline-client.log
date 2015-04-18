@@ -77,3 +77,8 @@
 2015-04-17 17:24:56 INFO  SessionHandler:150 - User login failure
 2015-04-17 17:25:13 INFO  SessionHandler:144 - User successfully signed in
 2015-04-17 17:32:16 INFO  SessionHandler:144 - User successfully signed in
+2015-04-17 19:53:16 INFO  SessionHandler:144 - User successfully signed in
+2015-04-18 14:02:35 ERROR SessionHandler:156 - java.net.UnknownHostException: herrlintech.se
+2015-04-18 14:35:46 INFO  SessionHandler:140 - User successfully signed in
+2015-04-18 14:35:46 INFO  SessionHandler:186 - User found and assigned to user session
+2015-04-18 14:35:46 INFO  SessionHandler:260 - Timelines requested succesfully
