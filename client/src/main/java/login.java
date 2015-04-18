@@ -79,7 +79,7 @@ public class login extends Application {
         logo.setId("labelLogo");
         logo.setPadding(new Insets(0, 0, 0, 20));
 
-        final TextField username = new TextField("austin");
+        final TextField username = new TextField("user");
         username.setFont(new Font("System", 18));
         username.setMaxWidth(200);
 
