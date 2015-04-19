@@ -85,3 +85,18 @@
 2015-04-18 14:45:28 INFO  SessionHandler:140 - User successfully signed in
 2015-04-18 14:45:28 INFO  SessionHandler:186 - User found and assigned to user session
 2015-04-18 14:45:28 INFO  SessionHandler:260 - Timelines requested succesfully
+2015-04-18 19:10:30 ERROR UserRegistration:57 - Something whent wrong in registration
+Response code:400
+2015-04-18 19:10:36 INFO  SessionHandler:140 - User successfully signed in
+2015-04-18 19:10:36 INFO  SessionHandler:186 - User found and assigned to user session
+2015-04-18 19:10:36 INFO  SessionHandler:260 - Timelines requested succesfully
+2015-04-18 19:11:02 INFO  SessionHandler:311 - Timeline created
+2015-04-19 11:14:48 INFO  SessionHandler:140 - User successfully signed in
+2015-04-19 11:14:48 INFO  SessionHandler:186 - User found and assigned to user session
+2015-04-19 11:14:48 INFO  SessionHandler:260 - Timelines requested succesfully
+2015-04-19 11:16:01 INFO  SessionHandler:140 - User successfully signed in
+2015-04-19 11:16:01 INFO  SessionHandler:186 - User found and assigned to user session
+2015-04-19 11:16:01 INFO  SessionHandler:260 - Timelines requested succesfully
+2015-04-19 11:16:33 INFO  SessionHandler:140 - User successfully signed in
+2015-04-19 11:16:33 INFO  SessionHandler:186 - User found and assigned to user session
+2015-04-19 11:16:33 INFO  SessionHandler:260 - Timelines requested succesfully

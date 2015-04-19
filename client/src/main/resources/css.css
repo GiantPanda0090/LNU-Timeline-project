@@ -82,6 +82,10 @@
     -fx-opacity: 1.0;
 }
 
+#newTimelineButton:hover{
+    -fx-background-color: #e86198;
+}
+
 
 #labelID{
     -fx-font-size: 11pt;
@@ -123,7 +127,7 @@
 }
 
 .button:hover {
-    -fx-background-color: #42caef;
+    -fx-background-color: #72c6c5;
 }
 
 .button:pressed, .button:default:hover:pressed {
