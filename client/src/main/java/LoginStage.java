@@ -25,12 +25,10 @@ public class LoginStage extends Application{
 
     public final SessionHandler sessionHandler = new SessionHandler();
 
-    //PopOver regPop;
+
     double top = 0;
     ListView<Label> list = new ListView<Label>();
     ObservableList<Label> items = FXCollections.observableArrayList();
-    //UserRegistration newUser;
-
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
@@ -100,7 +98,7 @@ public class LoginStage extends Application{
         primaryStage.setResizable(false);
 
 
-        /*
+        /**
          * DATA FOR REGISTRATION
          * Registration PopOver
          * Calls the registrationBorderPane with a PopOver as argument.
@@ -123,6 +121,8 @@ public class LoginStage extends Application{
                 configStageGui.config(sessionHandler).show();
             }
         });
+
+
         logIn.setOnAction(new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent event) {

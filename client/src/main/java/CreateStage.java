@@ -28,7 +28,7 @@ public class CreateStage {
         sessionHandler = session;
     };
 
-    PopOver newTimeorEvent;
+    //PopOver newTimeorEvent;
     PopOver ConfigPop;
     PopOver regPop;
     double top = 0;
@@ -92,7 +92,7 @@ public class CreateStage {
         timelineList.setVgrow(plus, Priority.ALWAYS);
         timelineList.setVgrow(search, Priority.ALWAYS);
 
-        VBox timelineView = new VBox();
+        final VBox timelineView = new VBox();
         timelineView.setPadding(new Insets(0, 40, 100, 40));
 
         HBox bannerView = new HBox();
@@ -117,7 +117,6 @@ public class CreateStage {
         int size = sessionHandler.timelineArrayList.size();
 
 
-
         for (int i = 0; i < size; i++) {
             Label timelineLabel = new Label(sessionHandler.timelineArrayList.get(i).getTimeline_title());
             items.add(i, timelineLabel);
@@ -129,7 +128,8 @@ public class CreateStage {
 
         // Search field
         final TextField Search = new TextField();
-        Search.setPromptText("Search your timeline");;
+        Search.setPromptText("Search your timeline");
+        ;
 
         Search.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -172,7 +172,7 @@ public class CreateStage {
                    ...
                    ...
                     */
-
+/*
         final GridPane popPane = new GridPane();
         popPane.setMinSize(300, 400);
         popPane.getStylesheets().add(this.getClass().getResource("popover.css").toExternalForm());
@@ -236,7 +236,7 @@ public class CreateStage {
 
 
         popPane.getChildren().addAll(firstDate, secondDate, firstLbl, secondLbl, name, okRect, cancelRect, okText, cancelText);
-
+*/
 
 
                     /*
@@ -245,16 +245,27 @@ public class CreateStage {
                     ...
                      */
 
+        /**
+         * Plus creates a new PopUp to add timeline or event(?)
+         * createTimelinePane have following arguments:
+         *   PopOver
+         *   VBox
+         *   double
+         *   SessionHandler
+         */
         plus.setOnAction(new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent event) {
-                newTimeorEvent = new PopOver();
+                PopOver newTimeorEvent = new PopOver();
                 newTimeorEvent.setOpacity(0.99);
 
-                newTimeorEvent.setContentNode(popPane);
+                //newTimeorEvent.setContentNode(popPane);
+                CreateTimelinePane createTimelinePane = new CreateTimelinePane();
+                newTimeorEvent.setContentNode(createTimelinePane.createTimelinePane(newTimeorEvent, timelineView, top, sessionHandler));
 
                 newTimeorEvent.show(plus);
 
+                /*
                 okRect.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                     public void handle(MouseEvent event) {
@@ -266,17 +277,22 @@ public class CreateStage {
                         sessionHandler.createTimeline(name.getText().toString(), "description");
                     }
                 });
+                */
+
             }
         });
 
+/*
         cancelRect.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             public void handle(MouseEvent event) {
                 newTimeorEvent.hide();
             }
         });
+*/
         return stage;
     }
+
     // Alternate method for searching through the listview
     public int johanSearch(String str){
         int index = 0;
