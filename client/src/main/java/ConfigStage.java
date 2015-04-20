@@ -1,5 +1,6 @@
 import backend.API;
 import backend.APIConfigReader;
+import backend.SessionHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -9,50 +10,59 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
  * Created by nils on 2015-04-16.
  */
-public class Config {
+public class ConfigStage {
 
-    public Stage config(){
+    /*
+     * sessionHandler is passed to this function.
+     * The reason for that is that when saved is pressed
+     * sessionHandler needs to reload API settings from config file.
+     */
 
-        final API api = APIConfigReader.read();
+    public Stage config(final SessionHandler sessionHandler){
 
+        // New API config reader, use to create new instance of API and to write to config file
+        APIConfigReader apiConfigReader = new APIConfigReader();
+
+        // Used to read from config file
+        API  api = apiConfigReader.read();
+
+        // FX stage
         final Stage stage = new Stage();
+
+        // FX root
         Group root = new Group();
+
+        // FX scene
         Scene scene = new Scene(root);
 
-
+        // Title
         stage.setTitle("Config");
 
-
-
+        // Gridpane and settings for gridpane
         GridPane gridPane = new GridPane();
         gridPane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
-
-
-
         gridPane.setPrefSize(350, 250);
-
         gridPane.setAlignment(Pos.CENTER);
-
         gridPane.setHgap(10);
         gridPane.setVgap(10);
 
         final Text headerText = new Text("Config API settings");
-
         final Text hostText = new Text("Host:");
         final Text portText = new Text("Port:");
 
         final TextField hostTextField = new TextField(api.getHost());
-
         hostTextField.setPrefSize(10, 10);
 
         final TextField portTextField = new TextField(api.getPort());
-
         final Button saveButton = new Button("Save");
 
         saveButton.setPrefSize(100,10);
@@ -74,17 +84,33 @@ public class Config {
         hbox.getChildren().addAll(saveButton, cancelButton);
         gridPane.add(hbox, 1, 4);
 
+
+        /*
+         * Close the config stage.
+         */
         cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
+
             public void handle(ActionEvent event) {
                 stage.close();
             }
         });
+
+
+        /*
+         * Save button
+         * Take the text from hostTextField and portTextField and saves the values to API config file.
+         * After saving to config file. sessionHandler is reloaded with new API settings.
+         * It sessionHandler wouldnt be reloaded, the old API settings would still be there.
+         */
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
+
             public void handle(ActionEvent event) {
-                api.setHost(hostTextField.getText());
-                api.setPort(portTextField.getText());
+                APIConfigReader apiConfigReader = new APIConfigReader();
+                apiConfigReader.write(hostTextField.getText(), portTextField.getText());
+                headerText.setText("Host and port saved!");
+                headerText.setFill(Color.GREEN);
+                headerText.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+                sessionHandler.updateAPIconfig();
             }
         });
 
@@ -92,5 +118,6 @@ public class Config {
         stage.setScene(scene);
         return stage;
     }
+
 
 }

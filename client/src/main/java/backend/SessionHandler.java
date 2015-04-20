@@ -312,7 +312,7 @@ public class SessionHandler {
             }
 
             else {
-                LOG.info("Something went wrong when createing timeline.\n\tResponse code: "+response_code);
+                LOG.info("Something went wrong when createing timeline.\n\tResponse code: " + response_code);
             }
         }
 
@@ -474,6 +474,14 @@ public class SessionHandler {
         finally {
             httpClient.getConnectionManager().shutdown();
         }
+    }
+
+    // This function read values from API config file
+    // This function is called if API HOST and PORT updated
+    public void updateAPIconfig(){
+        apiConfig = new APIConfigReader().read();
+        LOG.info("API settings reloaded in sessionHandler.\n\tNew host:"+apiConfig.getHost()+"\n\tNew port:"+apiConfig.getPort());
+
     }
 
     // Example usage

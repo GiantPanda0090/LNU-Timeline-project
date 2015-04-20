@@ -3,9 +3,19 @@ package backend;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
+import org.apache.log4j.Logger;
 
 public class APIConfigReader {
 
+    /*
+     * Logger
+     */
+    private static final Logger LOG = Logger.getLogger(SessionHandler.class);
+
+
+    /*
+     * Read from config file
+     */
     public static API read() {
 
         Configuration props;
@@ -24,20 +34,27 @@ public class APIConfigReader {
         return api;
     }
 
+    /*
+     * Write to API config file
+     */
     public static void write(String host, String port){
-        // Implement this function
+        try{
+            PropertiesConfiguration config = new PropertiesConfiguration("api-configuration.cfg.properties");
+            config.setProperty("HOST", host);
+            config.setProperty("PORT", port);
+            config.save("api-configuration.cfg.properties");
+        }
+
+        catch (ConfigurationException e){
+            LOG.error(e);
+        }
+
     }
 
+    // Example usage
     public static void main(String[] args) {
         API api = new APIConfigReader().read();
-        System.out.println(api.getHost());
-        System.out.println(api.getPort());
-
         APIConfigReader apiConfigReader = new APIConfigReader();
-        apiConfigReader.write("TestHost", "TestPort");
-
-        API api1 = new APIConfigReader().read();
-        System.out.println(api1.getHost());
-        System.out.println(api1.getPort());
+        apiConfigReader.write("testHost", "testPort");
     }
 }

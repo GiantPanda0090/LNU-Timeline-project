@@ -22,9 +22,9 @@ import java.util.ArrayList;
 /**
  * Created by Johan on 2015-04-20.
  */
-public class createStage {
+public class CreateStage {
     SessionHandler sessionHandler;
-    public createStage(SessionHandler session){
+    public CreateStage(SessionHandler session){
         sessionHandler = session;
     };
 
@@ -132,7 +132,7 @@ public class createStage {
         Search.setPromptText("Search your timeline");;
 
         Search.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
+
             public void handle(ActionEvent event) {
                 Label l = items.get(johanSearch(Search.getText()));
                 list.scrollTo(l);

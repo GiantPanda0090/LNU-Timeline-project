@@ -19,9 +19,9 @@ import org.controlsfx.control.PopOver;
 /**
  * Created by Johan on 2015-04-20.
  */
-public class loginStage extends Application{
+public class LoginStage extends Application{
 
-    public loginStage(){};
+    public LoginStage(){};
 
     public final SessionHandler sessionHandler = new SessionHandler();
 
@@ -150,15 +150,17 @@ public class loginStage extends Application{
 
         configButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
-                Config configGui = new Config();
-                configGui.config().show();
+                // Create new API config window
+                ConfigStage configStageGui = new ConfigStage();
+                // Show the new window
+                configStageGui.config(sessionHandler).show();
             }
         });
         logIn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
+
             public void handle(ActionEvent event) {
                 if (sessionHandler.loginUser(username.getText(), password.getText())) {
-                    createStage create = new createStage(sessionHandler);
+                    CreateStage create = new CreateStage(sessionHandler);
                     try {
                         create.start().show();
                     } catch (Exception e) {
