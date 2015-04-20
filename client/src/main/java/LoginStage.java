@@ -25,11 +25,11 @@ public class LoginStage extends Application{
 
     public final SessionHandler sessionHandler = new SessionHandler();
 
-    PopOver regPop;
+    //PopOver regPop;
     double top = 0;
     ListView<Label> list = new ListView<Label>();
     ObservableList<Label> items = FXCollections.observableArrayList();
-    UserRegistration newUser;
+    //UserRegistration newUser;
 
 
     @Override
@@ -99,52 +99,19 @@ public class LoginStage extends Application{
         primaryStage.setMaxWidth(450);
         primaryStage.setResizable(false);
 
+
         /*
-          ...
-          DATA FOR REGISTRATION
-          ...
+         * DATA FOR REGISTRATION
+         * Registration PopOver
+         * Calls the registrationBorderPane with a PopOver as argument.
+         * registrationBorderPane then add things to the PopOver and returns the popover.
          */
-        final BorderPane regPane = new BorderPane();
-        regPane.setMinSize(200, 200);
-        VBox regBox = new VBox();
-        regBox.setSpacing(12);
-        regBox.setPadding(new Insets(20, 20, 20, 20));
-        final TextField newUserName = new TextField("Enter username");
-        final TextField firstPassword = new TextField("Enter password");
-        final TextField secondPassword = new TextField("Repeat password");
-        final TextField userEmail = new TextField("Email");
-
-        HBox buttonBox = new HBox();
-        buttonBox.setSpacing(12);
-        buttonBox.setPadding(new Insets(20, 20, 20, 20));
-        final Button signUp = new Button("Sign up!");
-        final Button signCancel = new Button("Cancel");
-        buttonBox.getChildren().addAll(signUp, signCancel);
-        regBox.getChildren().addAll(newUserName, firstPassword, secondPassword, userEmail);
-        regPane.setCenter(regBox);
-        regPane.setBottom(buttonBox);
-
-
         regBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
-                regPop = new PopOver();
-                regPop.setContentNode(regPane);
+                final PopOver regPop = new PopOver();
+                RegistraionBorderPane registraionBorderPane = new RegistraionBorderPane();
+                regPop.setContentNode(registraionBorderPane.registrationBorderPane(regPop));
                 regPop.show(regBtn);
-
-                signUp.setOnAction(new EventHandler<ActionEvent>() {
-
-                    public void handle(ActionEvent event) {
-                        newUser = new UserRegistration();
-                        newUser.register(newUserName.getText().toString(), firstPassword.getText().toString(), secondPassword.getText().toString(), userEmail.getText().toString());
-                        regPop.hide();
-                    }
-                });
-                signCancel.setOnAction(new EventHandler<ActionEvent>() {
-
-                    public void handle(ActionEvent event) {
-                        regPop.hide();
-                    }
-                });
             }
         });
 
@@ -167,8 +134,7 @@ public class LoginStage extends Application{
                         e.printStackTrace();
                     }
                     primaryStage.close();
-                }
-                else {
+                } else {
                     username.setText("false");
                 }
             }
