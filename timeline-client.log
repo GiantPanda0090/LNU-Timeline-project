@@ -100,3 +100,60 @@ Response code:400
 2015-04-19 11:16:33 INFO  SessionHandler:140 - User successfully signed in
 2015-04-19 11:16:33 INFO  SessionHandler:186 - User found and assigned to user session
 2015-04-19 11:16:33 INFO  SessionHandler:260 - Timelines requested succesfully
+2015-04-20 13:53:58 ERROR UserRegistration:64 - java.net.UnknownHostException: herrlintech.se
+2015-04-20 13:57:51 ERROR UserRegistration:64 - java.net.UnknownHostException: herrlintech.se
+2015-04-20 13:58:10 ERROR SessionHandler:156 - java.net.UnknownHostException: herrlintech.se
+2015-04-20 13:58:13 ERROR SessionHandler:156 - java.net.UnknownHostException: herrlintech.se
+2015-04-20 13:58:15 ERROR SessionHandler:156 - java.net.UnknownHostException: herrlintech.se
+2015-04-20 13:58:22 ERROR SessionHandler:156 - java.net.UnknownHostException: herrlintech.se
+2015-04-20 13:58:30 ERROR SessionHandler:156 - java.net.UnknownHostException: herrlintech.se
+2015-04-20 13:58:36 ERROR SessionHandler:156 - java.net.UnknownHostException: herrlintech.se
+2015-04-20 13:59:07 INFO  SessionHandler:140 - User successfully signed in
+2015-04-20 13:59:07 INFO  SessionHandler:186 - User found and assigned to user session
+2015-04-20 13:59:07 INFO  SessionHandler:260 - Timelines requested succesfully
+2015-04-20 13:59:34 INFO  UserRegistration:54 - User registration sent
+2015-04-20 13:59:38 INFO  SessionHandler:140 - User successfully signed in
+2015-04-20 13:59:38 INFO  SessionHandler:186 - User found and assigned to user session
+2015-04-20 13:59:38 INFO  SessionHandler:260 - Timelines requested succesfully
+2015-04-20 14:00:12 INFO  SessionHandler:311 - Timeline created
+2015-04-20 14:00:22 INFO  SessionHandler:311 - Timeline created
+2015-04-20 14:00:26 INFO  SessionHandler:311 - Timeline created
+2015-04-20 14:00:30 INFO  SessionHandler:311 - Timeline created
+2015-04-20 14:00:33 INFO  SessionHandler:311 - Timeline created
+2015-04-20 14:00:37 INFO  SessionHandler:311 - Timeline created
+2015-04-20 14:00:45 INFO  SessionHandler:140 - User successfully signed in
+2015-04-20 14:00:45 INFO  SessionHandler:186 - User found and assigned to user session
+2015-04-20 14:00:45 INFO  SessionHandler:260 - Timelines requested succesfully
+2015-04-20 19:15:46 INFO  SessionHandler:140 - User successfully signed in
+2015-04-20 19:15:46 INFO  SessionHandler:186 - User found and assigned to user session
+2015-04-20 19:15:52 INFO  SessionHandler:140 - User successfully signed in
+2015-04-20 19:15:52 INFO  SessionHandler:186 - User found and assigned to user session
+2015-04-20 19:18:39 INFO  SessionHandler:140 - User successfully signed in
+2015-04-20 19:18:39 INFO  SessionHandler:186 - User found and assigned to user session
+2015-04-20 19:19:46 INFO  SessionHandler:140 - User successfully signed in
+2015-04-20 19:19:47 INFO  SessionHandler:186 - User found and assigned to user session
+2015-04-20 19:19:47 ERROR SessionHandler:264 - Not possible to get timelines.
+	Response code: 403
+2015-04-20 19:20:03 INFO  SessionHandler:140 - User successfully signed in
+2015-04-20 19:20:03 INFO  SessionHandler:186 - User found and assigned to user session
+2015-04-20 19:20:03 ERROR SessionHandler:264 - Not possible to get timelines.
+	Response code: 403
+2015-04-20 19:20:06 ERROR SessionHandler:320 - java.lang.NullPointerException
+2015-04-20 19:20:16 ERROR SessionHandler:320 - java.lang.NullPointerException
+2015-04-20 19:20:24 INFO  SessionHandler:140 - User successfully signed in
+2015-04-20 19:20:24 INFO  SessionHandler:186 - User found and assigned to user session
+2015-04-20 19:20:24 ERROR SessionHandler:264 - Not possible to get timelines.
+	Response code: 403
+2015-04-20 19:27:02 INFO  SessionHandler:140 - User successfully signed in
+2015-04-20 19:27:02 INFO  SessionHandler:186 - User found and assigned to user session
+2015-04-20 19:27:03 ERROR SessionHandler:264 - Not possible to get timelines.
+	Response code: 403
+2015-04-20 19:28:48 INFO  SessionHandler:140 - User successfully signed in
+2015-04-20 19:28:49 INFO  SessionHandler:186 - User found and assigned to user session
+2015-04-20 19:28:49 INFO  SessionHandler:260 - Timelines requested succesfully
+2015-04-20 19:29:56 INFO  SessionHandler:140 - User successfully signed in
+2015-04-20 19:29:57 INFO  SessionHandler:186 - User found and assigned to user session
+2015-04-20 19:29:57 INFO  SessionHandler:260 - Timelines requested succesfully
+2015-04-20 19:35:33 INFO  SessionHandler:140 - User successfully signed in
+2015-04-20 19:35:33 INFO  SessionHandler:186 - User found and assigned to user session
+2015-04-20 19:35:34 INFO  SessionHandler:260 - Timelines requested succesfully

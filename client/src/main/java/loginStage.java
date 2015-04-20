@@ -75,8 +75,8 @@ public class loginStage extends Application{
         password.setText("password");
         password.setMaxWidth(200);
 
-        Button button = new Button("Log in");
-        button.setMinWidth(200);
+        Button logIn = new Button("Log in");
+        logIn.setMinWidth(200);
 
         final Label regBtn = new Label("Sign up");
         regBtn.setId("regBtn");
@@ -85,7 +85,7 @@ public class loginStage extends Application{
         final Button configButton = new Button("API");
 
         insideLogin.getChildren().addAll(regBtn, configButton);
-        login.getChildren().addAll(logo, username, password, button, insideLogin);
+        login.getChildren().addAll(logo, username, password, logIn, insideLogin);
 
         pane.setTop(fillTop);
         pane.setCenter(login);
@@ -154,7 +154,7 @@ public class loginStage extends Application{
                 configGui.config().show();
             }
         });
-        button.setOnAction(new EventHandler<ActionEvent>() {
+        logIn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 if (sessionHandler.loginUser(username.getText(), password.getText())) {
