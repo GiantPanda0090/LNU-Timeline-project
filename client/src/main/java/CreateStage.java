@@ -29,7 +29,6 @@ public class CreateStage {
     };
 
     double top = 0;
-    //ArrayList<Timeline> labelList = new ArrayList<Timeline>();
     ListView<Label> timelineListView = new ListView<Label>();
     ObservableList<Label> timelineObservableList = FXCollections.observableArrayList();
 
