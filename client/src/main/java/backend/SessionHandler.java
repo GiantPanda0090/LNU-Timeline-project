@@ -68,16 +68,19 @@ public class SessionHandler {
     String token;
 
     /*
-         * user is the user that is logged in to the session
-         */
+     * user is the user that is logged in to the session
+     */
     User user;
 
+    public User getUser() {
+        return user;
+    }
 
     /*
-     * timeline_id is the id of the currently selected timeline
-     * This id is used to request events or if event is created
-     * this value is used to assign the event to a timeline
-     */
+         * timeline_id is the id of the currently selected timeline
+         * This id is used to request events or if event is created
+         * this value is used to assign the event to a timeline
+         */
     public int timeline_id;
     public int getTimeline_id() {
         return timeline_id;
@@ -223,6 +226,46 @@ public class SessionHandler {
             LOG.error(e);
         }
 
+    }
+
+    // Not working, response with 400
+    public void updateUser(String firstname, String lastname){
+        HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
+
+        try {
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("first_name", firstname);
+            jsonObject.put("last_name", lastname);
+            //jsonObject.put("id", user.getId());
+
+            HttpPut request = new HttpPut("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/users/"+user.getId()+"/");
+
+            request.addHeader("User-Agent", "Timeline-Client");
+            request.addHeader("Accept", "application/json");
+            request.addHeader("Content-Type", "application/json; charset=UTF-8");
+            request.addHeader("Authorization", "Token " + token);
+            request.setEntity(new StringEntity(jsonObject.toString()));
+            HttpResponse response = httpClient.execute(request);
+
+            int response_code = response.getStatusLine().getStatusCode();
+
+            if (response_code == 200){
+                LOG.info("User updated!");
+            }
+
+            else {
+                LOG.info("Something went wrong when updating user.\n\tResponse code: "+response_code);
+            }
+        }
+
+        catch (Exception e) {
+            LOG.error(e);
+        }
+
+        finally {
+            httpClient.getConnectionManager().shutdown();
+        }
     }
 
     public void getTimelines(){

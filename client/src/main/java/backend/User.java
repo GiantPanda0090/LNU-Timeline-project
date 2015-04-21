@@ -1,5 +1,7 @@
 package backend;
 
+import java.time.LocalDateTime;
+
 /**
  * Created by nils on 2015-04-05.
  */
@@ -66,8 +68,16 @@ public class User {
         this.last_name = last_name;
     }
 
-    public String getDate_joined() {
-        return date_joined;
+    public LocalDateTime getDate_joined() {
+        String[] dateTimeValuesSplitedUp = date_joined.split("[-TZ: .]");
+        return LocalDateTime.of(
+                Integer.parseInt(dateTimeValuesSplitedUp[0]),
+                Integer.parseInt(dateTimeValuesSplitedUp[1]),
+                Integer.parseInt(dateTimeValuesSplitedUp[2]),
+                Integer.parseInt(dateTimeValuesSplitedUp[3]),
+                Integer.parseInt(dateTimeValuesSplitedUp[4]),
+                Integer.parseInt(dateTimeValuesSplitedUp[5])
+        );
     }
 
     public void setDate_joined(String date_joined) {

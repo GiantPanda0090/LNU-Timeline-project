@@ -23,12 +23,14 @@ public class LoginStage extends Application{
 
     public LoginStage(){};
 
+    /**
+     * This is where SessionHandler is created.
+     * Dont create new instances.
+     * Work with the same instance.
+     * If needed in a class or function, pass the instance as an argument to the method/function
+     * and operate on that.
+     */
     public final SessionHandler sessionHandler = new SessionHandler();
-
-
-    double top = 0;
-    ListView<Label> list = new ListView<Label>();
-    ObservableList<Label> items = FXCollections.observableArrayList();
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
@@ -113,6 +115,9 @@ public class LoginStage extends Application{
             }
         });
 
+        /**
+         * Configure for the API.
+         */
         configButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 // Create new API config window
@@ -141,11 +146,13 @@ public class LoginStage extends Application{
         });
 
     }
+
+    /**
+     * JavaFX entry point?
+     * @param args
+     */
     public static void main(String[] args){
         Application.launch(args);
     }
 
-    public SessionHandler getSessionHandler(){
-        return sessionHandler;
-    }
 }

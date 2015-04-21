@@ -95,6 +95,19 @@ public class CreateStage {
         GenerateTimelineList generateTimelineList = new GenerateTimelineList();
         generateTimelineList.generateTimelineList(sessionHandler, timelineObservableList, timelineListView);
 
+        /**
+         * UserInfoButton
+         * Show logged in user.
+         * When button pressed, open new window to show more info about the user.
+         */
+        Button userInfoButton = new Button(sessionHandler.getUser().getUsername());
+        userInfoButton.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                UserInfoStage userInfoStage = new UserInfoStage();
+                userInfoStage.userInfoStage(sessionHandler).show();
+            }
+        });
+
 
         // Search field
         final TextField searchTextField1 = new TextField();
@@ -113,7 +126,7 @@ public class CreateStage {
         searchTextField.setMaxWidth(200);
         searchTextField.setMaxHeight(30);
 
-        bannerHBox.getChildren().addAll(logo);
+        bannerHBox.getChildren().addAll(logo, userInfoButton);
         timelineVBox.getChildren().addAll(configbox, searchTextField1, timelineListView);
         eventVBox.getChildren().addAll(eventScrollPane);
 
