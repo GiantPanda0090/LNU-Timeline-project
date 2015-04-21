@@ -98,20 +98,9 @@ public class CreateStage {
         configbox.setSpacing(5.0);
         configbox.getChildren().addAll(plusButton, configButton);
 
+        GenerateTimelineList generateTimelineList = new GenerateTimelineList();
+        generateTimelineList.generateTimelineList(sessionHandler, timelineObservableList, timelineListView);
 
-        // Get user Timelines
-        sessionHandler.getTimelines();
-        int size = sessionHandler.timelineArrayList.size();
-
-
-        for (int i = 0; i < size; i++) {
-            Label timelineLabel = new Label(sessionHandler.timelineArrayList.get(i).getTimeline_title());
-            timelineObservableList.add(i, timelineLabel);
-            timelineLabel.setId("timelineLabel");
-            top += 100;
-        }
-
-        timelineListView.setItems(timelineObservableList);
 
         // Search field
         final TextField searchTextField1 = new TextField();
@@ -165,20 +154,21 @@ public class CreateStage {
 
                 CreateTimelinePane createTimelinePane = new CreateTimelinePane();
 
-                newTimeorEvent.setContentNode(
-                        createTimelinePane.createTimelinePane(
-                                newTimeorEvent,
-                                eventVBox,
-                                top,
-                                sessionHandler
-                        )
-                );
-                top += 100;
+                newTimeorEvent.setContentNode(createTimelinePane.createTimelinePane(newTimeorEvent, eventVBox, top, sessionHandler, timelineObservableList, timelineListView));
+
 
                 newTimeorEvent.show(plusButton);
-
             }
         });
+
+
+
+        configButton.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                System.out.println("Not in use");
+            }
+        });
+
 
         return stage;
     }

@@ -227,6 +227,10 @@ public class SessionHandler {
 
         Timeline[] timelineList;
 
+        if ( timelineArrayList.size() > 0){
+            timelineArrayList.clear();
+        }
+
         try {
             URL url = new URL("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/timelines/.json");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();

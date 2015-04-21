@@ -1,8 +1,10 @@
 import backend.SessionHandler;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -18,7 +20,17 @@ import org.controlsfx.control.PopOver;
  */
 public class CreateTimelinePane {
 
-    public GridPane createTimelinePane(PopOver popOver, VBox listIn, double topIn, SessionHandler sessionHandlerIn){
+    public GridPane createTimelinePane(
+            PopOver popOver,
+            VBox listIn,
+            double topIn,
+            SessionHandler sessionHandlerIn,
+            ObservableList<Label> timelineObservableListIn,
+            ListView<Label> timelineListViewIn
+            ){
+
+        final ObservableList<Label> timelineObservableList = timelineObservableListIn;
+        final ListView<Label> timelineListView = timelineListViewIn;
 
         final SessionHandler sessionHandler = sessionHandlerIn;
 
@@ -96,9 +108,12 @@ public class CreateTimelinePane {
                 newTimeorEvent.hide();
                 Label timelineLabel = new Label(name.getText().toString());
                 timelineLabel.setId("timelineLabel");
-                timelineList.getChildren().addAll(timelineLabel);
+                //timelineList.getChildren().addAll(timelineLabel);
                 //topIn += 100;
                 sessionHandler.createTimeline(name.getText().toString(), "description");
+                GenerateTimelineList generateTimelineList = new GenerateTimelineList();
+                generateTimelineList.generateTimelineList(sessionHandler, timelineObservableList, timelineListView);
+
             }
         });
 
