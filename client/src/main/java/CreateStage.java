@@ -1,6 +1,4 @@
 import backend.SessionHandler;
-import backend.Timeline;
-import backend.UserRegistration;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,16 +6,12 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.controlsfx.control.PopOver;
 
-import java.util.ArrayList;
+
 
 /**
  * Created by Johan on 2015-04-20.

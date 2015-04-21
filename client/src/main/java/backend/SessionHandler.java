@@ -21,8 +21,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 
@@ -282,13 +284,13 @@ public class SessionHandler {
         }
     }
 
-    public void createTimeline(String title, String description){
+    public void createTimeline(String title, String description, LocalDateTime startTimeIn, LocalDateTime stopTimeIn){
 
         String url = "http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/timelines/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
         LocalDateTime localDateTime = LocalDateTime.now();
-        //System.out.println(localDateTime);
+        System.out.println(startTimeIn);
 
         try {
 
@@ -296,8 +298,8 @@ public class SessionHandler {
             jsonObject.put("user", user.getId());
             jsonObject.put("timeline_title", title);
             jsonObject.put("timeline_description", description);
-            jsonObject.put("timeline_start_datetime", localDateTime.now());
-            jsonObject.put("timeline_stop_datetime", localDateTime.now());
+            jsonObject.put("timeline_start_datetime", startTimeIn);
+            jsonObject.put("timeline_stop_datetime", stopTimeIn);
 
             HttpPost request = new HttpPost(url);
 
@@ -492,14 +494,22 @@ public class SessionHandler {
     public static void main(String[] args) {
         SessionHandler sessionHandler = new SessionHandler();
 
-        if(sessionHandler.loginUser("austin", "password")){
+        if(sessionHandler.loginUser("user", "password")){
 
         }
 
 
-        //sessionHandler.getTimelines();
-        //sessionHandler.createTimeline("Johns title", "Johns description");
+        sessionHandler.getTimelines();
 
+
+        for (Timeline t: sessionHandler.timelineArrayList){
+            System.out.println(t.getTimeline_start_datetime());
+            System.out.println(t.getTimeline_stop_datetime());
+        }
+
+
+        //sessionHandler.createTimeline("Johns title", "Johns description");
+        /*
         sessionHandler.setTimeline_id(5);
         sessionHandler.updateTimeline("test", "test");
         sessionHandler.getEvents();
@@ -513,7 +523,7 @@ public class SessionHandler {
 
         sessionHandler.setTimeline_id(2);
         sessionHandler.createEvent("event test", "event desc");
-
+        */
         //sessionHandler.setTimeline_id(7);
         // sessionHandler.updateTimeline("Austin confirming the update", "it is working");
 
