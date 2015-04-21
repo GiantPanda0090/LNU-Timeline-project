@@ -22,7 +22,6 @@ public class CreateTimelinePane {
 
         final SessionHandler sessionHandler = sessionHandlerIn;
 
-
         final VBox timelineList = listIn;
 
         final PopOver newTimeorEvent = popOver;
