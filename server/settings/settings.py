@@ -53,6 +53,8 @@ INSTALLED_APPS = (
     'core',
 
     'github',
+
+    'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -119,8 +121,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = '/var/www/static/'
 
 REST_SESSION_LOGIN = False
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
@@ -141,12 +143,12 @@ REST_FRAMEWORK = {
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'USER'
-EMAIL_HOST_PASSWORD = 'PASS'
-DEFAULT_FROM_EMAIL = 'USER'
+EMAIL_HOST_USER = 'jherrlin@gmail.com'
+EMAIL_HOST_PASSWORD = 'Gjoher(#2717)'
+DEFAULT_FROM_EMAIL = 'jherrlin@gmail.com'
 
-GITHUB_USER = 'USER'
-GITHUB_PASSWORD = 'PASS'
+GITHUB_USER = 'jherrlin'
+GITHUB_PASSWORD = 'Gjoher(#2717)'
 
 
 LOGIN_URL = '/account/login/'
