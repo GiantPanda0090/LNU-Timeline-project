@@ -2,45 +2,43 @@
  * Created by Johan on 2015-04-21.
  */
 
+import backend.Event;
+import backend.SessionHandler;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.VBox;
-import org.joda.time.DateTime;
+import javafx.scene.layout.StackPane;
 
 public class TimelineView {
 
-    // fields
-    java.time.LocalDate datePickerFirst;
-    java.time.LocalDate datePickerSecond;
+    SessionHandler sessionHandler;
+    GridPane dayPane;
+    StackPane stackPane;
 
-    public TimelineView(DatePicker first, DatePicker second){
-        datePickerFirst = first.getValue();
-        DateTime stupidDatePicker1 = new DateTime(datePickerFirst);
-        org.joda.time.LocalDate localDate = new org.joda.time.LocalDate(stupidDatePicker1);
-
-        datePickerSecond = second.getValue();
-        DateTime stupidDatePicker2 = new DateTime(datePickerSecond);
-        org.joda.time.LocalDate localDate1 = new org.joda.time.LocalDate(stupidDatePicker2);
+    public TimelineView(SessionHandler sessionHandlerIn){
+        sessionHandler = sessionHandlerIn;
+        sessionHandler.setTimeline_id(9);
     }
 
-    public long amountOfDays(){
-        long firstDaysInt = this.datePickerFirst.getDayOfYear();
-        long secondDaysInt = this.datePickerSecond.getDayOfYear();
+    public int amountOfDays(){
+        int startDateLong = sessionHandler.timelineArrayList.get(sessionHandler.getTimeline_id()).getTimeline_start_datetime().getDayOfYear();
+        int endDateLong = sessionHandler.timelineArrayList.get(sessionHandler.getTimeline_id()).getTimeline_stop_datetime().getDayOfYear();
+        return endDateLong - startDateLong;
 
-        long numbOfDaysInt = secondDaysInt - firstDaysInt;
-        return numbOfDaysInt;
     }
 
     public int amountOfMonths(DatePicker first, DatePicker second){
-        int numbOfMonths = 0;
-        return 1;
+        int startMonthInt = sessionHandler.timelineArrayList.get(sessionHandler.getTimeline_id()).getTimeline_start_datetime().getMonthValue();
+        int endMonthInt = sessionHandler.timelineArrayList.get(sessionHandler.getTimeline_id()).getTimeline_stop_datetime().getMonthValue();
+        return endMonthInt - startMonthInt;
     }
 
     public int amountOfYears(DatePicker first, DatePicker second){
-        int numbOfYears = 0;
-        return 1;
+        int startYearInt = sessionHandler.timelineArrayList.get(sessionHandler.getTimeline_id()).getTimeline_start_datetime().getYear();
+        int endYearInt = sessionHandler.timelineArrayList.get(sessionHandler.getTimeline_id()).getTimeline_stop_datetime().getYear();
+        return  startYearInt - endYearInt;
     }
 
     //  public GridPane drawYears(){
@@ -52,11 +50,13 @@ public class TimelineView {
     //}
 
     public GridPane drawDays(){
-        GridPane dayPane = new GridPane();
+        sessionHandler.getEvents();
+        dayPane = new GridPane();
         dayPane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
         dayPane.setGridLinesVisible(true);
         long columnsInt = amountOfDays();
-        long rowsInt = 2;
+        System.out.println("Amount of days "+amountOfDays());
+        long rowsInt = 10;
 
         for(int i = 0; i < columnsInt; i++){
             ColumnConstraints columnConstraints = new ColumnConstraints();
@@ -68,16 +68,21 @@ public class TimelineView {
             rowConstraints.setPercentHeight(100.0);
             dayPane.getRowConstraints().add(rowConstraints);
         }
-
-        for (int i = 0; i < columnsInt; i++){
-            VBox vbox = new VBox();
-            vbox.setStyle("-fx-border-style: solid;"+
-                    "-fx-border-color: black;"+
-                    "-fx-border-width: 1;");
-            vbox.setMinHeight(200);
-            vbox.setMinWidth(200);
-            dayPane.add(vbox, i, 0);
-        }
         return dayPane;
+    }
+
+    public void addEventsDay(){
+        System.out.println("Amount of events "+sessionHandler.eventArrayList.size());
+        int rowInt = 1;
+        for(int i = 0; i < sessionHandler.eventArrayList.size(); i++){
+            Event event = sessionHandler.eventArrayList.get(i);
+            Button rect = new Button(event.getEvent_title());
+            for(int j = i+1; j > 0; j--){
+                if(event.getEvent_start_datetime().getDayOfYear() == event.getEvent_start_datetime().getDayOfYear()){
+                    rowInt++;
+                }
+            }
+          dayPane.add(rect, 1, rowInt);
+        }
     }
 }
