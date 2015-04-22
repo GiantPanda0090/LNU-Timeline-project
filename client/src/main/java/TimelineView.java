@@ -23,8 +23,8 @@ public class TimelineView {
     }
 
     public int amountOfDays(){
-        int startDateLong = sessionHandler.timelineArrayList.get(sessionHandler.getTimeline_id()).getTimeline_start_datetime().getDayOfYear();
-        int endDateLong = sessionHandler.timelineArrayList.get(sessionHandler.getTimeline_id()).getTimeline_stop_datetime().getDayOfYear();
+        int startDateLong = sessionHandler.getActiveTimeline().getTimeline_start_datetime().getDayOfYear();
+        int endDateLong = sessionHandler.getActiveTimeline().getTimeline_stop_datetime().getDayOfYear();
         return endDateLong - startDateLong;
 
     }
@@ -78,7 +78,7 @@ public class TimelineView {
             Event event = sessionHandler.eventArrayList.get(i);
             Button rect = new Button(event.getEvent_title());
             for(int j = i+1; j > 0; j--){
-                if(event.getEvent_start_datetime().getDayOfYear() == event.getEvent_start_datetime().getDayOfYear()){
+                if(event.getEvent_start_datetime().getDayOfYear() == sessionHandler.eventArrayList.get(i).getEvent_start_datetime().getDayOfYear()){
                     rowInt++;
                 }
             }

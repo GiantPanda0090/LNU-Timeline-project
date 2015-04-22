@@ -337,3 +337,27 @@ Response code:400
 2015-04-22 17:39:06 INFO  SessionHandler:187 - User found and assigned to user session
 2015-04-22 17:39:06 INFO  SessionHandler:304 - Timelines requested succesfully
 2015-04-22 17:39:08 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 17:45:20 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 17:45:20 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 17:45:20 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 17:45:25 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 17:46:52 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 17:46:52 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 17:46:53 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 17:46:54 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 17:49:53 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 17:49:54 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 17:49:54 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 17:49:55 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 17:49:55 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 17:49:55 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 17:49:55 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 17:49:55 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 17:51:15 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 17:51:15 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 17:51:15 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 17:51:17 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 17:51:17 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 17:51:17 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 17:51:17 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 17:51:17 INFO  SessionHandler:304 - Timelines requested succesfully
