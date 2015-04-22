@@ -6,7 +6,12 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.controlsfx.control.PopOver;
@@ -121,7 +126,19 @@ public class CreateStage {
             }
         });
 
-
+        timelineListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+                    System.out.print("clicked once");
+                    //here we can add methods to when there is only one mouse clicked
+                    if (mouseEvent.getClickCount() == 2) {
+                        //here we can add methods to when there is a double click
+                        System.out.println("Double clicked");
+                    }
+                }
+            }
+        });
         searchTextField.setFont(new Font("System", 12));
         searchTextField.setMaxWidth(200);
         searchTextField.setMaxHeight(30);
