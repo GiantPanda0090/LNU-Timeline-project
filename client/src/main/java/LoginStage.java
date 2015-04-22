@@ -1,5 +1,7 @@
 import backend.SessionHandler;
 import backend.UserRegistration;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,12 +16,16 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.controlsfx.control.PopOver;
+import javafx.animation.Animation;
 
 /**
  * Created by Johan on 2015-04-20.
  */
 public class LoginStage extends Application{
+
+
 
     public LoginStage(){};
 
@@ -40,7 +46,7 @@ public class LoginStage extends Application{
         Scene scene = new Scene(pane, 400, 400);
         pane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
 
-        VBox login = new VBox();
+        final VBox login = new VBox();
         login.setPadding(new Insets(20, 20, 20, 80));
         login.setId("loginBox");
         HBox insideLogin = new HBox();
@@ -130,6 +136,60 @@ public class LoginStage extends Application{
 
         logIn.setOnAction(new EventHandler<ActionEvent>() {
 
+            int x = 0;
+            int y = 0;
+
+            public void shake(){
+
+
+                Timeline timelineX = new Timeline(new KeyFrame(Duration.seconds(0.05), new EventHandler<ActionEvent>() {
+
+                    public void handle(ActionEvent t) {
+
+
+                            if (x == 0) {
+
+                                primaryStage.setX(primaryStage.getX() + 10);
+                                x = 1;
+                            } else {
+                                primaryStage.setX(primaryStage.getX() - 10);
+                                x = 0;
+                            }
+
+
+
+                    }
+                }));
+
+                timelineX.setCycleCount(7);
+                timelineX.setAutoReverse(false);
+                timelineX.play();
+
+
+                Timeline timelineY = new Timeline(new KeyFrame(Duration.seconds(0.05), new EventHandler<ActionEvent>() {
+
+                    public void handle(ActionEvent t) {
+
+
+                            if (y == 0) {
+                                primaryStage.setY(primaryStage.getY() + 10);
+                                y = 1;
+                            } else {
+                                primaryStage.setY(primaryStage.getY() - 10);
+                                y = 0;
+                            }
+
+
+
+
+                    }
+                }));
+
+                timelineY.setCycleCount(7);
+                timelineY.setAutoReverse(false);
+                timelineY.play();
+            }
+
             public void handle(ActionEvent event) {
                 if (sessionHandler.loginUser(username.getText(), password.getText())) {
                     CreateStage create = new CreateStage(sessionHandler);
@@ -141,6 +201,8 @@ public class LoginStage extends Application{
                     primaryStage.close();
                 } else {
                     username.setText("false");
+                    shake();
+
                 }
             }
         });
