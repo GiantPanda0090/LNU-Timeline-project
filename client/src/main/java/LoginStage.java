@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -173,8 +174,11 @@ public class LoginStage extends Application{
 
 
         });
-*/
+        */
+
+
         logIn.setOnAction(new EventHandler<ActionEvent>() {
+
 
             int x = 0;
 
@@ -227,7 +231,13 @@ public class LoginStage extends Application{
         });
 
     }
-
+            /*
+            public void enterK(KeyEvent e)
+            {
+                int key = e.getKeyKode();
+                if()
+            }
+            */
     /**
      * JavaFX entry point?
      * @param args
