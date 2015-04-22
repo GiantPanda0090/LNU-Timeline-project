@@ -177,7 +177,6 @@ public class LoginStage extends Application{
         logIn.setOnAction(new EventHandler<ActionEvent>() {
 
             int x = 0;
-            int y = 0;
 
             public void shake(){
 
@@ -206,28 +205,6 @@ public class LoginStage extends Application{
                 timelineX.play();
 
 
-                Timeline timelineY = new Timeline(new KeyFrame(Duration.seconds(0.05), new EventHandler<ActionEvent>() {
-
-                    public void handle(ActionEvent t) {
-
-
-                            if (y == 0) {
-                                primaryStage.setY(primaryStage.getY() + 10);
-                                y = 1;
-                            } else {
-                                primaryStage.setY(primaryStage.getY() - 10);
-                                y = 0;
-                            }
-
-
-
-
-                    }
-                }));
-
-                timelineY.setCycleCount(7);
-                timelineY.setAutoReverse(false);
-                timelineY.play();
             }
 
             public void handle(ActionEvent event) {
@@ -240,7 +217,9 @@ public class LoginStage extends Application{
                     }
                     primaryStage.close();
                 } else {
-                    username.setText("false");
+                    username.setText("");
+                    username.requestFocus();
+                    password.setText("");
                     shake();
 
                 }
