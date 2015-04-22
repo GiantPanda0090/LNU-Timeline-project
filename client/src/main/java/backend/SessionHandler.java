@@ -1,17 +1,15 @@
 package backend;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
-
 
 import org.json.JSONObject;
 
@@ -21,10 +19,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 import org.apache.log4j.Logger;
 
@@ -207,7 +203,6 @@ public class SessionHandler {
                         user = u;
                     }
                 }
-
             }
 
             else {
@@ -332,8 +327,7 @@ public class SessionHandler {
         String url = "http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/timelines/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
-        LocalDateTime localDateTime = LocalDateTime.now();
-        System.out.println(startTimeIn);
+        //LocalDateTime localDateTime = LocalDateTime.now();
 
         try {
 
@@ -541,14 +535,14 @@ public class SessionHandler {
 
         }
 
-
         sessionHandler.getTimelines();
+        sessionHandler.setTimeline_id(1);
+        sessionHandler.createEvent("First Event Title", "First Event Description");
+        sessionHandler.createEvent("Second Event Title", "Second Event Description");
+        sessionHandler.createEvent("Third Event Title", "Third Event Description");
+        sessionHandler.createEvent("Four Event Title", "Four Event Description");
+        sessionHandler.createEvent("Five Event Title", "Five Event Description");
 
-
-        for (Timeline t: sessionHandler.timelineArrayList){
-            System.out.println(t.getTimeline_start_datetime());
-            System.out.println(t.getTimeline_stop_datetime());
-        }
 
 
         //sessionHandler.createTimeline("Johns title", "Johns description");
