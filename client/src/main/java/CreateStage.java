@@ -6,8 +6,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -57,8 +60,11 @@ public class CreateStage {
          */
         final ScrollPane eventScrollPane = new ScrollPane();
         eventScrollPane.setId("scrollpane");
-        eventScrollPane.setPrefSize(1000, 800);
+        eventScrollPane.setFitToWidth(true);
         eventScrollPane.setFitToHeight(true);
+        eventScrollPane.setPrefWidth(150);
+        eventScrollPane.setPrefHeight(600);
+        //eventScrollPane.setFitToHeight(true);
 
         // Config button (just a button right now)
         final Button configButton = new Button("Config");
@@ -81,7 +87,8 @@ public class CreateStage {
         timelineVBox.setVgrow(searchTextField, Priority.ALWAYS);
 
         final VBox eventVBox = new VBox();
-        eventVBox.setPadding(new Insets(0, 40, 100, 40));
+        eventVBox.setPadding(new Insets(5, 0, 0, 10));
+        eventVBox.setSpacing(5.0);
 
         HBox bannerHBox = new HBox();
         bannerHBox.setMinWidth(200);
@@ -105,6 +112,25 @@ public class CreateStage {
          * Show logged in user.
          * When button pressed, open new window to show more info about the user.
          */
+        StackPane stackImg = new StackPane();
+        Image  userImg = new Image("profile.png");
+        ImageView  userInfoButton  = new ImageView();
+        userInfoButton.setImage(userImg);
+        userInfoButton.setFitWidth(40);
+        userInfoButton.setPreserveRatio(true);
+        userInfoButton.setSmooth(true);
+        userInfoButton.setCache(true);
+        stackImg.getChildren().addAll(userInfoButton);
+        stackImg.setAlignment(Pos.CENTER_RIGHT);
+        HBox.setHgrow(stackImg, Priority.ALWAYS);
+
+        userInfoButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                UserInfoStage userInfoStage = new UserInfoStage();
+                userInfoStage.userInfoStage(sessionHandler).show();
+        }
+    });
+                /*
         Button userInfoButton = new Button(sessionHandler.getUser().getUsername());
         userInfoButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
@@ -112,7 +138,7 @@ public class CreateStage {
                 userInfoStage.userInfoStage(sessionHandler).show();
             }
         });
-
+*/
 
         // Search field
         final TextField searchTextField1 = new TextField();
@@ -143,7 +169,7 @@ public class CreateStage {
         searchTextField.setMaxWidth(200);
         searchTextField.setMaxHeight(30);
 
-        bannerHBox.getChildren().addAll(logo, userInfoButton);
+        bannerHBox.getChildren().addAll(logo,stackImg);
         timelineVBox.getChildren().addAll(configbox, searchTextField1, timelineListView);
         eventVBox.getChildren().addAll(eventScrollPane);
 
@@ -187,7 +213,6 @@ public class CreateStage {
                         });
 
         timelineListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Label>() {
-            @Override
             public void changed(ObservableValue<? extends Label> observable, Label oldValue, Label newValue) {
                 TimelineView timelineView = new TimelineView(sessionHandler);
                 GridPane timeLineGridPane = timelineView.drawDays();
