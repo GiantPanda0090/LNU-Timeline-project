@@ -119,10 +119,11 @@ public class CreateStage {
          * When button pressed, open new window to show more info about the user.
          */
         StackPane stackImg = new StackPane();
-        Image  userImg = new Image("https://cloud.githubusercontent.com/assets/11654901/7285016/c781d3d6-e941-11e4-8bf4-dac8f4ba90b6.png");
+        //Image  userImg = new Image("https://cloud.githubusercontent.com/assets/11654901/7285016/c781d3d6-e941-11e4-8bf4-dac8f4ba90b6.png");
+        Image  userImg = new Image("profile.png");
         ImageView  userInfoButton  = new ImageView();
         userInfoButton.setImage(userImg);
-        userInfoButton.setFitWidth(40);
+        userInfoButton.setFitWidth(60);
         userInfoButton.setPreserveRatio(true);
         userInfoButton.setSmooth(true);
         userInfoButton.setCache(true);
