@@ -1,4 +1,6 @@
 import backend.SessionHandler;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,10 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.controlsfx.control.PopOver;
@@ -56,9 +55,10 @@ public class CreateStage {
         /**
          *  eventScrollPane, this is the area where all events for a timeline is displayed
          */
-        ScrollPane eventScrollPane = new ScrollPane();
+        final ScrollPane eventScrollPane = new ScrollPane();
         eventScrollPane.setId("scrollpane");
         eventScrollPane.setPrefSize(1000, 800);
+        eventScrollPane.setFitToHeight(true);
 
         // Config button (just a button right now)
         final Button configButton = new Button("Config");
@@ -185,6 +185,16 @@ public class CreateStage {
                                 }
                             }
                         });
+
+        timelineListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Label>() {
+            @Override
+            public void changed(ObservableValue<? extends Label> observable, Label oldValue, Label newValue) {
+                TimelineView timelineView = new TimelineView(sessionHandler);
+                GridPane timeLineGridPane = timelineView.drawDays();
+                timelineView.addEventsDay();
+                eventScrollPane.setContent(timeLineGridPane);
+            }
+        });
 
 
 
