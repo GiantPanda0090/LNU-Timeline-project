@@ -532,6 +532,7 @@ public class SessionHandler {
         for(Timeline t: timelineArrayList){
             if (timeline_id == t.getId()){
                 return t;
+
             }
         }
         return null;
