@@ -83,6 +83,7 @@ public class SessionHandler {
     }
     public void setTimeline_id(int timeline_id) {
         this.timeline_id = timeline_id;
+        LOG.info("Timeline_id updated.\n\tNew id: "+timeline_id);
     }
 
 
@@ -411,6 +412,11 @@ public class SessionHandler {
     }
 
     public void getEvents(){
+
+        if (eventArrayList.size() > 0){
+            eventArrayList.clear();
+        }
+
         Event[] eventList;
 
         try {
@@ -528,7 +534,7 @@ public class SessionHandler {
     }
 
     public Timeline getActiveTimeline(){
-        getTimelines();
+        //getTimelines();
         for(Timeline t: timelineArrayList){
             if (timeline_id == t.getId()){
                 return t;

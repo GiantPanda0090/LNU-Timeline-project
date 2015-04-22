@@ -109,7 +109,7 @@ public class CreateTimelinePane {
                 Label timelineLabel = new Label(name.getText().toString());
                 timelineLabel.setId("timelineLabel");
                 //timelineList.getChildren().addAll(timelineLabel);
-                //topIn += 100;
+
                 sessionHandler.createTimeline(name.getText().toString(), "description", firstDate.getValue().atStartOfDay(), secondDate.getValue().atTime(23, 59));
                 GenerateTimelineList generateTimelineList = new GenerateTimelineList();
                 generateTimelineList.generateTimelineList(sessionHandler, timelineObservableList, timelineListView);
