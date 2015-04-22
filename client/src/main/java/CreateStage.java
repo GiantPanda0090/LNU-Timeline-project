@@ -170,20 +170,21 @@ public class CreateStage {
         /*
          *
          */
-        plusButton.setOnAction(new EventHandler<ActionEvent>() {
+       final PopOver newTimeorEvent = new PopOver();
+        newTimeorEvent.setOpacity(0.99);
+        CreateTimelinePane createTimelinePane = new CreateTimelinePane();
+        newTimeorEvent.setContentNode(createTimelinePane.createTimelinePane(newTimeorEvent, eventVBox, top, sessionHandler, timelineObservableList, timelineListView));
 
-            public void handle(ActionEvent event) {
-                PopOver newTimeorEvent = new PopOver();
-                newTimeorEvent.setOpacity(0.99);
+                        plusButton.setOnAction(new EventHandler<ActionEvent>() {
 
-                CreateTimelinePane createTimelinePane = new CreateTimelinePane();
-
-                newTimeorEvent.setContentNode(createTimelinePane.createTimelinePane(newTimeorEvent, eventVBox, top, sessionHandler, timelineObservableList, timelineListView));
+                            public void handle(ActionEvent event) {
 
 
-                newTimeorEvent.show(plusButton);
-            }
-        });
+                                if (!newTimeorEvent.isShowing()) {
+                                    newTimeorEvent.show(plusButton);
+                                }
+                            }
+                        });
 
 
 
