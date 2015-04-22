@@ -250,7 +250,7 @@ public class SessionHandler {
             }
 
             else {
-                LOG.info("Something went wrong when updating user.\n\tResponse code: "+response_code);
+                LOG.info("Something went wrong when updating user.\n\tResponse code: " + response_code);
             }
         }
 
@@ -465,19 +465,19 @@ public class SessionHandler {
         }
     }
 
-    public void createEvent(String title, String description){
+    public void createEvent(String title, String description, LocalDateTime startDateTime, LocalDateTime stopDatetime){
         String url = "http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/events/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
-        LocalDateTime localDateTime = LocalDateTime.now();
+        //LocalDateTime localDateTime = LocalDateTime.now();
 
         try {
 
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("event_title", title);
             jsonObject.put("event_description", description);
-            jsonObject.put("event_start_datetime", localDateTime.now());
-            jsonObject.put("event_stop_datetime", localDateTime.now());
+            jsonObject.put("event_start_datetime", startDateTime);
+            jsonObject.put("event_stop_datetime", stopDatetime);
             jsonObject.put("timeline", timeline_id);
 
 
@@ -527,6 +527,16 @@ public class SessionHandler {
 
     }
 
+    public Timeline getActiveTimeline(){
+        getTimelines();
+        for(Timeline t: timelineArrayList){
+            if (timeline_id == t.getId()){
+                return t;
+            }
+        }
+        return null;
+    }
+
     // Example usage
     public static void main(String[] args) {
         SessionHandler sessionHandler = new SessionHandler();
@@ -536,12 +546,12 @@ public class SessionHandler {
         }
 
         sessionHandler.getTimelines();
-        sessionHandler.setTimeline_id(1);
-        sessionHandler.createEvent("First Event Title", "First Event Description");
-        sessionHandler.createEvent("Second Event Title", "Second Event Description");
-        sessionHandler.createEvent("Third Event Title", "Third Event Description");
-        sessionHandler.createEvent("Four Event Title", "Four Event Description");
-        sessionHandler.createEvent("Five Event Title", "Five Event Description");
+        sessionHandler.setTimeline_id(9);
+
+        LocalDateTime start = LocalDateTime.of(2015, 04, 12, 12, 00);
+        LocalDateTime stop = LocalDateTime.of(2015, 04, 15, 23, 59);
+        sessionHandler.createEvent("Ett event", "En event", start, stop);
+
 
 
 
