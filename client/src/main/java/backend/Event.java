@@ -1,5 +1,7 @@
 package backend;
 
+import java.time.LocalDateTime;
+
 /**
  * Created by nils on 2015-04-06.
  */
@@ -56,16 +58,32 @@ public class Event {
         this.event_description = event_description;
     }
 
-    public String getEvent_start_datetime() {
-        return event_start_datetime;
+    public LocalDateTime getEvent_start_datetime() {
+        String[] dateTimeValuesSplitedUp = event_start_datetime.split("[-TZ: .]");
+        return LocalDateTime.of(
+                Integer.parseInt(dateTimeValuesSplitedUp[0]),
+                Integer.parseInt(dateTimeValuesSplitedUp[1]),
+                Integer.parseInt(dateTimeValuesSplitedUp[2]),
+                Integer.parseInt(dateTimeValuesSplitedUp[3]),
+                Integer.parseInt(dateTimeValuesSplitedUp[4]),
+                Integer.parseInt(dateTimeValuesSplitedUp[5])
+        );
     }
 
     public void setEvent_start_datetime(String event_start_datetime) {
         this.event_start_datetime = event_start_datetime;
     }
 
-    public String getEvent_stop_datetime() {
-        return event_stop_datetime;
+    public LocalDateTime getEvent_stop_datetime() {
+        String[] dateTimeValuesSplitedUp = event_stop_datetime.split("[-TZ: .]");
+        return LocalDateTime.of(
+                Integer.parseInt(dateTimeValuesSplitedUp[0]),
+                Integer.parseInt(dateTimeValuesSplitedUp[1]),
+                Integer.parseInt(dateTimeValuesSplitedUp[2]),
+                Integer.parseInt(dateTimeValuesSplitedUp[3]),
+                Integer.parseInt(dateTimeValuesSplitedUp[4]),
+                Integer.parseInt(dateTimeValuesSplitedUp[5])
+        );
     }
 
     public void setEvent_stop_datetime(String event_stop_datetime) {
