@@ -39,7 +39,7 @@ public class TimelineView {
 
     public TimelineView(SessionHandler sessionHandlerIn){
         sessionHandler = sessionHandlerIn;
-        sessionHandler.setTimeline_id(9);
+        sessionHandler.getEvents();
     }
 
     /**
