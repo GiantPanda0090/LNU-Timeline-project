@@ -127,7 +127,7 @@ public class CreateStage {
         });
 
         timelineListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
+
             public void handle(MouseEvent mouseEvent) {
                 if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
                     System.out.print("clicked once");

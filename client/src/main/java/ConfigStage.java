@@ -15,6 +15,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.controlsfx.control.PopOver;
 
 /**
  * Created by nils on 2015-04-16.
@@ -27,7 +28,7 @@ public class ConfigStage {
      * sessionHandler needs to reload API settings from config file.
      */
 
-    public Stage config(final SessionHandler sessionHandler){
+    public  GridPane config(final SessionHandler sessionHandler,PopOver popOver){
 
         // New API config reader, use to create new instance of API and to write to config file
         APIConfigReader apiConfigReader = new APIConfigReader();
@@ -36,7 +37,7 @@ public class ConfigStage {
         API  api = apiConfigReader.read();
 
         // FX stage
-        final Stage stage = new Stage();
+        final PopOver stage = popOver;
 
         // FX root
         Group root = new Group();
@@ -45,7 +46,8 @@ public class ConfigStage {
         Scene scene = new Scene(root);
 
         // Title
-        stage.setTitle("Config");
+        //popover do not have a title.
+        //stage.setTitle("Config");
 
         // Gridpane and settings for gridpane
         GridPane gridPane = new GridPane();
@@ -91,7 +93,7 @@ public class ConfigStage {
         cancelButton.setOnAction(new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent event) {
-                stage.close();
+                stage.hide();
             }
         });
 
@@ -115,8 +117,7 @@ public class ConfigStage {
         });
 
         root.getChildren().add(gridPane);
-        stage.setScene(scene);
-        return stage;
+        return gridPane;
     }
 
 

@@ -10,6 +10,9 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -19,6 +22,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.PopOver;
 import javafx.animation.Animation;
+
+import java.awt.*;
 
 /**
  * Created by Johan on 2015-04-20.
@@ -112,28 +117,63 @@ public class LoginStage extends Application{
          * Calls the registrationBorderPane with a PopOver as argument.
          * registrationBorderPane then add things to the PopOver and returns the popover.
          */
+        final PopOver regPop = new PopOver();
+        RegistraionBorderPane registraionBorderPane = new RegistraionBorderPane();
+        regPop.setContentNode(registraionBorderPane.registrationBorderPane(regPop));
         regBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
-                final PopOver regPop = new PopOver();
-                RegistraionBorderPane registraionBorderPane = new RegistraionBorderPane();
-                regPop.setContentNode(registraionBorderPane.registrationBorderPane(regPop));
-                regPop.show(regBtn);
+
+
+                if (!regPop.isShowing()) {
+                    regPop.show(regBtn);
+                }
+
             }
         });
 
         /**
          * Configure for the API.
          */
-        configButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
+        final PopOver configPop = new PopOver();
+        ConfigStage configStageGui = new ConfigStage();
+        configPop.setContentNode(configStageGui.config(sessionHandler, configPop));
+            configButton.setOnMouseClicked(new EventHandler<MouseEvent>()
+
+            {
+                public void handle (MouseEvent event){
+
                 // Create new API config window
-                ConfigStage configStageGui = new ConfigStage();
-                // Show the new window
-                configStageGui.config(sessionHandler).show();
+                if (configButton.getLayoutBounds().contains(event.getX(), event.getY())) {
+                    if (!configPop.isShowing()) {
+                        configPop.show(configButton);
+                    }
+                }
             }
         });
+        /*
+        if(MouseLocation.getX()!=event.getX()&& MouseLocation.getY()!=event.getY()){
+            configPop.hide();
+        }
+*/
+               /*
+        configButton.setOnMouseExited(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                // Create new API config window
+                if (configButton.getLayoutBounds().contains(event.getX(), event.getY())) {
+                    if (configPop.isShowing()) {
+                        configPop.hide();
+                    }
+                }
 
 
+            }
+
+            // Show the new window
+            //configStageGui.config(sessionHandler).show();
+
+
+        });
+*/
         logIn.setOnAction(new EventHandler<ActionEvent>() {
 
             int x = 0;
@@ -213,7 +253,7 @@ public class LoginStage extends Application{
      * JavaFX entry point?
      * @param args
      */
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Application.launch(args);
     }
 
