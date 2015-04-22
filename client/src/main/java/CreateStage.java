@@ -25,6 +25,10 @@ import org.controlsfx.control.PopOver;
  */
 public class CreateStage {
     SessionHandler sessionHandler;
+    TimelineView timelineView;
+    VBox timeLineGridPane;
+    int top1;
+
     public CreateStage(SessionHandler session){
         sessionHandler = session;
     };
@@ -211,13 +215,14 @@ public class CreateStage {
                                 }
                             }
                         });
-
+        top1 = 1;
         timelineListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Label>() {
             public void changed(ObservableValue<? extends Label> observable, Label oldValue, Label newValue) {
-                TimelineView timelineView = new TimelineView(sessionHandler);
-                GridPane timeLineGridPane = timelineView.drawDays();
+                timelineView = new TimelineView(sessionHandler);
+                timeLineGridPane = timelineView.drawDays();
                 timelineView.addEventsDay();
                 eventScrollPane.setContent(timeLineGridPane);
+                top1++;
             }
         });
 
