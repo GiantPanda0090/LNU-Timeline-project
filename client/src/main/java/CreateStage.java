@@ -64,7 +64,8 @@ public class CreateStage {
          */
         final ScrollPane eventScrollPane = new ScrollPane();
         eventScrollPane.setId("scrollpane");
-        eventScrollPane.setFitToWidth(true);
+        //eventScrollPane.setFitToWidth(true);
+        eventScrollPane.setPrefSize(1000, 800);
         eventScrollPane.setFitToHeight(true);
         eventScrollPane.setPrefWidth(150);
         eventScrollPane.setPrefHeight(600);
