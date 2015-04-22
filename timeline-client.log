@@ -361,3 +361,232 @@ Response code:400
 2015-04-22 17:51:17 INFO  SessionHandler:304 - Timelines requested succesfully
 2015-04-22 17:51:17 INFO  SessionHandler:304 - Timelines requested succesfully
 2015-04-22 17:51:17 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 19:58:39 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 19:58:39 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 19:58:39 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 19:58:41 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 19:58:41 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 19:58:42 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 19:58:42 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 19:58:42 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 19:59:52 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 19:59:52 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 19:59:52 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 19:59:53 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 19:59:53 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 19:59:53 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 19:59:53 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 19:59:53 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:02:44 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 20:02:45 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 20:02:45 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:02:46 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:02:47 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:02:47 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:02:47 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:02:47 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:05:01 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 20:05:01 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 20:05:01 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:05:04 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:05:04 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:05:04 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:05:04 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:05:04 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:05:27 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 20:05:28 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 20:05:28 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:05:29 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:05:29 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:05:29 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:05:30 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:05:30 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:06:48 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 20:06:48 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 20:06:48 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:06:50 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:06:50 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:06:50 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:06:50 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:06:50 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:07:02 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:07:02 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:07:02 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:07:02 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:07:02 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:07:13 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 20:07:13 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 20:07:13 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:07:14 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:07:14 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:07:15 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:07:15 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:07:15 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:09:19 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 20:09:19 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 20:09:19 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:09:21 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:09:21 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:09:21 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:09:21 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:09:21 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:09:21 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:09:21 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:09:21 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:09:21 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:11:24 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 20:11:24 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 20:11:24 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:11:25 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:11:25 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:11:25 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:11:25 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:11:26 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:11:26 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:11:26 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:11:26 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:11:26 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:12:55 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 20:12:55 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 20:12:56 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:12:57 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:12:57 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:12:58 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:12:58 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:12:58 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:12:58 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:12:58 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:12:58 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:12:58 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:15:45 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 20:15:46 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 20:15:46 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:15:47 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:15:47 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:15:47 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:15:47 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:15:47 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:15:47 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:15:48 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:15:48 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:15:48 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:16:26 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 20:16:26 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 20:16:26 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:16:28 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:16:28 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:16:28 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:16:28 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:16:28 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:16:28 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:16:28 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:16:28 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:16:28 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:17:30 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 20:17:30 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 20:17:31 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:17:33 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:17:33 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:17:33 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:17:33 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:17:33 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:17:33 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:17:33 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:17:33 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:17:33 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:19:27 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 20:19:27 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 20:19:27 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:19:28 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:19:28 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:19:28 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:19:28 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:19:28 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:19:29 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:19:29 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:19:29 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:19:29 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:19:43 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 20:19:43 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 20:19:43 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:19:45 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:19:45 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:19:45 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:19:45 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:19:45 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:19:45 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:19:45 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:19:45 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:19:45 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:20:22 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 20:20:22 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 20:20:22 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:20:23 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:20:23 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:20:24 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:20:24 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:20:24 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:20:24 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:20:24 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:20:24 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:20:24 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:20:48 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 20:20:49 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 20:20:49 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:20:50 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:20:50 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:20:50 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:20:50 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:20:50 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:20:51 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:20:51 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:20:51 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:20:51 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:21:47 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 20:21:48 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 20:21:48 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:21:49 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:21:49 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:21:49 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:21:50 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:21:50 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:21:50 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:21:50 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:21:50 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:21:50 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:23:10 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 20:23:10 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 20:23:10 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:23:11 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:23:11 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:23:11 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:23:11 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:23:11 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:23:12 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:23:12 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:23:12 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:23:12 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:27:53 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 20:27:53 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 20:27:53 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:27:54 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:27:54 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:27:54 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:27:54 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:27:54 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:27:55 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:27:55 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:27:55 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:27:55 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:30:18 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 20:30:18 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 20:30:18 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:30:19 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 20:30:19 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:30:19 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:30:19 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:30:19 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:30:20 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:30:20 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:30:20 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 20:30:20 INFO  SessionHandler:304 - Timelines requested succesfully
