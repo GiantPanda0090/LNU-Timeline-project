@@ -61,7 +61,7 @@ public class CreateTimelinePane {
         popPane.setMargin(firstLbl, new Insets(-150, 0, 0, 50));
 
         // first datepicker
-        DatePicker firstDate = new DatePicker();
+        final DatePicker firstDate = new DatePicker();
         firstDate.setMaxWidth(150);
         popPane.setRowIndex(firstDate, 0);
         popPane.setColumnIndex(firstDate, 0);
@@ -75,7 +75,7 @@ public class CreateTimelinePane {
         popPane.setMargin(secondLbl, new Insets(30, 0, 0, 50));
 
         // second datePicker
-        DatePicker secondDate = new DatePicker();
+        final DatePicker secondDate = new DatePicker();
         secondDate.setMaxWidth(150);
         popPane.setRowIndex(secondDate, 0);
         popPane.setColumnIndex(secondDate, 0);
@@ -110,7 +110,7 @@ public class CreateTimelinePane {
                 timelineLabel.setId("timelineLabel");
                 //timelineList.getChildren().addAll(timelineLabel);
                 //topIn += 100;
-                sessionHandler.createTimeline(name.getText().toString(), "description");
+                sessionHandler.createTimeline(name.getText().toString(), "description", firstDate.getValue().atStartOfDay(), secondDate.getValue().atTime(23, 59));
                 GenerateTimelineList generateTimelineList = new GenerateTimelineList();
                 generateTimelineList.generateTimelineList(sessionHandler, timelineObservableList, timelineListView);
 

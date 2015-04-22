@@ -1,5 +1,8 @@
 package backend;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 /**
  * Created by nils on 2015-04-05.
  */
@@ -59,16 +62,46 @@ public class Timeline {
         this.timeline_description = timeline_description;
     }
 
-    public String getTimeline_start_datetime() {
-        return timeline_start_datetime;
+
+    /**
+     *
+     * This function returns a LocalDateTime format
+     *
+     * @return LocalDateTime
+     */
+    public LocalDateTime getTimeline_start_datetime() {
+        String[] dateTimeValuesSplitedUp = timeline_start_datetime.split("[-TZ: .]");
+        return LocalDateTime.of(
+                Integer.parseInt(dateTimeValuesSplitedUp[0]),
+                Integer.parseInt(dateTimeValuesSplitedUp[1]),
+                Integer.parseInt(dateTimeValuesSplitedUp[2]),
+                Integer.parseInt(dateTimeValuesSplitedUp[3]),
+                Integer.parseInt(dateTimeValuesSplitedUp[4]),
+                Integer.parseInt(dateTimeValuesSplitedUp[5])
+        );
     }
 
     public void setTimeline_start_datetime(String timeline_start_datetime) {
         this.timeline_start_datetime = timeline_start_datetime;
     }
 
-    public String getTimeline_stop_datetime() {
-        return timeline_stop_datetime;
+
+    /**
+     *
+     * This function returns a LocalDateTime format
+     *
+     * @return LocalDateTime
+     */
+    public LocalDateTime getTimeline_stop_datetime() {
+        String[] dateTimeValuesSplitedUp = timeline_stop_datetime.split("[-TZ: .]");
+        return LocalDateTime.of(
+                Integer.parseInt(dateTimeValuesSplitedUp[0]),
+                Integer.parseInt(dateTimeValuesSplitedUp[1]),
+                Integer.parseInt(dateTimeValuesSplitedUp[2]),
+                Integer.parseInt(dateTimeValuesSplitedUp[3]),
+                Integer.parseInt(dateTimeValuesSplitedUp[4]),
+                Integer.parseInt(dateTimeValuesSplitedUp[5])
+        );
     }
 
     public void setTimeline_stop_datetime(String timeline_stop_datetime) {

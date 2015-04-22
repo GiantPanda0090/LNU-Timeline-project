@@ -21,8 +21,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 
@@ -66,16 +68,19 @@ public class SessionHandler {
     String token;
 
     /*
-         * user is the user that is logged in to the session
-         */
+     * user is the user that is logged in to the session
+     */
     User user;
 
+    public User getUser() {
+        return user;
+    }
 
     /*
-     * timeline_id is the id of the currently selected timeline
-     * This id is used to request events or if event is created
-     * this value is used to assign the event to a timeline
-     */
+         * timeline_id is the id of the currently selected timeline
+         * This id is used to request events or if event is created
+         * this value is used to assign the event to a timeline
+         */
     public int timeline_id;
     public int getTimeline_id() {
         return timeline_id;
@@ -223,6 +228,46 @@ public class SessionHandler {
 
     }
 
+    // Not working, response with 400
+    public void updateUser(String firstname, String lastname){
+        HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
+
+        try {
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("first_name", firstname);
+            jsonObject.put("last_name", lastname);
+            //jsonObject.put("id", user.getId());
+
+            HttpPut request = new HttpPut("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/users/"+user.getId()+"/");
+
+            request.addHeader("User-Agent", "Timeline-Client");
+            request.addHeader("Accept", "application/json");
+            request.addHeader("Content-Type", "application/json; charset=UTF-8");
+            request.addHeader("Authorization", "Token " + token);
+            request.setEntity(new StringEntity(jsonObject.toString()));
+            HttpResponse response = httpClient.execute(request);
+
+            int response_code = response.getStatusLine().getStatusCode();
+
+            if (response_code == 200){
+                LOG.info("User updated!");
+            }
+
+            else {
+                LOG.info("Something went wrong when updating user.\n\tResponse code: "+response_code);
+            }
+        }
+
+        catch (Exception e) {
+            LOG.error(e);
+        }
+
+        finally {
+            httpClient.getConnectionManager().shutdown();
+        }
+    }
+
     public void getTimelines(){
 
         Timeline[] timelineList;
@@ -282,13 +327,13 @@ public class SessionHandler {
         }
     }
 
-    public void createTimeline(String title, String description){
+    public void createTimeline(String title, String description, LocalDateTime startTimeIn, LocalDateTime stopTimeIn){
 
         String url = "http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/timelines/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
         LocalDateTime localDateTime = LocalDateTime.now();
-        //System.out.println(localDateTime);
+        System.out.println(startTimeIn);
 
         try {
 
@@ -296,8 +341,8 @@ public class SessionHandler {
             jsonObject.put("user", user.getId());
             jsonObject.put("timeline_title", title);
             jsonObject.put("timeline_description", description);
-            jsonObject.put("timeline_start_datetime", localDateTime.now());
-            jsonObject.put("timeline_stop_datetime", localDateTime.now());
+            jsonObject.put("timeline_start_datetime", startTimeIn);
+            jsonObject.put("timeline_stop_datetime", stopTimeIn);
 
             HttpPost request = new HttpPost(url);
 
@@ -492,14 +537,22 @@ public class SessionHandler {
     public static void main(String[] args) {
         SessionHandler sessionHandler = new SessionHandler();
 
-        if(sessionHandler.loginUser("austin", "password")){
+        if(sessionHandler.loginUser("user", "password")){
 
         }
 
 
-        //sessionHandler.getTimelines();
-        //sessionHandler.createTimeline("Johns title", "Johns description");
+        sessionHandler.getTimelines();
 
+
+        for (Timeline t: sessionHandler.timelineArrayList){
+            System.out.println(t.getTimeline_start_datetime());
+            System.out.println(t.getTimeline_stop_datetime());
+        }
+
+
+        //sessionHandler.createTimeline("Johns title", "Johns description");
+        /*
         sessionHandler.setTimeline_id(5);
         sessionHandler.updateTimeline("test", "test");
         sessionHandler.getEvents();
@@ -513,7 +566,7 @@ public class SessionHandler {
 
         sessionHandler.setTimeline_id(2);
         sessionHandler.createEvent("event test", "event desc");
-
+        */
         //sessionHandler.setTimeline_id(7);
         // sessionHandler.updateTimeline("Austin confirming the update", "it is working");
 

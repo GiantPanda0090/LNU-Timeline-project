@@ -1,6 +1,4 @@
 import backend.SessionHandler;
-import backend.Timeline;
-import backend.UserRegistration;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,16 +6,17 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.controlsfx.control.PopOver;
 
-import java.util.ArrayList;
+
 
 /**
  * Created by Johan on 2015-04-20.
@@ -101,6 +100,19 @@ public class CreateStage {
         GenerateTimelineList generateTimelineList = new GenerateTimelineList();
         generateTimelineList.generateTimelineList(sessionHandler, timelineObservableList, timelineListView);
 
+        /**
+         * UserInfoButton
+         * Show logged in user.
+         * When button pressed, open new window to show more info about the user.
+         */
+        Button userInfoButton = new Button(sessionHandler.getUser().getUsername());
+        userInfoButton.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                UserInfoStage userInfoStage = new UserInfoStage();
+                userInfoStage.userInfoStage(sessionHandler).show();
+            }
+        });
+
 
         // Search field
         final TextField searchTextField1 = new TextField();
@@ -114,12 +126,24 @@ public class CreateStage {
             }
         });
 
-
+        timelineListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+                    System.out.print("clicked once");
+                    //here we can add methods to when there is only one mouse clicked
+                    if (mouseEvent.getClickCount() == 2) {
+                        //here we can add methods to when there is a double click
+                        System.out.println("Double clicked");
+                    }
+                }
+            }
+        });
         searchTextField.setFont(new Font("System", 12));
         searchTextField.setMaxWidth(200);
         searchTextField.setMaxHeight(30);
 
-        bannerHBox.getChildren().addAll(logo);
+        bannerHBox.getChildren().addAll(logo, userInfoButton);
         timelineVBox.getChildren().addAll(configbox, searchTextField1, timelineListView);
         eventVBox.getChildren().addAll(eventScrollPane);
 
