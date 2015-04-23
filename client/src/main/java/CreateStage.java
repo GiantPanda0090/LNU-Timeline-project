@@ -26,7 +26,6 @@ import org.controlsfx.control.PopOver;
 public class CreateStage {
     SessionHandler sessionHandler;
     //TimelineView timelineView;
-    VBox timeLineGridPane;
     int top1;
 
     public CreateStage(SessionHandler session){
@@ -58,6 +57,9 @@ public class CreateStage {
         final Button plusButton = new Button("New");
         plusButton.setId("newTimelineButton");
         plusButton.setMinWidth(100);
+
+        final Button newEventButton = new Button("New Event");
+        newEventButton.setMinWidth(100);
 
         /**
          *  eventScrollPane, this is the area where all events for a timeline is displayed
@@ -108,7 +110,7 @@ public class CreateStage {
         HBox configbox = new HBox();
         configbox.setPadding(new Insets(10, 10, 10, 10));
         configbox.setSpacing(5.0);
-        configbox.getChildren().addAll(plusButton, configButton);
+        configbox.getChildren().addAll(plusButton, configButton, newEventButton);
 
         GenerateTimelineList generateTimelineList = new GenerateTimelineList();
         generateTimelineList.generateTimelineList(sessionHandler, timelineObservableList, timelineListView);
@@ -203,7 +205,7 @@ public class CreateStage {
         /*
          *
          */
-       final PopOver newTimeorEvent = new PopOver();
+        final PopOver newTimeorEvent = new PopOver();
         newTimeorEvent.setOpacity(0.99);
         CreateTimelinePane createTimelinePane = new CreateTimelinePane();
         newTimeorEvent.setContentNode(createTimelinePane.createTimelinePane(newTimeorEvent, eventVBox, top, sessionHandler, timelineObservableList, timelineListView));
@@ -223,10 +225,22 @@ public class CreateStage {
             public void changed(ObservableValue<? extends Label> observable, Label oldValue, Label newValue) {
                 sessionHandler.setTimeline_id(Integer.parseInt(timelineListView.getSelectionModel().getSelectedItem().getId()));
                 TimelineView timelineView = new TimelineView(sessionHandler);
-                timeLineGridPane = timelineView.drawDays();
+                VBox timeLineGridPane = timelineView.drawDays();
                 timelineView.addEventsDay();
                 eventScrollPane.setContent(timeLineGridPane);
                 top1++;
+            }
+        });
+
+        final PopOver newEvent = new PopOver();
+        CreateEventPane createEventPane = new CreateEventPane();
+        newEvent.setContentNode(createEventPane.createEventPane(sessionHandler, newEvent, eventScrollPane));
+        newEventButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (!newEvent.isShowing()) {
+                    newEvent.show(newEventButton);
+                }
             }
         });
 

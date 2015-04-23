@@ -1971,3 +1971,132 @@ Response code:400
 2015-04-22 22:31:22 INFO  SessionHandler:304 - Timelines requested succesfully
 2015-04-22 22:31:22 INFO  SessionHandler:304 - Timelines requested succesfully
 2015-04-22 22:31:22 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 22:34:13 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 22:34:13 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 22:34:13 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 22:34:33 INFO  SessionHandler:141 - User successfully signed in
+2015-04-22 22:34:33 INFO  SessionHandler:187 - User found and assigned to user session
+2015-04-22 22:34:33 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 22:34:41 INFO  SessionHandler:445 - Events request succesfully
+2015-04-22 22:34:41 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 22:34:41 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 22:34:41 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 22:34:41 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 22:34:41 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 22:34:41 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-22 22:34:41 INFO  SessionHandler:304 - Timelines requested succesfully
+2015-04-23 09:58:55 INFO  SessionHandler:142 - User successfully signed in
+2015-04-23 09:58:55 INFO  SessionHandler:188 - User found and assigned to user session
+2015-04-23 09:58:55 INFO  SessionHandler:305 - Timelines requested succesfully
+2015-04-23 09:59:14 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 10
+2015-04-23 09:59:14 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 09:59:15 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 09:59:16 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 9
+2015-04-23 09:59:16 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 09:59:16 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:15 INFO  SessionHandler:142 - User successfully signed in
+2015-04-23 10:09:16 INFO  SessionHandler:188 - User found and assigned to user session
+2015-04-23 10:09:16 INFO  SessionHandler:305 - Timelines requested succesfully
+2015-04-23 10:09:23 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 10
+2015-04-23 10:09:23 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:23 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:25 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 9
+2015-04-23 10:09:25 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:25 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:27 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 8
+2015-04-23 10:09:27 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:27 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:28 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 7
+2015-04-23 10:09:28 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:28 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:29 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 6
+2015-04-23 10:09:29 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:29 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:30 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 5
+2015-04-23 10:09:30 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:30 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:30 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 4
+2015-04-23 10:09:30 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:31 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:32 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 3
+2015-04-23 10:09:32 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:32 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:34 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 2
+2015-04-23 10:09:34 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:34 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:36 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 1
+2015-04-23 10:09:36 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:36 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:38 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 10
+2015-04-23 10:09:38 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:38 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:41 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 9
+2015-04-23 10:09:41 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:09:41 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:14:09 INFO  SessionHandler:142 - User successfully signed in
+2015-04-23 10:14:09 INFO  SessionHandler:188 - User found and assigned to user session
+2015-04-23 10:14:09 INFO  SessionHandler:305 - Timelines requested succesfully
+2015-04-23 10:14:11 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 9
+2015-04-23 10:14:11 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:14:12 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:14:42 INFO  SessionHandler:355 - Timeline created
+2015-04-23 10:14:42 INFO  SessionHandler:305 - Timelines requested succesfully
+2015-04-23 10:14:44 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 11
+2015-04-23 10:14:44 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:14:44 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:49:40 INFO  SessionHandler:152 - User login failure
+2015-04-23 10:49:47 INFO  SessionHandler:152 - User login failure
+2015-04-23 10:54:34 INFO  SessionHandler:142 - User successfully signed in
+2015-04-23 10:54:34 INFO  SessionHandler:188 - User found and assigned to user session
+2015-04-23 10:54:34 INFO  SessionHandler:305 - Timelines requested succesfully
+2015-04-23 10:54:53 INFO  SessionHandler:506 - Something went wrong when trying to update event.
+	Response code: 400
+2015-04-23 10:54:56 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 1
+2015-04-23 10:54:56 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:54:56 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:57:06 INFO  SessionHandler:142 - User successfully signed in
+2015-04-23 10:57:06 INFO  SessionHandler:188 - User found and assigned to user session
+2015-04-23 10:57:06 INFO  SessionHandler:305 - Timelines requested succesfully
+2015-04-23 10:57:07 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 1
+2015-04-23 10:57:07 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:57:07 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 10:57:18 INFO  SessionHandler:502 - Event created successfully!
+2015-04-23 11:00:38 INFO  SessionHandler:142 - User successfully signed in
+2015-04-23 11:00:39 INFO  SessionHandler:188 - User found and assigned to user session
+2015-04-23 11:00:39 INFO  SessionHandler:305 - Timelines requested succesfully
+2015-04-23 11:00:40 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 1
+2015-04-23 11:00:40 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 11:00:40 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 11:00:41 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 11:07:02 INFO  SessionHandler:142 - User successfully signed in
+2015-04-23 11:07:02 INFO  SessionHandler:188 - User found and assigned to user session
+2015-04-23 11:07:02 INFO  SessionHandler:305 - Timelines requested succesfully
+2015-04-23 11:07:04 INFO  SessionHandler:86 - Timeline_id updated.
+	New id: 1
+2015-04-23 11:07:04 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 11:07:04 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 11:07:16 INFO  SessionHandler:502 - Event created successfully!
+2015-04-23 11:07:16 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 11:07:16 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 11:07:43 INFO  SessionHandler:502 - Event created successfully!
+2015-04-23 11:07:43 INFO  SessionHandler:451 - Events request succesfully
+2015-04-23 11:07:43 INFO  SessionHandler:451 - Events request succesfully
