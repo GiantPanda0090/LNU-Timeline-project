@@ -68,7 +68,7 @@ public class SessionHandler {
      */
     User user;
 
-    public User getUser() {
+    public User getActiveUser() {
         return user;
     }
 
