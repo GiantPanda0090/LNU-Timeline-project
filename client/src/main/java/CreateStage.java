@@ -14,7 +14,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.controlsfx.control.PopOver;
 
@@ -122,7 +129,7 @@ public class CreateStage {
          */
         StackPane stackImg = new StackPane();
         //Image  userImg = new Image("https://cloud.githubusercontent.com/assets/11654901/7285016/c781d3d6-e941-11e4-8bf4-dac8f4ba90b6.png");
-        Image  userImg = new Image("profile.png");
+        final Image  userImg = new Image("profile.png");
         ImageView  userInfoButton  = new ImageView();
         userInfoButton.setImage(userImg);
         userInfoButton.setFitWidth(60);
@@ -149,6 +156,7 @@ public class CreateStage {
         });
 */
 
+
         // Search field
         final TextField searchTextField1 = new TextField();
         searchTextField1.setPromptText("Search your timeline");
@@ -160,17 +168,51 @@ public class CreateStage {
                 timelineListView.scrollTo(l);
             }
         });
-
+        final Pane stack = new Pane();
         timelineListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
+
             public void handle(MouseEvent mouseEvent) {
-                if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-                    System.out.print("clicked once");
-                    //here we can add methods to when there is only one mouse clicked
-                    if (mouseEvent.getClickCount() == 2) {
-                        //here we can add methods to when there is a double click
-                        System.out.println("Double clicked");
-                    }
+                if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
+
+                    final VBox stackBox = new VBox();
+                    Rectangle helpIcon = new Rectangle(35.0, 25.0);
+                    helpIcon.setFill(new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE,
+                            new Stop[]{
+                                    new Stop(0, Color.web("#4977A3")),
+                                    new Stop(0.5, Color.web("#B0C6DA")),
+                                    new Stop(1, Color.web("#9CB6CF")),}));
+                    helpIcon.setStroke(Color.web("#D0E6FA"));
+                    helpIcon.setArcHeight(3.5);
+                    helpIcon.setArcWidth(3.5);
+
+
+                    Text idText = new Text((String.valueOf(sessionHandler.getActiveTimeline().getId())));
+                    Text userText = new Text("User: " + String.valueOf(sessionHandler.getActiveUser().getUsername()));
+                    idText.setFont(Font.font("Amble Cn", FontWeight.BOLD, 18));
+                    idText.setFill(Color.WHITE);
+                    idText.setStroke(Color.web("#7080A0"));
+                    userText.setFont(Font.font("Amble Cn", FontWeight.BOLD, 18));
+                    userText.setFill(Color.WHITE);
+                    userText.setStroke(Color.web("#7080A0"));
+
+
+                    stackBox.getChildren().addAll(helpIcon, userText);
+                    stack.getChildren().addAll(stackBox);
+                    stackBox.setAlignment(Pos.CENTER_LEFT);
+                        // Right-justify nodes in stack
+
+
+
+
+                    //  Label userId = sessionHandler.getTimeline_id();
+
+
+
+                        //sessionHandler.getActiveTimeline();
+                        //userInfo.setHgrow(stack, Priority.ALWAYS);    // Give stack any extra space
+                        System.out.println("right clicked");
+
                 }
             }
         });
@@ -179,7 +221,7 @@ public class CreateStage {
         searchTextField.setMaxHeight(30);
 
         bannerHBox.getChildren().addAll(logo,stackImg);
-        timelineVBox.getChildren().addAll(configbox, searchTextField1, timelineListView);
+        timelineVBox.getChildren().addAll(configbox, searchTextField1, timelineListView, stack);
         eventVBox.getChildren().addAll(eventScrollPane);
 
         bpane.setTop(bannerHBox);
