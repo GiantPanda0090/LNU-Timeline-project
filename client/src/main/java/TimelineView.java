@@ -88,6 +88,8 @@ public class TimelineView {
         dayPane.setId("dayPane");
         dayPane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
         long columnsInt = amountOfDays();
+        if(columnsInt == 0)
+            columnsInt++;
         long rowsInt = 10;
 
         for (int i = 0; i < columnsInt; i++){
