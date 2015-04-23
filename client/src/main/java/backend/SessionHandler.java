@@ -86,6 +86,16 @@ public class SessionHandler {
         LOG.info("Timeline_id updated.\n\tNew id: "+timeline_id);
     }
 
+    /**
+     * This is for handeling the current active event.
+     */
+    private int event_id;
+    public int getEvent_id() {
+        return event_id;
+    }
+    public void setEvent_id(int event_id) {
+        this.event_id = event_id;
+    }
 
     /*
      * An arraylist with the users timelines
@@ -539,6 +549,15 @@ public class SessionHandler {
             if (timeline_id == t.getId()){
                 return t;
 
+            }
+        }
+        return null;
+    }
+
+    public Event getActiveEvent(){
+        for (Event e: eventArrayList){
+            if (e.getId() == getEvent_id()){
+                return e;
             }
         }
         return null;
