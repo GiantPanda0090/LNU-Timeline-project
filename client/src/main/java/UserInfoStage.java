@@ -8,8 +8,12 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -51,11 +55,11 @@ public class UserInfoStage {
         final Text joinedText = new Text("Member since:");
 
 
-        final Text usernameTextField = new Text(sessionHandler.getUser().getUsername());
-        final TextField firstNameTextField = new TextField(sessionHandler.getUser().getFirst_name());
-        final TextField lastNameTextField = new TextField(sessionHandler.getUser().getLast_name());
-        final Text emailTextField = new Text(sessionHandler.getUser().getEmail());
-        final Text joinedTextField = new Text(sessionHandler.getUser().getDate_joined().toString());
+        final Text usernameTextField = new Text(sessionHandler.getActiveUser().getUsername());
+        final TextField firstNameTextField = new TextField(sessionHandler.getActiveUser().getFirst_name());
+        final TextField lastNameTextField = new TextField(sessionHandler.getActiveUser().getLast_name());
+        final Text emailTextField = new Text(sessionHandler.getActiveUser().getEmail());
+        final Text joinedTextField = new Text(sessionHandler.getActiveUser().getDate_joined().toString());
 
 
         final Button saveButton = new Button("Save");
@@ -76,9 +80,12 @@ public class UserInfoStage {
         gridPane.add(saveButton, 0, 8);
         gridPane.add(cancelButton, 1, 8);
 
+
+
         /*
         Horizontal view for buttons.
          */
+
         HBox hbox = new HBox();
         hbox.setSpacing(25);
         //hbox.getChildren().addAll(saveButton, cancelButton);
@@ -88,6 +95,7 @@ public class UserInfoStage {
         /*
          * Close the config stage.
          */
+
         cancelButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 stage.close();
@@ -98,7 +106,7 @@ public class UserInfoStage {
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 sessionHandler.updateUser(firstNameTextField.getText(), lastNameTextField.getText());
-                sessionHandler.getUser(sessionHandler.getUser().getUsername());
+                //sessionHandler.getUser(sessionHandler.getUser().getUsername());
                 headerText.setText("User info updated");
                 headerText.setFill(Color.GREEN);
                 headerText.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
@@ -110,4 +118,27 @@ public class UserInfoStage {
         stage.setScene(scene);
         return stage;
     }
+
+/*
+    public Stage userInfoStage(final SessionHandler sessionHandler){
+
+        // FX stage
+        final Stage stage = new Stage();
+
+        BorderPane pane = new BorderPane();
+        ImageView img = new ImageView("http://www.bth.se/com/com.nsf/bilder/Johan%20p%C3%A5%20sydnytt_JPG/$file/Johan%20p%C3%A5%20sydnytt.JPG");
+
+        img.fitWidthProperty().bind(stage.widthProperty());
+        img.fitHeightProperty().bind(stage.heightProperty());
+
+        pane.setCenter(img);
+
+        Scene scene = new Scene(pane);
+        stage.setScene(scene);
+
+
+        return stage;
+
+    }
+   */
 }
