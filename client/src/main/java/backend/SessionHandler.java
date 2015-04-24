@@ -635,7 +635,7 @@ public class SessionHandler {
     public void deleteEvent(){
 
         try {
-            URL url = new URL("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/events/"+getActiveEvent()+"/");
+            URL url = new URL("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/events/"+event_id+"/");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
             httpURLConnection.setRequestMethod("DELETE");
