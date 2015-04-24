@@ -431,10 +431,8 @@ public class SessionHandler {
             URL url = new URL("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/timelines/"+timeline_id+"/");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
-            ObjectMapper mapper = new ObjectMapper();
-
             httpURLConnection.setRequestMethod("DELETE");
-             httpURLConnection.setRequestProperty("User-Agent", "Timeline-Java-Client");
+            httpURLConnection.setRequestProperty("User-Agent", "Timeline-Java-Client");
             httpURLConnection.setRequestProperty("Authorization", "Token " + token);
             System.out.println(httpURLConnection.getResponseCode());
             int response_code = httpURLConnection.getResponseCode();
@@ -447,7 +445,7 @@ public class SessionHandler {
                 StringBuffer response = new StringBuffer();
 
                 while ((inputLine = bufferedReader.readLine()) != null) {
-                    response.append(inputLine).append(" ");
+                    response.append(inputLine);
                 }
 
                 LOG.info("Timeline is removed");
@@ -596,8 +594,6 @@ public class SessionHandler {
         try {
             URL url = new URL("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/events/"+getActiveEvent()+"/");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
-            ObjectMapper mapper = new ObjectMapper();
 
             httpURLConnection.setRequestMethod("DELETE");
             httpURLConnection.setRequestProperty("User-Agent", "Timeline-Java-Client");
