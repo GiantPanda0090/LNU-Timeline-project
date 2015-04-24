@@ -380,7 +380,7 @@ public class SessionHandler {
         }
     }
 
-    public void updateTimeline(String title, String description){
+    public void updateTimeline(String title, String description, LocalDateTime startDateTimeIn, LocalDateTime stopDateTimeIn){
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
 
         LocalDateTime localDateTime = LocalDateTime.now();
@@ -390,8 +390,8 @@ public class SessionHandler {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("timeline_title", title);
             jsonObject.put("timeline_description", description);
-            jsonObject.put("timeline_start_datetime", localDateTime.now());
-            jsonObject.put("timeline_stop_datetime", localDateTime.now());
+            jsonObject.put("timeline_start_datetime", startDateTimeIn);
+            jsonObject.put("timeline_stop_datetime", stopDateTimeIn);
 
             HttpPut request = new HttpPut("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/timelines/"+timeline_id+"/");
 
@@ -589,6 +589,49 @@ public class SessionHandler {
             httpClient.getConnectionManager().shutdown();
         }
     }
+
+
+    public void updateEvent(String title, String description, LocalDateTime startDateTimeIn, LocalDateTime stopDateTimeIn){
+        HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
+
+        try {
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("event_title", title);
+            jsonObject.put("event_description", description);
+            jsonObject.put("event_start_datetime", startDateTimeIn);
+            jsonObject.put("event_stop_datetime", stopDateTimeIn);
+            jsonObject.put("timeline", getActiveTimeline().getId());
+
+            HttpPut request = new HttpPut("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/events/"+event_id+"/");
+            request.addHeader("User-Agent", "Timeline-Client");
+            request.addHeader("Accept", "application/json");
+            request.addHeader("Content-Type", "application/json; charset=UTF-8");
+            request.addHeader("Authorization", "Token " + token);
+            request.setEntity(new StringEntity(jsonObject.toString()));
+            HttpResponse response = httpClient.execute(request);
+
+            int response_code = response.getStatusLine().getStatusCode();
+
+            if (response_code == 200){
+                LOG.info("Event updated!");
+            }
+
+            else {
+                LOG.info("Something went wrong when updating event.\n\tResponse code: "+response_code);
+            }
+        }
+
+        catch (Exception e) {
+            LOG.error(e);
+        }
+
+        finally {
+            httpClient.getConnectionManager().shutdown();
+        }
+    }
+
+
     public void deleteEvent(){
 
         try {
@@ -649,10 +692,12 @@ public class SessionHandler {
         //getTimelines();
         for(Timeline t: timelineArrayList){
             if (timeline_id == t.getId()){
+
                 return t;
 
             }
         }
+
         return null;
     }
 
@@ -672,38 +717,6 @@ public class SessionHandler {
         if(sessionHandler.loginUser("user", "password")){
 
         }
-
-        sessionHandler.deleteTimeline();
-        sessionHandler.deleteEvent();
-
-        sessionHandler.getTimelines();
-        sessionHandler.setTimeline_id(9);
-
-        LocalDateTime start = LocalDateTime.of(2015, 04, 12, 12, 00);
-        LocalDateTime stop = LocalDateTime.of(2015, 04, 15, 23, 59);
-        sessionHandler.createEvent("Ett event", "En event", start, stop);
-
-
-
-
-        //sessionHandler.createTimeline("Johns title", "Johns description");
-        /*
-        sessionHandler.setTimeline_id(5);
-        sessionHandler.updateTimeline("test", "test");
-        sessionHandler.getEvents();
-        sessionHandler.createEvent("event test", "event desc");
-
-        sessionHandler.setTimeline_id(6);
-        sessionHandler.createEvent("event test", "event desc");
-
-        sessionHandler.setTimeline_id(2);
-        sessionHandler.createEvent("event test", "event desc");
-
-        sessionHandler.setTimeline_id(2);
-        sessionHandler.createEvent("event test", "event desc");
-        */
-        //sessionHandler.setTimeline_id(7);
-        // sessionHandler.updateTimeline("Austin confirming the update", "it is working");
 
     }
 }
