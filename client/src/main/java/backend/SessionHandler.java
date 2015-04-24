@@ -700,6 +700,7 @@ public class SessionHandler {
 
         sessionHandler.deleteTimeline();
         sessionHandler.deleteEvent();
+
         sessionHandler.getTimelines();
         sessionHandler.setTimeline_id(9);
 
