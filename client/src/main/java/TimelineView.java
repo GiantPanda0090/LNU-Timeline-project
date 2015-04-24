@@ -13,6 +13,8 @@
 
 import backend.Event;
 import backend.SessionHandler;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -135,12 +137,24 @@ public class TimelineView {
         for(int i = 0; i < sessionHandler.eventArrayList.size(); i++){
             Event event = sessionHandler.eventArrayList.get(i);
 
-            Button rect = new Button(event.getEvent_title());
-            //rect.setId("eventButton");
+            final Button rect = new Button(event.getEvent_title());
+            rect.setId(Integer.toString(event.getId())); // sets the event id to the buttons id !
             rect.setPadding(new Insets(30, 0, 30, 0));
-            nodeEventsArrayList.add(rect);
             rect.setMaxWidth(Double.POSITIVE_INFINITY);
-            dayPane.setColumnSpan(rect, event.getEvent_stop_datetime().getDayOfYear() - event.getEvent_start_datetime().getDayOfYear());
+
+            rect.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    System.out.println(rect.getId());
+                }
+            });
+
+            nodeEventsArrayList.add(rect);
+
+            int eventColumnSpanSize = event.getEvent_stop_datetime().getDayOfYear() - event.getEvent_start_datetime().getDayOfYear();
+            if (eventColumnSpanSize == 0){
+                eventColumnSpanSize = 1;
+            }
+            dayPane.setColumnSpan(rect, eventColumnSpanSize);
             dayPane.setFillWidth(rect, true);
             dayPane.add(rect, event.getEvent_start_datetime().getDayOfYear() - sessionHandler.getActiveTimeline().getTimeline_start_datetime().getDayOfYear(), rowInt);
 
