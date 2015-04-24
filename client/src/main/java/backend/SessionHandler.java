@@ -422,6 +422,71 @@ public class SessionHandler {
         }
     }
 
+
+
+
+    public void deleteTimeline(){
+
+        Timeline[] timelineList;
+
+        try {
+            URL url = new URL("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/timelines/"+timeline_id+"/");
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+            ObjectMapper mapper = new ObjectMapper();
+
+            httpURLConnection.setRequestMethod("DELETE");
+             httpURLConnection.setRequestProperty("User-Agent", "Timeline-Java-Client");
+            httpURLConnection.setRequestProperty("Authorization", "Token " + token);
+            System.out.println(httpURLConnection.getResponseCode());
+            int response_code = httpURLConnection.getResponseCode();
+
+            // If response if OK!
+            if ( response_code == 200) {
+
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+
+                while ((inputLine = bufferedReader.readLine()) != null) {
+                    response.append(inputLine).append(" ");
+                }
+
+                timelineList = mapper.readValue(response.toString(), Timeline[].class);
+
+                for (Timeline t : timelineList) {
+                    if (t.getUser() == user.getId()) {
+                        timelineArrayList.add(t);
+                    }
+                }
+                LOG.info("Timeline is removed");
+            }
+            // If respones is NOT OK!
+            else {
+                LOG.error("Not possible to remove timeline.\n\tResponse code: " + response_code);
+            }
+
+            httpURLConnection.disconnect();
+        }
+
+        catch (MalformedURLException e){
+            e.printStackTrace();
+            LOG.error(e);
+        }
+
+        catch (IOException e){
+            e.printStackTrace();
+            LOG.error(e);
+        }
+    }
+
+
+
+
+
+
+
+
     public void getEvents(){
 
         if (eventArrayList.size() > 0){
@@ -535,6 +600,67 @@ public class SessionHandler {
             httpClient.getConnectionManager().shutdown();
         }
     }
+    public void deleteEvent(){
+
+        if (eventArrayList.size() > 0){
+            eventArrayList.clear();
+        }
+
+        Event[] eventList;
+
+        try {
+            URL url = new URL("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/events/"+getActiveEvent()+"/");
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+            ObjectMapper mapper = new ObjectMapper();
+
+            httpURLConnection.setRequestMethod("DELETE");
+            httpURLConnection.setRequestProperty("User-Agent", "Timeline-Java-Client");
+            httpURLConnection.setRequestProperty("Authorization", "Token " + token);
+
+            int response_code = httpURLConnection.getResponseCode();
+
+            if (response_code == 200) {
+
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+
+                while ((inputLine = bufferedReader.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                eventList = mapper.readValue(response.toString(), Event[].class);
+
+                for (Event e : eventList) {
+                    if (e.timeline == timeline_id) {
+                        eventArrayList.add(e);
+                    }
+                }
+                LOG.info("Event is removed");
+            }
+
+            else {
+                LOG.info("Something went wrong when trying to remove events");
+            }
+
+            httpURLConnection.disconnect();
+        }
+
+        catch (MalformedURLException e){
+            LOG.error(e);
+        }
+
+        catch (IOException e){
+            LOG.error(e);
+        }
+
+        catch (Exception e){
+            LOG.error(e);
+        }
+    }
+
+
 
     // This function read values from API config file
     // This function is called if API HOST and PORT updated
@@ -572,6 +698,8 @@ public class SessionHandler {
 
         }
 
+        sessionHandler.deleteTimeline();
+        sessionHandler.deleteEvent();
         sessionHandler.getTimelines();
         sessionHandler.setTimeline_id(9);
 
