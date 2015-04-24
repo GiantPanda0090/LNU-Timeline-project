@@ -53,7 +53,7 @@ public class CreateTimelinePane {
         popPane.setMargin(name, new Insets(-300, 50, 0, 50));
 
         // first label
-        Label firstLbl = new Label("Start date");
+        final Label firstLbl = new Label("Start date");
         firstLbl.setId("timelineLabel");
         firstLbl.setMinWidth(100);
         popPane.setRowIndex(firstLbl, 0);
@@ -68,7 +68,7 @@ public class CreateTimelinePane {
         popPane.setMargin(firstDate, new Insets(-70, 0, 0, 50));
 
         // second label
-        Label secondLbl = new Label("End date");
+        final Label secondLbl = new Label("End date");
         secondLbl.setMinWidth(100);
         popPane.setRowIndex(secondLbl, 0);
         popPane.setColumnIndex(secondLbl, 0);
@@ -113,6 +113,9 @@ public class CreateTimelinePane {
                 sessionHandler.createTimeline(name.getText().toString(), "description", firstDate.getValue().atStartOfDay(), secondDate.getValue().atTime(23, 59));
                 GenerateTimelineList generateTimelineList = new GenerateTimelineList();
                 generateTimelineList.generateTimelineList(sessionHandler, timelineObservableList, timelineListView);
+                name.setText("Name your Timeline");
+                firstDate.setValue(null);
+                secondDate.setValue(null);
 
             }
         });
