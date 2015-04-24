@@ -168,6 +168,7 @@ public class CreateStage {
                 timelineListView.scrollTo(l);
             }
         });
+        final VBox stackBox = new VBox();
         final Pane stack = new Pane();
         timelineListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -175,29 +176,40 @@ public class CreateStage {
             public void handle(MouseEvent mouseEvent) {
                 if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
 
-                    final VBox stackBox = new VBox();
-                    Rectangle helpIcon = new Rectangle(35.0, 25.0);
-                    helpIcon.setFill(new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE,
-                            new Stop[]{
-                                    new Stop(0, Color.web("#4977A3")),
-                                    new Stop(0.5, Color.web("#B0C6DA")),
-                                    new Stop(1, Color.web("#9CB6CF")),}));
-                    helpIcon.setStroke(Color.web("#D0E6FA"));
-                    helpIcon.setArcHeight(3.5);
-                    helpIcon.setArcWidth(3.5);
+                    stackBox.getChildren().clear();
 
 
-                    Text idText = new Text((String.valueOf(sessionHandler.getActiveTimeline().getId())));
-                    Text userText = new Text("User: " + String.valueOf(sessionHandler.getActiveUser().getUsername()));
-                    idText.setFont(Font.font("Amble Cn", FontWeight.BOLD, 18));
-                    idText.setFill(Color.WHITE);
-                    idText.setStroke(Color.web("#7080A0"));
+
+
+                    Text nameText = new Text(("Creator: " + String.valueOf(sessionHandler.getActiveUser().getFirst_name() + " " + (String.valueOf(sessionHandler.getActiveUser().getLast_name())))));
+                    Text userText = new Text("Username: " + String.valueOf(sessionHandler.getActiveUser().getUsername()));
+                    Text emailText = new Text(("E-Mail: " + String.valueOf(sessionHandler.getActiveUser().getEmail())));
+                    Text timelineTitleText = new Text(("Timeline Name: " + String.valueOf(sessionHandler.getActiveTimeline().getTimeline_title())));
+                    Text timelineStartText = new Text(("Timeline Start: " + String.valueOf(sessionHandler.getActiveTimeline().getTimeline_start_datetime())));
+                    Text timelineEndText = new Text(("Timeline End: " + String.valueOf(sessionHandler.getActiveTimeline().getTimeline_stop_datetime())));
+
+
                     userText.setFont(Font.font("Amble Cn", FontWeight.BOLD, 18));
-                    userText.setFill(Color.WHITE);
-                    userText.setStroke(Color.web("#7080A0"));
+                    userText.setFill(Color.BLACK);
+
+                    timelineTitleText.setFont(Font.font("Amble Cn", FontWeight.BOLD, 18));
+                    timelineTitleText.setFill(Color.BLACK);
+
+                    timelineEndText.setFont(Font.font("Amble Cn", FontWeight.BOLD, 18));
+                    timelineEndText.setFill(Color.BLACK);
+
+                    timelineStartText.setFont(Font.font("Amble Cn", FontWeight.BOLD, 18));
+                    timelineStartText.setFill(Color.BLACK);
+
+                    emailText.setFont(Font.font("Amble Cn", FontWeight.BOLD, 18));
+                    emailText.setFill(Color.BLACK);
+
+                    nameText.setFont(Font.font("Amble Cn", FontWeight.BOLD, 18));
+                    nameText.setFill(Color.BLACK);
 
 
-                    stackBox.getChildren().addAll(helpIcon, userText);
+
+                    stackBox.getChildren().addAll(userText, nameText, timelineTitleText, timelineStartText, timelineEndText);
                     stack.getChildren().addAll(stackBox);
                     stackBox.setAlignment(Pos.CENTER_LEFT);
                         // Right-justify nodes in stack
