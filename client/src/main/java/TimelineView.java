@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
+import org.controlsfx.control.PopOver;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -145,6 +146,12 @@ public class TimelineView {
             rect.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     System.out.println(rect.getId());
+                    sessionHandler.setEvent_id(Integer.parseInt(rect.getId()));
+                    PopOver popOver = new PopOver();
+                    EventInfoPane eventInfoPane = new EventInfoPane();
+                    Pane pane = eventInfoPane.eventInfoPane(sessionHandler, popOver);
+                    popOver.setContentNode(pane);
+                    popOver.show(rect);
                 }
             });
 
