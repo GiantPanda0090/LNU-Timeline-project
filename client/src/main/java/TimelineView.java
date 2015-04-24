@@ -19,6 +19,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import org.controlsfx.control.PopOver;
 
@@ -35,14 +36,15 @@ public class TimelineView {
     GridPane dayPane;
     StackPane stackPane;
     ArrayList<Button> nodeEventsArrayList = new ArrayList<Button>();
-
+    ScrollPane scrollPaneWithAllGrids;
     /**
      * Constructor
      */
 
-    public TimelineView(SessionHandler sessionHandlerIn){
+    public TimelineView(SessionHandler sessionHandlerIn, ScrollPane scrollPaneIn){
         sessionHandler = sessionHandlerIn;
         sessionHandler.getEvents();
+        scrollPaneWithAllGrids = scrollPaneIn;
     }
 
     /**
@@ -81,9 +83,9 @@ public class TimelineView {
      * Length of gridpanes are decided in the for loops by adding column and rowconstraints.
      */
 
-    public VBox drawDays(){
-        VBox vbox = new VBox();
-        vbox.getStylesheets().add(this.getClass().getResource("TimelineCSS.css").toExternalForm());
+    public void drawDays(){
+        VBox vboxMainBoxTimeline = new VBox();
+        vboxMainBoxTimeline.getStylesheets().add(this.getClass().getResource("TimelineCSS.css").toExternalForm());
         GridPane dayViewPane = new GridPane();
         dayViewPane.setId("dayViewPane");
         sessionHandler.getEvents();
@@ -129,8 +131,8 @@ public class TimelineView {
             dayViewPane.add(dayLabel, i, 0);
         }
 
-        vbox.getChildren().addAll(dayViewPane, dayPane);
-        return vbox;
+        vboxMainBoxTimeline.getChildren().addAll(dayViewPane, dayPane);
+        scrollPaneWithAllGrids.setContent(vboxMainBoxTimeline);
     }
 
     public void addEventsDay(){
@@ -149,7 +151,7 @@ public class TimelineView {
                     sessionHandler.setEvent_id(Integer.parseInt(rect.getId()));
                     PopOver popOver = new PopOver();
                     EventInfoPane eventInfoPane = new EventInfoPane();
-                    Pane pane = eventInfoPane.eventInfoPane(sessionHandler, popOver);
+                    Pane pane = eventInfoPane.eventInfoPane(sessionHandler, scrollPaneWithAllGrids, popOver);
                     popOver.setContentNode(pane);
                     popOver.show(rect);
                 }

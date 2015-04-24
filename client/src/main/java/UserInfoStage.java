@@ -110,6 +110,7 @@ public class UserInfoStage {
                 headerText.setText("User info updated");
                 headerText.setFill(Color.GREEN);
                 headerText.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+
             }
         });
 

@@ -39,19 +39,18 @@ public class CreateEventPane {
         pane.getChildren().addAll(vBox);
 
         okButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
+
             public void handle(ActionEvent event) {
                 popOver.hide();
                 sessionHandler.createEvent(textFieldName.getText(), eventDescTextArea.getText(), firstDatePicker.getValue().atStartOfDay(), secondDatePicker.getValue().atTime(23, 59));
-                TimelineView timelineView = new TimelineView(sessionHandler);
-                VBox timeLineGridPane = timelineView.drawDays();
-                scrollPaneIn.setContent(timeLineGridPane);
+                TimelineView timelineView = new TimelineView(sessionHandler, scrollPaneIn);
+                timelineView.drawDays();
                 timelineView.addEventsDay();
             }
         });
 
         cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
+
             public void handle(ActionEvent event) {
                 textFieldName.setText("Name your event");
                 eventDescTextArea.setText("Event description...");

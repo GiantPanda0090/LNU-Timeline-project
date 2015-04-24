@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -15,10 +16,12 @@ import org.controlsfx.control.PopOver;
  * This pane will be displayed when an event is clicked
  */
 public class EventInfoPane {
-    public Pane eventInfoPane(SessionHandler sessionHandlerIn, PopOver popOverIn){
+    public Pane eventInfoPane(SessionHandler sessionHandlerIn, ScrollPane mainTimelineScrollPaneIn, PopOver popOverIn){
 
        // sessionHandler from create stage
         final SessionHandler sessionHandler = sessionHandlerIn;
+
+        final ScrollPane mainTimelineScrollPane = mainTimelineScrollPaneIn;
 
         // popover from create stage
         final PopOver popOver = popOverIn;
@@ -55,22 +58,29 @@ public class EventInfoPane {
         pane.getChildren().addAll(vBox);
 
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
+
             public void handle(ActionEvent event) {
-                sessionHandler.updateEvent(titleTextField.getText(), descTextField.getText(), firstDate.getValue().atStartOfDay(), secondDate.getValue().atTime(23,59));
+                sessionHandler.updateEvent(titleTextField.getText(), descTextField.getText(), firstDate.getValue().atStartOfDay(), secondDate.getValue().atTime(23, 59));
                 popOver.hide();
+                TimelineView timelineView = new TimelineView(sessionHandler, mainTimelineScrollPane);
+                timelineView.drawDays();
+                timelineView.addEventsDay();
             }
         });
         cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
+
             public void handle(ActionEvent event) {
                 popOver.hide();
             }
         });
         deleteButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
+
             public void handle(ActionEvent event) {
                 sessionHandler.deleteEvent();
+                popOver.hide();
+                TimelineView timelineView = new TimelineView(sessionHandler, mainTimelineScrollPane);
+                timelineView.drawDays();
+                timelineView.addEventsDay();
             }
         });
 

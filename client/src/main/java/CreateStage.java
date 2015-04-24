@@ -82,7 +82,7 @@ public class CreateStage {
         //eventScrollPane.setFitToHeight(true);
 
         // Config button (just a button right now)
-        final Button configButton = new Button("Config");
+        final Button configButton = new Button("Reload timeline");
         configButton.setId("configButton");
         configButton.setMinWidth(100);
 
@@ -104,6 +104,7 @@ public class CreateStage {
         final VBox eventVBox = new VBox();
         eventVBox.setPadding(new Insets(5, 0, 0, 10));
         eventVBox.setSpacing(5.0);
+        eventVBox.setPrefHeight(100);
 
         HBox bannerHBox = new HBox();
         bannerHBox.setMinWidth(200);
@@ -172,14 +173,10 @@ public class CreateStage {
         final Pane stack = new Pane();
         timelineListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-
             public void handle(MouseEvent mouseEvent) {
                 if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
 
                     stackBox.getChildren().clear();
-
-
-
 
                     Text nameText = new Text(("Creator: " + String.valueOf(sessionHandler.getActiveUser().getFirst_name() + " " + (String.valueOf(sessionHandler.getActiveUser().getLast_name())))));
                     Text userText = new Text("Username: " + String.valueOf(sessionHandler.getActiveUser().getUsername()));
@@ -268,7 +265,6 @@ public class CreateStage {
 
                             public void handle(ActionEvent event) {
 
-
                                 if (!newTimeorEvent.isShowing()) {
                                     newTimeorEvent.show(plusButton);
                                 }
@@ -278,11 +274,10 @@ public class CreateStage {
         timelineListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Label>() {
             public void changed(ObservableValue<? extends Label> observable, Label oldValue, Label newValue) {
                 sessionHandler.setTimeline_id(Integer.parseInt(timelineListView.getSelectionModel().getSelectedItem().getId()));
-                TimelineView timelineView = new TimelineView(sessionHandler);
-                VBox timeLineGridPane = timelineView.drawDays();
+                TimelineView timelineView = new TimelineView(sessionHandler, eventScrollPane);
+                timelineView.drawDays();
                 timelineView.addEventsDay();
-                eventScrollPane.setContent(timeLineGridPane);
-                top1++;
+
             }
         });
 
@@ -290,7 +285,7 @@ public class CreateStage {
         CreateEventPane createEventPane = new CreateEventPane();
         newEvent.setContentNode(createEventPane.createEventPane(sessionHandler, newEvent, eventScrollPane));
         newEventButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
+
             public void handle(ActionEvent event) {
                 if (!newEvent.isShowing()) {
                     newEvent.show(newEventButton);
@@ -299,10 +294,12 @@ public class CreateStage {
         });
 
 
-
+        final PopOver updateEventPopOver = new PopOver();
         configButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 System.out.println("Not in use");
+                EventInfoPane eventInfoPane = new EventInfoPane();
+                eventInfoPane.eventInfoPane(sessionHandler, eventScrollPane, updateEventPopOver);
             }
         });
 
