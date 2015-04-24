@@ -427,8 +427,6 @@ public class SessionHandler {
 
     public void deleteTimeline(){
 
-        Timeline[] timelineList;
-
         try {
             URL url = new URL("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/timelines/"+timeline_id+"/");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -452,13 +450,6 @@ public class SessionHandler {
                     response.append(inputLine).append(" ");
                 }
 
-                timelineList = mapper.readValue(response.toString(), Timeline[].class);
-
-                for (Timeline t : timelineList) {
-                    if (t.getUser() == user.getId()) {
-                        timelineArrayList.add(t);
-                    }
-                }
                 LOG.info("Timeline is removed");
             }
             // If respones is NOT OK!
@@ -602,12 +593,6 @@ public class SessionHandler {
     }
     public void deleteEvent(){
 
-        if (eventArrayList.size() > 0){
-            eventArrayList.clear();
-        }
-
-        Event[] eventList;
-
         try {
             URL url = new URL("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/events/"+getActiveEvent()+"/");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -630,18 +615,12 @@ public class SessionHandler {
                     response.append(inputLine);
                 }
 
-                eventList = mapper.readValue(response.toString(), Event[].class);
 
-                for (Event e : eventList) {
-                    if (e.timeline == timeline_id) {
-                        eventArrayList.add(e);
-                    }
-                }
                 LOG.info("Event is removed");
             }
 
             else {
-                LOG.info("Something went wrong when trying to remove events");
+                LOG.info("Something went wrong when trying to remove event");
             }
 
             httpURLConnection.disconnect();
