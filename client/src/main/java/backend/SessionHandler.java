@@ -122,34 +122,49 @@ public class SessionHandler {
      * This token is sent within the HTTP head in every request made to the API
      */
     public Boolean loginUser(String username, String password){
-
+        /*
+        *communicate with the server start
+         */
+        //communication initailization
+     // Generate the url that will be requested to the API
         String url = "http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api-token-auth/";
-
+        //initialize the http client
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
+        //initlaize localDateTime and set it as NOW
         LocalDateTime localDateTime = LocalDateTime.now();
 
         try {
-
+           //JASON service initialized and set the username ad password
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("username", username);
             jsonObject.put("password", password);
 
+            //request http and set in the url that generated before
             HttpPost request = new HttpPost(url);
-
             request.addHeader("User-Agent", "Timeline-Client");
             request.addHeader("Accept", "application/json");
             request.addHeader("Content-Type", "application/json; charset=UTF-8");
 
+            //add JSon objeect to the response
             request.setEntity(new StringEntity(jsonObject.toString()));
             HttpResponse response = httpClient.execute(request);
             HttpEntity entity = response.getEntity();
 
+            // export  all the info of EntityUtils (entity) into string
             String content = EntityUtils.toString(entity);
 
+            //response code from http server intialized
             int response_code = response.getStatusLine().getStatusCode();
-
+            //communication initialization done
+            //main purpose start
+            /*
+            * Active different  event when different http server code been responsed from the server
+            * two possible
+            * Success 2xx with 200 received (OK)
+            * With out Success 2xx and non- 200 received (issues detected)
+             */
             if (response_code == 200){
-
+                 // log generated
                 LOG.info("User successfully signed in");
 
                 JSONObject result = new JSONObject(content);
@@ -163,7 +178,7 @@ public class SessionHandler {
                 LOG.info("User login failure");
             }
         }
-
+//exception catched error loged
         catch (Exception e) {
             e.printStackTrace();
             LOG.error(e);
@@ -171,83 +186,113 @@ public class SessionHandler {
 
         finally {
             httpClient.getConnectionManager().shutdown();
+            /*
+* end of the communication
+ */
         }
         return false;
     }
 
+
+
+    //******************************************************************************************************************
+/*
+*lead user to the currect session
+*@param username inputed to the method
+ */
     // Get user
     public void getUser(String username) {
 
         User[] userList;
-
+/*
+*communicate with the server start
+ */
         try {
-
+            //communication initialized
+            //url generated and connection initailize
             URL url = new URL("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/users/.json");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
             ObjectMapper mapper = new ObjectMapper();
-
+            //connection config
             httpURLConnection.setRequestMethod("GET");
             httpURLConnection.setRequestProperty("User-Agent", "Timeline-Java-Client");
             httpURLConnection.setRequestProperty("Authorization", "Token " + token);
-
+           //initialized response code for http server
             int response_code = httpURLConnection.getResponseCode();
-
-
+           //end of initialization
+            //main purpose start
+             /*
+            * Active different  event when different http server code been responsed from the server
+            * two possible
+            * Success 2xx with 200 received (OK)
+            * With out Success 2xx and non- 200 received (issues detected)
+             */
             if (response_code == 200) {
-
+                //ok responsed and start lead user to the currect session
                 LOG.info("User found and assigned to user session");
 
+                //intialize empty StringBuffer for loading user session
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
                 String inputLine;
                 StringBuffer response = new StringBuffer();
 
-
+                 //loading start until nothing else can be load
                 while ((inputLine = bufferedReader.readLine()) != null) {
                     response.append(inputLine);
                 }
 
-
+               //
                 userList = mapper.readValue(response.toString(), User[].class);
-
+                //
                 for (User u : userList) {
                     if (u.getUsername().equals(username)) {
                         user = u;
                     }
                 }
             }
-
+// eroor detected.......... http response code are not 200
             else {
                 LOG.error("Something went wrong when trying to get user.\n\t Response code: " + response_code);
             }
             httpURLConnection.disconnect();
         }
-
+//excaption catched(wrong formate)
         catch (MalformedURLException e){
             e.printStackTrace();
             LOG.error(e);
         }
-
+//excaption catched(IO)
         catch (IOException e){
             e.printStackTrace();
             LOG.error(e);
         }
 
     }
-
+//********************************************************************************************************************
+    /*
+    *update user info
+    *@param input  String firstname and String last name
+     */
     // Not working, response with 400
     public void updateUser(String firstname, String lastname){
+        //initialize connection and communication
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
 
         try {
-
+            //initialize and config JsonObject
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("first_name", firstname);
             jsonObject.put("last_name", lastname);
-            //jsonObject.put("id", user.getId());
 
+            //deprecated
+            //jsonObject.put("id", user.getId());
+            //
+
+            // url genrated and set it inside the request
             HttpPut request = new HttpPut("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/users/"+user.getId()+"/");
 
+            //config request
             request.addHeader("User-Agent", "Timeline-Client");
             request.addHeader("Accept", "application/json");
             request.addHeader("Content-Type", "application/json; charset=UTF-8");
@@ -255,8 +300,15 @@ public class SessionHandler {
             request.setEntity(new StringEntity(jsonObject.toString()));
             HttpResponse response = httpClient.execute(request);
 
+            //response  code initailize and genrated
             int response_code = response.getStatusLine().getStatusCode();
 
+            /*
+            * Active different  event when different http server code been responsed from the server
+            * two possible
+            * Success 2xx with 200 received (OK)
+            * With out Success 2xx and non- 200 received (issues detected)
+             */
             if (response_code == 200){
                 LOG.info("User updated!");
             }
@@ -265,7 +317,7 @@ public class SessionHandler {
                 LOG.info("Something went wrong when updating user.\n\tResponse code: " + response_code);
             }
         }
-
+       //excaption catched
         catch (Exception e) {
             LOG.error(e);
         }
@@ -275,39 +327,58 @@ public class SessionHandler {
         }
     }
 
+    /*
+    *request timelines from server
+     */
     public void getTimelines(){
 
         Timeline[] timelineList;
 
+        //reset previous timeline request
         if ( timelineArrayList.size() > 0){
             timelineArrayList.clear();
         }
 
         try {
+            //server communication and connection start
+            //URL generated
             URL url = new URL("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/timelines/.json");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
+            //
             ObjectMapper mapper = new ObjectMapper();
 
+            //config html connection
             httpURLConnection.setRequestMethod("GET");
             httpURLConnection.setRequestProperty("User-Agent", "Timeline-Java-Client");
             httpURLConnection.setRequestProperty("Authorization", "Token " + token);
 
+            //response code initialized and generated
             int response_code = httpURLConnection.getResponseCode();
 
+            /*
+            * Active different  event when different http server code been responsed from the server
+            * two possible
+            * Success 2xx with 200 received (OK)
+            * With out Success 2xx and non- 200 received (issues detected)
+             */
+            //main purpose start
             // If response if OK!
             if ( response_code == 200) {
-
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                // intiate a empty box to get ready to load contant
+                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
                 String inputLine;
                 StringBuffer response = new StringBuffer();
 
+                //load contant util nothing more can be loaded
                 while ((inputLine = bufferedReader.readLine()) != null) {
                     response.append(inputLine);
                 }
 
+                //
                 timelineList = mapper.readValue(response.toString(), Timeline[].class);
 
+                //
                 for (Timeline t : timelineList) {
                     if (t.getUser() == user.getId()) {
                         timelineArrayList.add(t);
@@ -320,22 +391,31 @@ public class SessionHandler {
                 LOG.error("Not possible to get timelines.\n\tResponse code: " + response_code);
             }
 
+            //  connection terminated
             httpURLConnection.disconnect();
         }
 
+        // exception caught(wrong url)
         catch (MalformedURLException e){
             e.printStackTrace();
             LOG.error(e);
         }
 
+        // exception caught (IO)
         catch (IOException e){
             e.printStackTrace();
             LOG.error(e);
         }
     }
 
+    /*
+    *Genarate a timeline
+    * @param input  String title String description LocalDateTime startTimeIn LocalDateTime stopTimeIn
+     */
     public void createTimeline(String title, String description, LocalDateTime startTimeIn, LocalDateTime stopTimeIn){
 
+        //start server connected and communication
+        //Url generated
         String url = "http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/timelines/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
@@ -343,6 +423,7 @@ public class SessionHandler {
 
         try {
 
+            //Json initialized and configed
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("user", user.getId());
             jsonObject.put("timeline_title", title);
