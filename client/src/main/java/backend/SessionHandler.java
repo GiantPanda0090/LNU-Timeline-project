@@ -419,8 +419,9 @@ public class SessionHandler {
         String url = "http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/timelines/";
 
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
+        //deprecate
         //LocalDateTime localDateTime = LocalDateTime.now();
-
+        //
         try {
 
             //Json initialized and configed
@@ -431,8 +432,10 @@ public class SessionHandler {
             jsonObject.put("timeline_start_datetime", startTimeIn);
             jsonObject.put("timeline_stop_datetime", stopTimeIn);
 
+            // request intialized
             HttpPost request = new HttpPost(url);
 
+            // config request
             request.addHeader("User-Agent", "Timeline-Client");
             request.addHeader("Accept", "application/json");
             request.addHeader("Content-Type", "application/json; charset=UTF-8");
@@ -441,21 +444,31 @@ public class SessionHandler {
             HttpResponse response = httpClient.execute(request);
 
 
+            //HTTP esponse code intialized
             int response_code = response.getStatusLine().getStatusCode();
 
+             /*
+            * Active different  event when different http server code been responsed from the server
+            * two possible
+            * Success 2xx with 201 received (CREATED)
+            * With out Success 2xx and non- 200 received (issues detected)
+             */
             if (response_code == 201){
                 LOG.info("Timeline created");
             }
 
+            // ISSUE HAPPEND
             else {
                 LOG.info("Something went wrong when createing timeline.\n\tResponse code: " + response_code);
             }
         }
 
+        //catch exception
         catch (Exception e) {
             LOG.error(e);
         }
 
+        // connection terminated
         finally {
             httpClient.getConnectionManager().shutdown();
         }
