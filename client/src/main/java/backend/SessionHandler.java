@@ -762,18 +762,24 @@ public class SessionHandler {
             LOG.error(e);
         }
 
-        // connectiono terminated
+        // connection terminated
         finally {
             httpClient.getConnectionManager().shutdown();
         }
     }
-
-
+    //********************************************************************************************************************
+    /*
+    * update event from server
+    * @param String title, String description, LocalDateTime startDateTimeIn, LocalDateTime stopDateTimeIn
+     */
     public void updateEvent(String title, String description, LocalDateTime startDateTimeIn, LocalDateTime stopDateTimeIn){
+
+        //connecction and communication initialized
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
 
         try {
 
+            //json intialized and configure
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("event_title", title);
             jsonObject.put("event_description", description);
@@ -781,6 +787,7 @@ public class SessionHandler {
             jsonObject.put("event_stop_datetime", stopDateTimeIn);
             jsonObject.put("timeline", getActiveTimeline().getId());
 
+            //request intialize and configure
             HttpPut request = new HttpPut("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/events/"+event_id+"/");
             request.addHeader("User-Agent", "Timeline-Client");
             request.addHeader("Accept", "application/json");
@@ -789,7 +796,16 @@ public class SessionHandler {
             request.setEntity(new StringEntity(jsonObject.toString()));
             HttpResponse response = httpClient.execute(request);
 
+            //response code intialize
             int response_code = response.getStatusLine().getStatusCode();
+
+             /*
+            * Active different  event when different http server code been responsed from the server
+            * two possible
+            * Success 2xx with 200 received (OK)
+            * With out Success 2xx and non- 200 received (issues detected)
+             */
+            //main purpose start
 
             if (response_code == 200){
                 LOG.info("Event updated!");
@@ -800,34 +816,53 @@ public class SessionHandler {
             }
         }
 
+        // exception caught
         catch (Exception e) {
             LOG.error(e);
         }
 
+        // connection terminated
         finally {
             httpClient.getConnectionManager().shutdown();
         }
     }
 
-
+//***********************************************************************************************************************
+    /*
+    *delete a event from client and server
+     */
     public void deleteEvent(){
 
+
         try {
+            //url initialized
+            // server connection and communication initialize
             URL url = new URL("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/events/"+event_id+"/");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
+            //config connection
             httpURLConnection.setRequestMethod("DELETE");
             httpURLConnection.setRequestProperty("User-Agent", "Timeline-Java-Client");
             httpURLConnection.setRequestProperty("Authorization", "Token " + token);
 
+            //response code intialize
             int response_code = httpURLConnection.getResponseCode();
 
+             /*
+            * Active different  event when different http server code been responsed from the server
+            * two possible
+            * Success 2xx with 200 received (OK)
+            * With out Success 2xx and non- 200 received (issues detected)
+             */
+            //main purpose start
             if (response_code == 200) {
 
+                //empty  box initialize and ready to load
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
                 String inputLine;
                 StringBuffer response = new StringBuffer();
 
+                // load until nothing else can be loaded
                 while ((inputLine = bufferedReader.readLine()) != null) {
                     response.append(inputLine);
                 }
@@ -836,36 +871,50 @@ public class SessionHandler {
                 LOG.info("Event is removed");
             }
 
+            //issues happend
             else {
                 LOG.info("Something went wrong when trying to remove event");
             }
 
+            // connection terminated
             httpURLConnection.disconnect();
         }
 
+        //excaption caught and logged(url wrong formate)
         catch (MalformedURLException e){
             LOG.error(e);
         }
 
+        // excpation caught and logged(IO)
         catch (IOException e){
             LOG.error(e);
         }
 
+        //exception caught and logged(others)
         catch (Exception e){
             LOG.error(e);
         }
     }
+//**********************************************************************************************************
 
 
 
+
+    /*
     // This function read values from API config file
     // This function is called if API HOST and PORT updated
+    */
+
     public void updateAPIconfig(){
+        //update api config setting on the client from server
         apiConfig = new APIConfigReader().read();
         LOG.info("API settings reloaded in sessionHandler.\n\tNew host:"+apiConfig.getHost()+"\n\tNew port:"+apiConfig.getPort());
 
     }
-
+//*************************************************************************************************************************************************************
+    /*
+    *load required time line from server into local arraylist
+     */
     public Timeline getActiveTimeline(){
         //getTimelines();
         for(Timeline t: timelineArrayList){
@@ -875,16 +924,20 @@ public class SessionHandler {
 
             }
         }
-
+// can not find anything
         return null;
     }
-
+//*********************************************************************************************************
+    /*
+    *load requried event from server
+     */
     public Event getActiveEvent(){
         for (Event e: eventArrayList){
             if (e.getId() == getEvent_id()){
                 return e;
             }
         }
+        //event do not find
         return null;
     }
 
