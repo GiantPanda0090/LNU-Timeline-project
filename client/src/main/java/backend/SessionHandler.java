@@ -1,4 +1,13 @@
 package backend;
+/*
+*1DV008 PROJECT IN COMPUTER SCIENCE
+*TIMELINE PROJECT
+*MITIME
+*GROUP MEMBER JOHN JOHAN AUSTIN WASAN LI
+*VERSION CONTROL GITHUB
+* SOME CLASS GOT IT OWN OWNER AND CREATER
+* BACKEND
+*/
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -692,13 +701,17 @@ public class SessionHandler {
     *@param String title, String description, LocalDateTime startDateTime, LocalDateTime stopDatetime
      */
     public void createEvent(String title, String description, LocalDateTime startDateTime, LocalDateTime stopDatetime){
+        //url intialized
         String url = "http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/events/";
-
+        //connection and communication intilized
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
+        //deprecated
         //LocalDateTime localDateTime = LocalDateTime.now();
+        //
 
         try {
 
+            //Json intilized and configured
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("event_title", title);
             jsonObject.put("event_description", description);
@@ -706,9 +719,10 @@ public class SessionHandler {
             jsonObject.put("event_stop_datetime", stopDatetime);
             jsonObject.put("timeline", timeline_id);
 
-
+            // request initialized
             HttpPost request = new HttpPost(url);
 
+            //request configured
             request.addHeader("User-Agent", "Timeline-Client");
             request.addHeader("Accept", "application/json");
             request.addHeader("Content-Type", "application/json; charset=UTF-8");
@@ -716,8 +730,15 @@ public class SessionHandler {
             request.setEntity(new StringEntity(jsonObject.toString()));
             HttpResponse response = httpClient.execute(request);
 
+            //response code initialized
             int response_code = response.getStatusLine().getStatusCode();
-
+            /*
+            * Active different  event when different http server code been responsed from the server
+            * two possible
+            * Success 2xx with 200 received (OK)
+            * With out Success 2xx and non- 200 received (issues detected)
+             */
+            //main purpose start
             if (response_code == 201){
                 LOG.info("Event created successfully!");
             }
@@ -736,10 +757,12 @@ public class SessionHandler {
 
         }
 
+        //exception caought
         catch (Exception e) {
             LOG.error(e);
         }
 
+        // connectiono terminated
         finally {
             httpClient.getConnectionManager().shutdown();
         }

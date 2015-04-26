@@ -14,6 +14,14 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import org.controlsfx.control.PopOver;
+/*
+*1DV008 PROJECT IN COMPUTER SCIENCE
+*TIMELINE PROJECT
+*MITIME
+*GROUP MEMBER JOHN JOHAN AUSTIN WASAN LI
+*VERSION CONTROL GITHUB
+* SOME CLASS GOT IT OWN OWNER AND CREATER
+*/
 
 /**
  * Created by nils on 2015-04-20.

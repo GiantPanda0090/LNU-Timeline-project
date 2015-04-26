@@ -1,3 +1,11 @@
+/*
+*1DV008 PROJECT IN COMPUTER SCIENCE
+*TIMELINE PROJECT
+*MITIME
+*GROUP MEMBER JOHN JOHAN AUSTIN WASAN LI
+*VERSION CONTROL GITHUB
+* SOME CLASS GOT IT OWN OWNER AND CREATER
+*/
 import backend.SessionHandler;
 import backend.UserRegistration;
 import javafx.animation.KeyFrame;
@@ -87,7 +95,7 @@ public class LoginStage extends Application{
         password.setText("password");
         password.setMaxWidth(200);
 
-        Button logIn = new Button("Log in");
+        final Button logIn = new Button("Log in");
         logIn.setMinWidth(200);
 
         final Label regBtn = new Label("Sign up");
@@ -119,6 +127,7 @@ public class LoginStage extends Application{
          * registrationBorderPane then add things to the PopOver and returns the popover.
          */
         final PopOver regPop = new PopOver();
+
         RegistraionBorderPane registraionBorderPane = new RegistraionBorderPane();
         regPop.setContentNode(registraionBorderPane.registrationBorderPane(regPop));
         regBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -127,7 +136,9 @@ public class LoginStage extends Application{
 
                 if (!regPop.isShowing()) {
                     regPop.show(regBtn);
+                       // logIn.setDisable(true);
                 }
+
 
             }
         });

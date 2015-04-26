@@ -6,6 +6,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+/*
+*1DV008 PROJECT IN COMPUTER SCIENCE
+*TIMELINE PROJECT
+*MITIME
+*GROUP MEMBER JOHN JOHAN AUSTIN WASAN LI
+*VERSION CONTROL GITHUB
+* SOME CLASS GOT IT OWN OWNER AND CREATER
+*/
 
 /**
  * Created by nils on 2015-04-21.

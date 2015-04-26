@@ -1,3 +1,12 @@
+/*
+*1DV008 PROJECT IN COMPUTER SCIENCE
+*TIMELINE PROJECT
+*MITIME
+*GROUP MEMBER JOHN JOHAN AUSTIN WASAN LI
+*VERSION CONTROL GITHUB
+* SOME CLASS GOT IT OWN OWNER AND CREATER
+*/
+
 /**
  * Created by Johan on 2015-04-21.
  */
@@ -10,6 +19,8 @@
  * The add events methods simply add the events starting and ending points to certain columns in the gridpane, the
  * events are then stretching (or spanning) through the columns depending on how long they are.
  */
+
+
 
 import backend.Event;
 import backend.SessionHandler;
