@@ -407,7 +407,7 @@ public class SessionHandler {
             LOG.error(e);
         }
     }
-
+//***************************************************************************************************************************************************************
     /*
     *Genarate a timeline
     * @param input  String title String description LocalDateTime startTimeIn LocalDateTime stopTimeIn
@@ -473,22 +473,31 @@ public class SessionHandler {
             httpClient.getConnectionManager().shutdown();
         }
     }
-
+    //***************************************************************************************************************************
+    /*
+    *update the time line(config)
+    *@param String title, String description, LocalDateTime startDateTimeIn, LocalDateTime stopDateTimeIn
+     */
     public void updateTimeline(String title, String description, LocalDateTime startDateTimeIn, LocalDateTime stopDateTimeIn){
+        // server connection and communication initialize
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
 
+        //local date and time set as now
         LocalDateTime localDateTime = LocalDateTime.now();
 
         try {
 
+            // json object initialized and configed
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("timeline_title", title);
             jsonObject.put("timeline_description", description);
             jsonObject.put("timeline_start_datetime", startDateTimeIn);
             jsonObject.put("timeline_stop_datetime", stopDateTimeIn);
 
+            // request intialized and url inputed
             HttpPut request = new HttpPut("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/timelines/"+timeline_id+"/");
 
+            // request  configured
             request.addHeader("User-Agent", "Timeline-Client");
             request.addHeader("Accept", "application/json");
             request.addHeader("Content-Type", "application/json; charset=UTF-8");
@@ -496,48 +505,75 @@ public class SessionHandler {
             request.setEntity(new StringEntity(jsonObject.toString()));
             HttpResponse response = httpClient.execute(request);
 
+            // response code intialized and configured
             int response_code = response.getStatusLine().getStatusCode();
 
+             /*
+            * Active different  event when different http server code been responsed from the server
+            * two possible
+            * Success 2xx with 200 received (OK)
+            * With out Success 2xx and non- 200 received (issues detected)
+             */
+            //main purpose start
             if (response_code == 200){
                 LOG.info("Timeline updated!");
             }
 
+            //issue happend
             else {
                 LOG.info("Something went wrong when updating timeline.\n\tResponse code: "+response_code);
             }
         }
 
+        //exce?ption catched
         catch (Exception e) {
             LOG.error(e);
         }
 
         finally {
+            // server conection shut down
             httpClient.getConnectionManager().shutdown();
         }
     }
 
+//*************************************************************************************************************************
 
-
-
+/*
+*delete a time line from client  and server
+ */
     public void deleteTimeline(){
 
         try {
+            //url intialized
+            // server connection and communication initialized
             URL url = new URL("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/timelines/"+timeline_id+"/");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
+            //connection configed
             httpURLConnection.setRequestMethod("DELETE");
             httpURLConnection.setRequestProperty("User-Agent", "Timeline-Java-Client");
             httpURLConnection.setRequestProperty("Authorization", "Token " + token);
             System.out.println(httpURLConnection.getResponseCode());
+
+            //response code initialized
             int response_code = httpURLConnection.getResponseCode();
 
+             /*
+            * Active different  event when different http server code been responsed from the server
+            * two possible
+            * Success 2xx with 200 received (OK)
+            * With out Success 2xx and non- 200 received (issues detected)
+             */
+            //main purpose start
             // If response if OK!
             if ( response_code == 200) {
 
+                //intialize a empty box and ready to load
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
                 String inputLine;
                 StringBuffer response = new StringBuffer();
 
+                //load until nothing else can be loaded
                 while ((inputLine = bufferedReader.readLine()) != null) {
                     response.append(inputLine);
                 }
@@ -549,29 +585,31 @@ public class SessionHandler {
                 LOG.error("Not possible to remove timeline.\n\tResponse code: " + response_code);
             }
 
+            // connection treminated
             httpURLConnection.disconnect();
         }
 
+        //exce?tion catched and logged(url wrong formate)
         catch (MalformedURLException e){
             e.printStackTrace();
             LOG.error(e);
         }
 
+        //exaption catched and logged(IO)
         catch (IOException e){
             e.printStackTrace();
             LOG.error(e);
         }
     }
 
+//**************************************************************************************************************************************************
 
-
-
-
-
-
-
+/*
+*request a event from server
+ */
     public void getEvents(){
 
+        //reset the previous loaded timeline and ready to load new timeline
         if (eventArrayList.size() > 0){
             eventArrayList.clear();
         }
@@ -579,29 +617,44 @@ public class SessionHandler {
         Event[] eventList;
 
         try {
+            //url initialized
+            //server connection and communication initialized
             URL url = new URL("http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/events/.json");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
+            //
             ObjectMapper mapper = new ObjectMapper();
 
+            //config the connection
             httpURLConnection.setRequestMethod("GET");
             httpURLConnection.setRequestProperty("User-Agent", "Timeline-Java-Client");
             httpURLConnection.setRequestProperty("Authorization", "Token " + token);
 
+            //response code initialized
             int response_code = httpURLConnection.getResponseCode();
 
+            /*
+            * Active different  event when different http server code been responsed from the server
+            * two possible
+            * Success 2xx with 200 received (OK)
+            * With out Success 2xx and non- 200 received (issues detected)
+             */
+            //main purpose start
             if (response_code == 200) {
-
+               // empty box intialized and ready to get loaded
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
                 String inputLine;
                 StringBuffer response = new StringBuffer();
 
+                //load until nothing else can be loaded
                 while ((inputLine = bufferedReader.readLine()) != null) {
                     response.append(inputLine);
                 }
 
+                //read the what inside the box
                 eventList = mapper.readValue(response.toString(), Event[].class);
 
+                //
                 for (Event e : eventList) {
                     if (e.timeline == timeline_id) {
                         eventArrayList.add(e);
@@ -614,22 +667,30 @@ public class SessionHandler {
                 LOG.info("Something went wrong when trying to get events");
             }
 
+            //connection terminated
             httpURLConnection.disconnect();
         }
 
+        //wrong url formate detected and logged
         catch (MalformedURLException e){
             LOG.error(e);
         }
 
+        // exception caught and logged(IO)
         catch (IOException e){
             LOG.error(e);
         }
 
+        //other exception caughted
         catch (Exception e){
             LOG.error(e);
         }
     }
-
+    //******************************************************************************************************************
+    /*
+    *create a event
+    *@param String title, String description, LocalDateTime startDateTime, LocalDateTime stopDatetime
+     */
     public void createEvent(String title, String description, LocalDateTime startDateTime, LocalDateTime stopDatetime){
         String url = "http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/api/v1/events/";
 
