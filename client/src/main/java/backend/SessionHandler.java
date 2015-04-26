@@ -941,6 +941,11 @@ public class SessionHandler {
         return null;
     }
 
+
+
+    //end of the session handler
+    //*************************************************************************************************************
+    //****************************************************************************************************
     // Example usage
     public static void main(String[] args) {
         SessionHandler sessionHandler = new SessionHandler();
