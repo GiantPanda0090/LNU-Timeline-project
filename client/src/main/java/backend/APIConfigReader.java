@@ -9,6 +9,12 @@ package backend;
 * BACKEND
 */
 
+/* METHOD INDEX */
+/* USE CTRL+F TO SEARCH METHOD IN IDE */
+/*
+* public static API read()
+* public static void write(String host, String port)
+*/
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
@@ -21,7 +27,9 @@ public class APIConfigReader {
      */
     private static final Logger LOG = Logger.getLogger(SessionHandler.class);
 
-
+    /* METHOD */
+    //*******************************************************************************************************************
+    //******************************************************************************************************************
     /*
      * Read from config file
      */
@@ -51,6 +59,8 @@ public class APIConfigReader {
         return api;
     }
 
+    //*******************************************************************************************************************
+
     /*
      * Write to API config file
      * @param String hose, String port
@@ -72,7 +82,9 @@ public class APIConfigReader {
         }
 
     }
-
+    //end of the class
+//*********************************************************************
+// ********************************************************************
     // Example usage
     public static void main(String[] args) {
         API api = new APIConfigReader().read();
