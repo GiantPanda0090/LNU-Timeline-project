@@ -9,6 +9,30 @@ package backend;
 * BACKEND
 */
 
+/* METHOD INDEX */
+/* USE CTRL+F TO SEARCH METHOD IN IDE */
+/*
+ * public User getActiveUser()
+ * public int getTimeline_id()
+ * public void setTimeline_id(int timeline_id)
+ * public int getEvent_id()
+ * public void setEvent_id(int event_id)
+ * public Boolean loginUser(String username, String password)
+ * public void getUser(String username)
+ * public void updateUser(String firstname, String lastname)
+ * public void getTimelines()
+ * public void createTimeline(String title, String description, LocalDateTime startTimeIn, LocalDateTime stopTimeIn)
+ * public void updateTimeline(String title, String description, LocalDateTime startDateTimeIn, LocalDateTime stopDateTimeIn)
+ * public void deleteTimeline()
+ * public void getEvents()
+ * public void createEvent(String title, String description, LocalDateTime startDateTime, LocalDateTime stopDatetime)
+ * public void updateEvent(String title, String description, LocalDateTime startDateTimeIn, LocalDateTime stopDateTimeIn)
+ * public void deleteEvent()
+ * public void updateAPIconfig()
+ * public Timeline getActiveTimeline()
+ */
+
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.apache.http.HttpEntity;
@@ -80,7 +104,7 @@ public class SessionHandler {
     public User getActiveUser() {
         return user;
     }
-
+    //******************************************************************************************************************
     /*
          * timeline_id is the id of the currently selected timeline
          * This id is used to request events or if event is created
@@ -95,7 +119,7 @@ public class SessionHandler {
         LOG.info("Timeline_id updated.\n\tNew id: "+timeline_id+"\n\tTimeline start datetime: "+getActiveTimeline().getTimeline_start_datetime()+"\n\tTimeline stop datetime: "+getActiveTimeline().getTimeline_stop_datetime());
 
     }
-
+//******************************************************************************************************************
     /**
      * This is for handeling the current active event.
      */
@@ -106,7 +130,7 @@ public class SessionHandler {
     public void setEvent_id(int event_id) {
         this.event_id = event_id;
     }
-
+    //******************************************************************************************************************
     /*
      * An arraylist with the users timelines
      */
@@ -118,7 +142,9 @@ public class SessionHandler {
      */
     public ArrayList<Event> eventArrayList = new ArrayList<Event>();
 
-
+/*
+CONSTRUCTOR
+ */
     // Empty contructor
     public SessionHandler() {}
 
@@ -747,6 +773,7 @@ public class SessionHandler {
                 LOG.info("Something went wrong when trying to update event.\n\tResponse code: " +response_code);
             }
 
+            // currently deprecate
             /* Save this if we are handeling JSON responses later
             System.out.println(response);
             HttpEntity entity = response.getEntity();
