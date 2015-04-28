@@ -747,6 +747,7 @@ public class SessionHandler {
                 LOG.info("Something went wrong when trying to update event.\n\tResponse code: " +response_code);
             }
 
+            // currently deprecate
             /* Save this if we are handeling JSON responses later
             System.out.println(response);
             HttpEntity entity = response.getEntity();

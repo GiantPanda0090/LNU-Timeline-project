@@ -24,18 +24,22 @@ public class API {
 /*
 *  Return
 */
+    //reeturn current host
     public String getHost() {
         return host;
     }
 
+    //update the host by string host
     public void setHost(String host) {
         this.host = host;
     }
 
+    //return current port
     public String getPort() {
         return port;
     }
 
+    //update the port by string port
     public void setPort(String port) {
         this.port = port;
     }
