@@ -15,10 +15,6 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -211,6 +207,8 @@ public class CreateStage {
 
                     nameText.setFont(Font.font("Amble Cn", FontWeight.BOLD, 18));
                     nameText.setFill(Color.BLACK);
+
+
 
 
 
