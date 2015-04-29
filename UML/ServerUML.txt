@@ -1,0 +1,22 @@
+								     +--------------+
+								     |  Server UML  |
+								     +--------------+
+
+								     Database models
+
+          +-----------------------+      +------------------------------------+     +---------------------------------+	    +----------------+
+          | {s}                   |      | {s}                                |     | {s}                             |	    | {s}            |
+          | User                  |      | Timeline:                          |     | Event:                          |	    | Token          |
+          | (String)username      |      | (String)timeline_title             |     | (String)event_title             |	    | (User)username |
+          | (String)first_name    |      | (Text)timeline_description         |     | (Text)event_descriptio          |	    | (String)token  |
+          | (String)last_name     |      | (DateTime)timeline_start_datetime  |     | (DateTime)event_start_datetime  |	    +----------------+
+          | (String)email         |      | (DateTime)timeline_stop_datetime   |     | (DateTime)event_stop_datetime   |
+          | (Boolean)is_staff     |      | (User)user                         |     | (Timeline)timeline              |
+          | (Boolean)is_active    |      | (DateTime)created                  |     | (DateTime)created               |
+          | (DateTime)date_joined |      | (DateTime)modified                 |     | (DateTime)modified              |
+          +-----------------------+      +------------------------------------+     +---------------------------------+
+
+
+
+
+
