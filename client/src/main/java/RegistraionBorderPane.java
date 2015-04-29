@@ -2,7 +2,9 @@ import backend.UserRegistration;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -33,10 +35,14 @@ public class RegistraionBorderPane {
         VBox regBox = new VBox();
         regBox.setSpacing(12);
         regBox.setPadding(new Insets(20, 20, 20, 20));
-        final TextField newUserName = new TextField("Enter username");
-        final TextField firstPassword = new TextField("Enter password");
-        final TextField secondPassword = new TextField("Repeat password");
-        final TextField userEmail = new TextField("Email");
+        final TextField newUserName = new TextField();
+        newUserName.setPromptText("Enter Username");
+        final PasswordField firstPassword = new PasswordField();
+        firstPassword.setPromptText("Enter Password");
+        final PasswordField secondPassword = new PasswordField();
+        secondPassword.setPromptText("Repeat Password");
+        final TextField userEmail = new TextField();
+        userEmail.setPromptText("Email");
 
         HBox buttonBox = new HBox();
         buttonBox.setSpacing(12);
@@ -51,9 +57,21 @@ public class RegistraionBorderPane {
         signUp.setOnAction(new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent event) {
-                UserRegistration newUser = new UserRegistration();
-                newUser.register(newUserName.getText().toString(), firstPassword.getText().toString(), secondPassword.getText().toString(), userEmail.getText().toString());
-                regPop.hide();
+                if (firstPassword.getText().equals(secondPassword.getText())) {
+                    UserRegistration newUser = new UserRegistration();
+                    newUser.register(newUserName.getText().toString(), firstPassword.getText().toString(), secondPassword.getText().toString(), userEmail.getText().toString());
+                    regPop.hide();
+                }
+
+                     else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning!");
+                    alert.setHeaderText("Password Mismatch");
+                    alert.setContentText("Please enter passwords of the same value");
+                    alert.showAndWait();
+
+                         }
+
             }
         });
         signCancel.setOnAction(new EventHandler<ActionEvent>() {
