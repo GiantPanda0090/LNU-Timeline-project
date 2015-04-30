@@ -2,10 +2,7 @@ import backend.SessionHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -39,16 +36,28 @@ public class EventInfoPane {
         pane.setMinSize(300, 200);
         pane.getStylesheets().addAll(this.getClass().getResource("css.css").toExternalForm());
 
+
         // nodes
         final TextField titleTextField = new TextField();
         titleTextField.setText(sessionHandler.getActiveEvent().getEvent_title());
         final TextField descTextField = new TextField();
-        descTextField.setText(sessionHandler.getActiveEvent().getEvent_title());
+        descTextField.setText(sessionHandler.getActiveEvent().getEvent_description());
+
 
         final DatePicker firstDate = new DatePicker();
         firstDate.setValue(sessionHandler.getActiveEvent().getEvent_start_datetime().toLocalDate());
         final DatePicker secondDate = new DatePicker();
         secondDate.setValue(sessionHandler.getActiveEvent().getEvent_stop_datetime().toLocalDate());
+
+
+        // first label
+        final Label firstLbl = new Label("Start date");
+        firstLbl.setId("timelineLabel");
+
+        // second label
+        final Label secondLbl = new Label("End date");
+        secondLbl.setId("timelineLabel");
+
 
         Button saveButton = new Button("Save");
         Button deleteButton = new Button("Delete");
@@ -61,7 +70,7 @@ public class EventInfoPane {
         VBox vBox = new VBox();
         vBox.setPadding(new Insets(20, 20, 20, 20));
         vBox.setSpacing(20);
-        vBox.getChildren().addAll(titleTextField, descTextField, firstDate, secondDate,hBox);
+        vBox.getChildren().addAll(titleTextField, descTextField,firstLbl, firstDate,secondLbl, secondDate,hBox);
 
         pane.getChildren().addAll(vBox);
 

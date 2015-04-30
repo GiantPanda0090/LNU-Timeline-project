@@ -35,6 +35,7 @@ public class TimelineInfoPane {
         Pane pane = new Pane();
         pane.setMinSize(300, 200);
         //   pane.getStylesheets().addAll(this.getClass().getResource("color.css").toExternalForm());
+        pane.getStylesheets().add(this.getClass().getResource("popover.css").toExternalForm());
 
         // nodes
         final TextField titleTextField = new TextField();
@@ -47,6 +48,14 @@ public class TimelineInfoPane {
         firstDate.setValue(sessionHandler.getActiveTimeline().getTimeline_start_datetime().toLocalDate());
         final DatePicker secondDate = new DatePicker();
         secondDate.setValue(sessionHandler.getActiveTimeline().getTimeline_stop_datetime().toLocalDate());
+
+        // labels
+        final Label firstLbl = new Label("Start date");
+        firstLbl.setId("timelineLabel");
+
+        final Label secondLabel = new Label("End date");
+       secondLabel.setId("timelineLabel");
+
 
 
 
@@ -61,7 +70,7 @@ public class TimelineInfoPane {
         VBox vBox = new VBox();
         vBox.setPadding(new Insets(20, 20, 20, 20));
         vBox.setSpacing(20);
-        vBox.getChildren().addAll(userText,emailText,titleTextField, descTextField, firstDate, secondDate, hBox);
+        vBox.getChildren().addAll(userText,emailText,titleTextField,descTextField,firstLbl,firstDate,secondLabel,secondDate, hBox);
 
         pane.getChildren().addAll(vBox);
 

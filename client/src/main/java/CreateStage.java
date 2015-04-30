@@ -265,7 +265,7 @@ public class CreateStage {
         final PopOver newTimeorEvent = new PopOver();
         newTimeorEvent.setOpacity(0.99);
         CreateTimelinePane createTimelinePane = new CreateTimelinePane();
-        newTimeorEvent.setContentNode(createTimelinePane.createTimelinePane(newTimeorEvent, eventVBox, top, sessionHandler, timelineObservableList, timelineListView));
+        newTimeorEvent.setContentNode(createTimelinePane.createTimelinePane(newTimeorEvent, sessionHandler, timelineObservableList, timelineListView));
 
                         plusButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -289,7 +289,7 @@ public class CreateStage {
 
 
         timelineListView.setOnMousePressed(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent click) {
+           public void handle(MouseEvent click) {
                 if (click.getClickCount() == 2) {
                     //sessionHandler.setTimeline_id(Integer.parseInt(timelineListView.getSelectionModel().getSelectedItem().getId()));
                     PopOver popOver = new PopOver();
