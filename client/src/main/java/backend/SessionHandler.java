@@ -945,7 +945,8 @@ CONSTRUCTOR
     public Timeline getActiveTimeline(){
         //getTimelines();
         for(Timeline t: timelineArrayList){
-            if (timeline_id == t.getId()){
+           // if (timeline_id == t.getId()){
+               if (t.getId() == getTimeline_id()){
 
                 return t;
 
