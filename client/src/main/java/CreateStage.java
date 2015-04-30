@@ -173,7 +173,7 @@ public class CreateStage {
                 timelineListView.scrollTo(l);
             }
         });
-        final VBox stackBox = new VBox();
+     /*   final VBox stackBox = new VBox();
         final Pane stack = new Pane();
         timelineListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -230,13 +230,13 @@ public class CreateStage {
 
                 }
             }
-        });
+        });*/
         searchTextField.setFont(new Font("System", 12));
         searchTextField.setMaxWidth(200);
         searchTextField.setMaxHeight(30);
 
         bannerHBox.getChildren().addAll(logo,stackImg);
-        timelineVBox.getChildren().addAll(configbox, searchTextField1, timelineListView, stack);
+        timelineVBox.getChildren().addAll(configbox, searchTextField1, timelineListView);
         eventVBox.getChildren().addAll(eventScrollPane);
 
         bpane.setTop(bannerHBox);
@@ -284,6 +284,20 @@ public class CreateStage {
                 timelineView.drawDays();
                 timelineView.addEventsDay();
 
+            }
+        });
+
+
+        timelineListView.setOnMousePressed(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent click) {
+                if (click.getClickCount() == 2) {
+                    //sessionHandler.setTimeline_id(Integer.parseInt(timelineListView.getSelectionModel().getSelectedItem().getId()));
+                    PopOver popOver = new PopOver();
+                    TimelineInfoPane TimelineInfoPane = new TimelineInfoPane();
+                    Pane pane = TimelineInfoPane.TimelineInfoPane(sessionHandler, popOver, timelineObservableList, timelineListView);
+                    popOver.setContentNode(pane);
+                    popOver.show(timelineListView);
+                }
             }
         });
 
