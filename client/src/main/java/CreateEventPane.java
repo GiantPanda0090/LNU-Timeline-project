@@ -1,10 +1,14 @@
 import backend.SessionHandler;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.SVGPath;
 import org.controlsfx.control.PopOver;
 /*
 *1DV008 PROJECT IN COMPUTER SCIENCE
@@ -39,6 +43,8 @@ public class CreateEventPane {
 
         Button okButton = new Button("Create");
         Button cancelButton = new Button("Cancel");
+        ToolBar tb = new ToolBar();
+
 
         HBox hBox = new HBox();
         hBox.getChildren().addAll(okButton, cancelButton);
@@ -65,6 +71,29 @@ public class CreateEventPane {
                 popOver.hide();
             }
         });
+
+
+/*
+                final ColorPicker colorPicker = new ColorPicker();
+        tb.getItems().addAll( colorPicker);
+
+                final SVGPath svg = new SVGPath();
+                svg.setContent("M70,50 L90,50 L120,90 L150,50 L170,50"
+                        + "L210,90 L180,120 L170,110 L170,200 L70,200 L70,110 L60,120 L30,90"
+                        + "L70,50");
+        svg.setStroke(Color.DARKGREY);
+        svg.setStrokeWidth(2);
+        svg.setEffect(new DropShadow());
+        svg.setFill(colorPicker.getValue());
+
+
+                colorPicker.setOnAction(new EventHandler() {
+                    public void handle(Event t) {
+                        svg.setFill(colorPicker.getValue());
+                    }
+                });
+
+*/
         return pane;
 
     }
