@@ -166,14 +166,16 @@ public class CreateStage {
         final TextField searchTextField1 = new TextField();
         searchTextField1.setPromptText("Search your timeline");
 
-        searchTextField1.setOnAction(new EventHandler<ActionEvent>() {
+        searchTextField1.textProperty().addListener(
+                new ChangeListener() {
+                    public void changed(ObservableValue observable,
+                                        Object oldVal, Object newVal) {
+                        handleSearchByKey2((String)oldVal, (String)newVal);
+                    }
+                });
 
-            public void handle(ActionEvent event) {
-                Label l = timelineObservableList.get(johanSearch(searchTextField1.getText()));
-                timelineListView.scrollTo(l);
-            }
-        });
-     /*   final VBox stackBox = new VBox();
+        /*
+        final VBox stackBox = new VBox();
         final Pane stack = new Pane();
         timelineListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -207,8 +209,6 @@ public class CreateStage {
 
                     nameText.setFont(Font.font("Amble Cn", FontWeight.BOLD, 18));
                     nameText.setFill(Color.BLACK);
-
-
 
 
 
@@ -338,6 +338,43 @@ public class CreateStage {
         return index;
     }
 
+    public void handleSearchByKey2(String oldVal, String newVal) {
+        // If the number of characters in the text box is less than last time
+        // it must be because the user pressed delete
+        if ( oldVal != null && (newVal.length() < oldVal.length()) ) {
+            // Restore the lists original set of entries
+            // and start from the beginning
+            timelineListView.setItems( timelineObservableList );
+        }
+
+        // Break out all of the parts of the search text
+        // by splitting on white space
+        String[] parts = newVal.toUpperCase().split(" ");
+
+
+        // Filter out the entries that don't contain the entered text
+        ObservableList<Label> subentries = FXCollections.observableArrayList();
+        for ( Label entry: timelineListView.getItems() ) {
+            boolean match = true;
+
+            String entrytest =  entry.toString();
+
+            for ( String part: parts ) {
+                // The entry needs to contain all portions of the
+                // search string *but* in any order
+                if ( ! ((String) entrytest).toUpperCase().contains(part) ) {
+                    match = false;
+                    break;
+                }
+            }
+
+            if ( match ) {
+
+                subentries.add(entry);
+            }
+        }
+        timelineListView.setItems(subentries);
+    }
     private void reloadTimelines(ObservableList<String> observableList, SessionHandler sessionHandler){
         observableList.remove(0, observableList.size());
     }
