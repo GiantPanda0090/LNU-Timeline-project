@@ -7,7 +7,8 @@
     -fx-te: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
     -fx-background-size: stretch;
     -fx-background-repeat: no-repeat;*/
-    -fx-background-color: #f3f3f3;
+    -fx-background-color: #eeeaff;
+
 
 }
 #gpane{
@@ -18,6 +19,7 @@
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);*/
     -fx-background-color: #f3f3f3;
+
 }
 
 #scrollpane > .viewport {
@@ -33,16 +35,49 @@
     -fx-background-radius: 12px;
 }
 
-#listBox{
+#listBox {
     -fx-background-color: #ffffff;
     -fx-background-radius: 12px;
+    -fx-border-color: #75ff44;
+    -fx-border-radius: 20px;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    -fx-position: absolute;
+    -fx-width: 50px;
+    -fx-height: 50px;
+    -fx-padding: 13px;
+    -fx-color: #7af2ff;
+   -fx-background-image: url('http://www.hitskin.com/themes/15/94/95/i_background.png');
+  /*  -fx-text-align: center;
+    -fx--webkit-border-radius: 10px 10px 0 0;
+    -fx--moz-border-radius: 10px 10px 0 0;
+    -fx-border-radius: 10px 10px 0 0;
+    -fx-border-top: 1px solid #b9dedb;
+
+    -fx-webkit-box-shadow: 0px 0px 25px 25px rgba(0,0,0,0.2);
+    -fx-moz-box-shadow: 0px 0px 25px 25px rgba(0,0,0,0.2);
+    -fx-box-shadow: 0px 0px 25px 25px rgba(0,0,0,0.2);
+
+*/
+
 }
+
+#search{
+    -fx-background-image: url('http://icons.iconarchive.com/icons/kyo-tux/ginux/24/Start-Menu-Search-icon.png');
+    -fx-background-size: 20,20;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:left;
+}
+
+
+
 
 .label{
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #CC617C;
+    -fx-text-fill: #aa1006;
     -fx-opacity: 0.6;
+    -fx-text-alignment: center;
 }
 #regBtn{
     -fx-font-size: 15pt;
@@ -56,17 +91,30 @@
 }
 
 #labelLogo {
-    -fx-font-size: 30pt;
+    -fx-font-size: 35pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: rgba(29, 29, 29, 0.86);
+    -fx-text-fill: rgba(16, 0, 3, 0.86);
     -fx-opacity: 1.0;
+    -fx-text-alignment: right;
+    -fx-background-image: url('http://icons.iconarchive.com/icons/icons8/windows-8/32/Data-Timeline-icon.png');
+    -fx-background-size:35,20;
+
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
+
 }
+
 
 #createlabelLogo{
     -fx-font-size: 50pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: rgba(29, 29, 29, 0.86);
+    -fx-text-fill: rgba(16, 0, 3, 0.86);
     -fx-opacity: 1.0;
+    -fx-background-image: url('http://icons.iconarchive.com/icons/icons8/windows-8/32/Data-Timeline-icon.png');
+    -fx-background-size:45,30;
+
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
 }
 
 #newTimelineButton{
@@ -77,15 +125,40 @@
     -fx-font-size: 12pt;
     -fx-font-weight: bold;
     -fx-max-height: 15px;
-    -fx-background-color: #CC617C;
+    -fx-background-color: #a9e9ff;
     -fx-text-fill: #ffffff;
     -fx-opacity: 1.0;
+    -fx-background-image: url('http://icons.iconarchive.com/icons/icojam/blue-bits/24/math-add-icon.png');
+    -fx-background-size: 20,20;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:right;
 }
+#eventButton{
+    -fx-border-width: 2;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 11px;
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+    -fx-max-height: 15px;
+    -fx-background-color:#a9e9ff;
+    -fx-text-fill: #ffffff;
+    -fx-text-alignment: left;
+    -fx-opacity: 1.0;
+    -fx-background-image: url('http://icons.iconarchive.com/icons/icojam/blue-bits/24/math-add-icon.png');
+    -fx-background-size: 20,20;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:right;
+}
+
 
 #newTimelineButton:hover{
-    -fx-background-color: #e86198;
+    -fx-background-color: #77bce8;
 }
 
+
+#eventButton:hover {
+    -fx-background-color: #77bce8;
+}
 
 #labelID{
     -fx-font-size: 11pt;
@@ -96,7 +169,7 @@
 
 #timelineLabel {
     -fx-font-size: 18pt;
-    -fx-text-fill: #CC617C;
+    -fx-text-fill: #cc2733;
     -fx-opacity: 1;
 }
 
