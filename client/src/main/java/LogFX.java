@@ -1,6 +1,9 @@
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import org.apache.log4j.Logger;
+import org.controlsfx.dialog.Dialogs;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 
 
@@ -10,19 +13,38 @@ import java.time.LocalDateTime;
 public class LogFX {
     //field
     private static String classname;
-    //private TextArea console;
     private static Logger consoleLog;
     private static LocalDateTime time = LocalDateTime.now();
+
+
     //constructor
     public LogFX(String n){classname =n; consoleLog = Logger.getLogger(classname);}
 
-    /*method*/
+    /* Method */
     public static void loginfo(String info){
         consoleLog.info(info);
-        CreateStage.settext(time+"INFO"+classname +info);
+        String text = time + "INFO" + classname + info;
+        CreateStage.settext(text);
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setTitle("Information");
+        a.setHeaderText(info);
+        a.setResizable(true);
+        String version = System.getProperty("java.version");
+        String content = String.format(text);
+        a.setContentText(content);
+        a.showAndWait();
     }
     public static void logerror(Exception e){
         consoleLog.error(e);
-        CreateStage.settext(time+"INFO"+classname +e.getMessage());
+        String text = time + "ERROR" + classname +e.getMessage();
+        CreateStage.settext(text);
+        Alert a = new Alert(Alert.AlertType.ERROR);
+        a.setTitle("Error occured");
+        a.setHeaderText(e.getMessage());
+        a.setResizable(true);
+        String version = System.getProperty("java.version");
+        String content = String.format(text);
+        a.setContentText(content);
+        a.showAndWait();
     }
 }
