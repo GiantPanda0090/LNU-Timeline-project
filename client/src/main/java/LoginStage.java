@@ -95,7 +95,7 @@ public class LoginStage extends Application{
         password.setText("password");
         password.setMaxWidth(200);
 
-        final Button logIn = new Button("Log in");
+        final Button logIn = new Button("LogFX in");
         logIn.setMinWidth(200);
 
         final Label regBtn = new Label("Sign up");

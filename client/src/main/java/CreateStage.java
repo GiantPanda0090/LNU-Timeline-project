@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -46,6 +48,8 @@ public class CreateStage {
     double top = 0;
     ListView<Label> timelineListView = new ListView<Label>();
     ObservableList<Label> timelineObservableList = FXCollections.observableArrayList();
+
+    public static TextArea console = new TextArea();
 
     public Stage start() throws Exception {
         Stage stage = new Stage();
@@ -170,7 +174,7 @@ public class CreateStage {
                 new ChangeListener() {
                     public void changed(ObservableValue observable,
                                         Object oldVal, Object newVal) {
-                        handleSearchByKey2((String)oldVal, (String)newVal);
+                        handleSearchByKey2((String) oldVal, (String) newVal);
                     }
                 });
 
@@ -235,7 +239,7 @@ public class CreateStage {
         searchTextField.setMaxWidth(200);
         searchTextField.setMaxHeight(30);
 
-        bannerHBox.getChildren().addAll(logo,stackImg);
+        bannerHBox.getChildren().addAll(logo, stackImg);
         timelineVBox.getChildren().addAll(configbox, searchTextField1, timelineListView);
         eventVBox.getChildren().addAll(eventScrollPane);
 
@@ -246,6 +250,20 @@ public class CreateStage {
         stage.setScene(new Scene(bpane, 1280, 600));
         stage.setMinWidth(900);
         stage.setMinHeight(400);
+
+        Scene debugscene = new Scene(console,600,200);
+        final Stage debugstage = new Stage();
+        debugstage.setScene(debugscene);
+        final EventHandler<KeyEvent> keyEventHandler =
+                new EventHandler<KeyEvent>() {
+                    public void handle(final KeyEvent keyEvent) {
+                        if (keyEvent.getCode() == KeyCode.ESCAPE) {
+
+debugstage.show();
+
+                        }
+                    }
+                };
 
 
 
@@ -378,4 +396,7 @@ public class CreateStage {
     private void reloadTimelines(ObservableList<String> observableList, SessionHandler sessionHandler){
         observableList.remove(0, observableList.size());
     }
+  public static void settext(String info){
+      console.appendText(info);
+  }
 }

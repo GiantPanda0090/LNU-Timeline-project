@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
 public class APIConfigReader {
 
     /*
-     * Log intialized
+     * LogFX intialized
      */
     private static final Logger LOG = Logger.getLogger(SessionHandler.class);
 

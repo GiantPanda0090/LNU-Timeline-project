@@ -1,3 +1,4 @@
+
 package backend;
 /*
 *1DV008 PROJECT IN COMPUTER SCIENCE
@@ -34,7 +35,6 @@ package backend;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -56,7 +56,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
-
 
 
 /**
@@ -81,8 +80,9 @@ public class SessionHandler {
     /*
      * Logging
      */
-    private static final Logger LOG = Logger.getLogger(SessionHandler.class);
 
+    private static final Logger LOG = Logger.getLogger(SessionHandler.class);
+LogFX consollog = new LogFX(SessionHandler.class);
 
     /*
      * Reading from config file
