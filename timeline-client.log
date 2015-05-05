@@ -2139,3 +2139,6 @@ Response code:400
 	New id: 5
 2015-04-23 11:53:32 INFO  SessionHandler:461 - Events request succesfully
 2015-04-23 11:53:32 INFO  SessionHandler:461 - Events request succesfully
+2015-05-05 13:10:22 INFO  SessionHandler:203 - User successfully signed in
+2015-05-05 13:10:23 INFO  SessionHandler:268 - User found and assigned to user session
+2015-05-05 13:10:23 INFO  SessionHandler:422 - Timelines requested succesfully
