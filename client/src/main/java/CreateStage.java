@@ -24,7 +24,7 @@ import org.controlsfx.control.PopOver;
 *1DV008 PROJECT IN COMPUTER SCIENCE
 *TIMELINE PROJECT
 *MITIME
-*GROUP MEMBER JOHN JOHAN AUSTIN WASAN LI
+*GROUP MEMBER JOHN JOHAN AUSTIN MARKUS WASAN LI
 *VERSION CONTROL GITHUB
 * SOME CLASS GOT IT OWN OWNER AND CREATER
 */
@@ -177,6 +177,7 @@ public class CreateStage {
         /*
         final VBox stackBox = new VBox();
         final Pane stack = new Pane();
+
         timelineListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             public void handle(MouseEvent mouseEvent) {

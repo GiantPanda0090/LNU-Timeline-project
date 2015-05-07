@@ -21,6 +21,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -33,6 +34,8 @@ import org.controlsfx.control.PopOver;
 import javafx.animation.Animation;
 
 import java.awt.*;
+import java.awt.event.InputEvent;
+import java.io.IOException;
 
 /**
  * Created by Johan on 2015-04-20.
@@ -187,13 +190,21 @@ public class LoginStage extends Application{
         });
         */
 
+        logIn.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                                  public void handle(KeyEvent event) {
+                                      if (event.getCode() == KeyCode.ENTER) {
+
+                                      }
+                                  }
+                              });
+
 
         logIn.setOnAction(new EventHandler<ActionEvent>() {
 
 
             int x = 0;
 
-            public void shake(){
+            public void shake() {
 
 
                 Timeline timelineX = new Timeline(new KeyFrame(Duration.seconds(0.05), new EventHandler<ActionEvent>() {
@@ -201,15 +212,14 @@ public class LoginStage extends Application{
                     public void handle(ActionEvent t) {
 
 
-                            if (x == 0) {
+                        if (x == 0) {
 
-                                primaryStage.setX(primaryStage.getX() + 10);
-                                x = 1;
-                            } else {
-                                primaryStage.setX(primaryStage.getX() - 10);
-                                x = 0;
-                            }
-
+                            primaryStage.setX(primaryStage.getX() + 10);
+                            x = 1;
+                        } else {
+                            primaryStage.setX(primaryStage.getX() - 10);
+                            x = 0;
+                        }
 
 
                     }
@@ -221,6 +231,19 @@ public class LoginStage extends Application{
 
 
             }
+
+            public void Enter(KeyEvent event) {
+
+                if (event.getCode() == KeyCode.ENTER) {
+                    CreateStage create = new CreateStage(sessionHandler);
+                    try {
+                        create.start().show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                }
 
             public void handle(ActionEvent event) {
                 if (sessionHandler.loginUser(username.getText(), password.getText())) {
@@ -241,7 +264,15 @@ public class LoginStage extends Application{
             }
         });
 
+
     }
+            public void Enter(KeyEvent e)
+            {
+                if(e.getCode() == KeyCode.ENTER)
+                {
+                    System.out.println("jkb");
+                }
+            }
             /*
             public void enterK(KeyEvent e)
             {

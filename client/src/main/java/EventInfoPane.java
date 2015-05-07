@@ -11,7 +11,7 @@ import org.controlsfx.control.PopOver;
 *1DV008 PROJECT IN COMPUTER SCIENCE
 *TIMELINE PROJECT
 *MITIME
-*GROUP MEMBER JOHN JOHAN AUSTIN WASAN LI
+*GROUP MEMBER JOHN JOHAN AUSTIN MARKUS WASAN LI
 *VERSION CONTROL GITHUB
 * SOME CLASS GOT IT OWN OWNER AND CREATER
 */
@@ -33,7 +33,7 @@ public class EventInfoPane {
 
         // canvas
         Pane pane = new Pane();
-        pane.setMinSize(300, 200);
+        pane.setMinSize(100, 200);
         pane.getStylesheets().addAll(this.getClass().getResource("css.css").toExternalForm());
 
 
