@@ -1,15 +1,25 @@
 import backend.SessionHandler;
+import backend.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
+import javafx.scene.text.Font;
+import javafx.util.Callback;
 import org.controlsfx.control.PopOver;
+
+import javax.management.StringValueExp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 /*
 *1DV008 PROJECT IN COMPUTER SCIENCE
 *TIMELINE PROJECT
@@ -27,39 +37,105 @@ public class CreateEventPane {
     public Pane createEventPane(SessionHandler sessionHandlerIn, PopOver popOverIn, final ScrollPane scrollPaneIn){
         final SessionHandler sessionHandler = sessionHandlerIn;
         final PopOver popOver = popOverIn;
-        Pane pane = new Pane();
-        pane.setMinSize(300, 400);
-        pane.getStylesheets().addAll(this.getClass().getResource("css.css").toExternalForm());
+        popOver.setDetachedTitle("New Event");
+        final GridPane popPane = new GridPane();
+        popPane.setMinSize(300, 200);
+        popPane.getStylesheets().add(this.getClass().getResource("popover.css").toExternalForm());
 
         final TextField textFieldName = new TextField("Name your event");
+        final TextField  descTextField = new TextField("Event description...");
 
-        final DatePicker firstDatePicker = new DatePicker();
-        final DatePicker secondDatePicker = new DatePicker();
+        // first label
+        final Label firstLbl = new Label("Start date");
+        firstLbl.setId("timelineLabel");
 
-        Label firstLabel = new Label("First date");
-        Label secondLabel = new Label("End date");
+        // second label
+        final Label secondLabel = new Label("End date");
+        secondLabel.setId("timelineLabel");
 
-        final TextArea eventDescTextArea = new TextArea("Event description...");
+        // first datepicker
+       final DatePicker firstDate = new DatePicker();
+
+        // second datePicker
+        final DatePicker secondDate = new DatePicker();
+
+        Callback<DatePicker, DateCell> dayCellFactory =
+                new Callback<DatePicker, DateCell>() {
+
+                    public DateCell call(final DatePicker datePicker) {
+                        return new DateCell() {
+
+                            public void updateItem(LocalDate item, boolean empty) {
+                                super.updateItem(item, empty);
+
+                                if (item.isBefore(
+                                        LocalDate.from(sessionHandler.getActiveTimeline().getTimeline_start_datetime().toLocalDate()))
+                                        ) {
+                                    setDisable(true);
+                                    setStyle("-fx-background-color: #ffc0cb;");
+                                }
+
+                            }
+                        };
+                    }
+                };
+        firstDate.setDayCellFactory(dayCellFactory);
+
+
+
+        Callback<DatePicker, DateCell> dayCellFactory2 =
+                new Callback<DatePicker, DateCell>() {
+
+                    public DateCell call(final DatePicker datePicker) {
+                        return new DateCell() {
+
+                            public void updateItem(LocalDate item, boolean empty) {
+                                super.updateItem(item, empty);
+
+                                if (item.isAfter(
+                                        LocalDate.from(sessionHandler.getActiveTimeline().getTimeline_stop_datetime().toLocalDate()))
+                                        ) {
+                                    setDisable(true);
+                                    setStyle("-fx-background-color: #ffc0cb;");
+                                }
+
+                            }
+                        };
+                    }
+                };
+        secondDate.setDayCellFactory(dayCellFactory2);
+
+
+
 
         Button okButton = new Button("Create");
         Button cancelButton = new Button("Cancel");
-        ToolBar tb = new ToolBar();
 
 
         HBox hBox = new HBox();
-        hBox.getChildren().addAll(okButton, cancelButton);
+
+        hBox.setSpacing(20);
+        hBox.getChildren().addAll(okButton,cancelButton);
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(textFieldName, firstLabel, firstDatePicker, secondLabel, secondDatePicker, eventDescTextArea, hBox);
-        pane.getChildren().addAll(vBox);
+        vBox.setPadding(new Insets(20, 20, 20, 20));
+        vBox.setSpacing(20);
+        vBox.getChildren().addAll(textFieldName, descTextField,firstLbl, firstDate,secondLabel, secondDate, hBox);
+
+        popPane.getChildren().addAll(vBox);
 
         okButton.setOnAction(new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent event) {
                 popOver.hide();
-                sessionHandler.createEvent(textFieldName.getText(), eventDescTextArea.getText(), firstDatePicker.getValue().atStartOfDay(), secondDatePicker.getValue().atTime(23, 59));
+                sessionHandler.createEvent(textFieldName.getText(), descTextField.getText(), firstDate.getValue().atStartOfDay().plusDays(0), secondDate.getValue().atTime(23, 59).plusDays(0));
                 TimelineView timelineView = new TimelineView(sessionHandler, scrollPaneIn);
                 timelineView.drawDays();
                 timelineView.addEventsDay();
+                textFieldName.setText("Name your event");
+                descTextField.setText("Event description...");
+                firstDate.setValue(null);
+                secondDate.setValue(null);
+
             }
         });
 
@@ -67,34 +143,18 @@ public class CreateEventPane {
 
             public void handle(ActionEvent event) {
                 textFieldName.setText("Name your event");
-                eventDescTextArea.setText("Event description...");
+                descTextField.setText("Event description...");
+                firstDate.setValue(null);
+                secondDate.setValue(null);
                 popOver.hide();
             }
         });
 
 
-/*
-                final ColorPicker colorPicker = new ColorPicker();
-        tb.getItems().addAll( colorPicker);
-
-                final SVGPath svg = new SVGPath();
-                svg.setContent("M70,50 L90,50 L120,90 L150,50 L170,50"
-                        + "L210,90 L180,120 L170,110 L170,200 L70,200 L70,110 L60,120 L30,90"
-                        + "L70,50");
-        svg.setStroke(Color.DARKGREY);
-        svg.setStrokeWidth(2);
-        svg.setEffect(new DropShadow());
-        svg.setFill(colorPicker.getValue());
 
 
-                colorPicker.setOnAction(new EventHandler() {
-                    public void handle(Event t) {
-                        svg.setFill(colorPicker.getValue());
-                    }
-                });
 
-*/
-        return pane;
+        return popPane;
 
     }
 
