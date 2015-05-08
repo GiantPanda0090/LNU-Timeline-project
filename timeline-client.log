@@ -2159,3 +2159,9 @@ Response code:400
 2015-05-08 11:51:46 INFO  SessionHandler:204 - User successfully signed in
 2015-05-08 11:51:46 INFO  SessionHandler:269 - User found and assigned to user session
 2015-05-08 11:51:46 INFO  SessionHandler:423 - Timelines requested succesfully
+2015-05-08 11:53:57 INFO  SessionHandler:204 - User successfully signed in
+2015-05-08 11:53:57 INFO  SessionHandler:269 - User found and assigned to user session
+2015-05-08 11:53:57 INFO  SessionHandler:423 - Timelines requested succesfully
+2015-05-08 11:54:25 INFO  SessionHandler:204 - User successfully signed in
+2015-05-08 11:54:26 INFO  SessionHandler:269 - User found and assigned to user session
+2015-05-08 11:54:26 INFO  SessionHandler:423 - Timelines requested succesfully
