@@ -217,31 +217,31 @@ public class CreateStage {
 
                 if (!newTimeorEvent.isShowing()) {
                     newTimeorEvent.show(plusButton);
-                                }
-                            }
-                        });
-       top1 = 1;
-        timelineListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Label>() {
-            public void changed(ObservableValue<? extends Label> observable, Label oldValue, Label newValue) {
-                sessionHandler.setTimeline_id(Integer.parseInt(timelineListView.getSelectionModel().getSelectedItem().getId()));
-                TimelineView timelineView = new TimelineView(sessionHandler, eventScrollPane);
-                timelineView.drawDays();
-                timelineView.addEventsDay();
-
+                }
             }
         });
 
 
-       timelineListView.setOnMousePressed(new EventHandler<MouseEvent>() {
-           public void handle(MouseEvent click) {
-               if (click.getClickCount() == 2) {
-                   sessionHandler.setTimeline_id(Integer.parseInt(timelineListView.getSelectionModel().getSelectedItem().getId()));
-                   PopOver popOver = new PopOver();
-                   TimelineInfoPane TimelineInfoPane = new TimelineInfoPane();
-                   Pane pane = TimelineInfoPane.TimelineInfoPane(sessionHandler, popOver,timelineObservableList, timelineListView);
-                   popOver.setContentNode(pane);
-                   popOver.show(timelineListView);
-               }
+           timelineListView.setOnMousePressed(new EventHandler<MouseEvent>() {
+
+               public void handle(MouseEvent click) {
+                   if (click.getClickCount() == 1) {
+                       sessionHandler.setTimeline_id(Integer.parseInt(timelineListView.getSelectionModel().getSelectedItem().getId()));
+                       TimelineView timelineView = new TimelineView(sessionHandler, eventScrollPane);
+                       timelineView.drawDays();
+                       timelineView.addEventsDay();
+
+
+                   }
+                   else if(click.getClickCount() == 2) {
+                       sessionHandler.setTimeline_id(Integer.parseInt(timelineListView.getSelectionModel().getSelectedItem().getId()));
+                       PopOver popOver = new PopOver();
+                       TimelineInfoPane TimelineInfoPane = new TimelineInfoPane();
+                       Pane pane = TimelineInfoPane.TimelineInfoPane(sessionHandler, popOver, timelineObservableList, timelineListView, eventScrollPane);
+                       popOver.setContentNode(pane);
+                       popOver.show(timelineListView);
+
+                   }
            }
        });
 

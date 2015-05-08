@@ -13,14 +13,17 @@ import org.controlsfx.control.PopOver;
  * Created by Administrator on 30/04/2015.
  */
 public class TimelineInfoPane {
+
     public Pane TimelineInfoPane(SessionHandler sessionHandlerIn,PopOver popOverIn , final ObservableList<Label> observableListIn,
-                                 final ListView<Label> labelListView){
+                                 final ListView<Label> labelListView,ScrollPane mainTimelineScrollPaneIn){
 
         // sessionHandler from create stage
         final SessionHandler sessionHandler = sessionHandlerIn;
 
         final ListView<Label> timelineListView =  labelListView;
         final ObservableList<Label> observableList=  observableListIn;
+
+        final ScrollPane mainTimelineScrollPane = mainTimelineScrollPaneIn;
 
         // popover from create stage
         final PopOver popOver = popOverIn;
@@ -34,7 +37,7 @@ public class TimelineInfoPane {
         // canvas
         Pane pane = new Pane();
         pane.setMinSize(300, 200);
-        //   pane.getStylesheets().addAll(this.getClass().getResource("color.css").toExternalForm());
+
         pane.getStylesheets().add(this.getClass().getResource("popover.css").toExternalForm());
 
         // nodes
@@ -54,7 +57,7 @@ public class TimelineInfoPane {
         firstLbl.setId("timelineLabel");
 
         final Label secondLabel = new Label("End date");
-       secondLabel.setId("timelineLabel");
+        secondLabel.setId("timelineLabel");
 
 
 
@@ -79,9 +82,12 @@ public class TimelineInfoPane {
             public void handle(ActionEvent event) {
                 sessionHandler.updateTimeline(titleTextField.getText(), descTextField.getText(), firstDate.getValue().atStartOfDay(), secondDate.getValue().atTime(23, 59));
                 popOver.hide();
+
                 GenerateTimelineList list = new GenerateTimelineList();
                 list.generateTimelineList(sessionHandler, observableList, timelineListView);
-
+                TimelineView timelineView = new TimelineView(sessionHandler, mainTimelineScrollPane);
+                timelineView.drawDays();
+                timelineView.addEventsDay();
             }
         });
         cancelButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -94,8 +100,11 @@ public class TimelineInfoPane {
             public void handle(ActionEvent event) {
                 sessionHandler.deleteTimeline();
                 popOver.hide();
-                GenerateTimelineList list= new GenerateTimelineList();
+                GenerateTimelineList list = new GenerateTimelineList();
                 list.generateTimelineList(sessionHandler, observableList, timelineListView);
+
+
+
 
 
 
@@ -104,7 +113,6 @@ public class TimelineInfoPane {
 
 
         });
-
 
 
         return pane;
