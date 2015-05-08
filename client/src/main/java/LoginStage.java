@@ -86,9 +86,9 @@ public class LoginStage extends Application{
 
         login.setSpacing(20);
 
-        Label logo = new Label("MiTime");
+        Label logo = new Label(" MiTime");
         logo.setId("labelLogo");
-        logo.setPadding(new Insets(0, 0, 0, 20));
+        logo.setPadding(new Insets(0,-40,0, 20));
 
         final TextField username = new TextField("user");
         username.setFont(new Font("System", 18));

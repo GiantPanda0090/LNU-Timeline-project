@@ -7,7 +7,7 @@
     -fx-te: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
     -fx-background-size: stretch;
     -fx-background-repeat: no-repeat;*/
-    -fx-background-color: #f3f3f3;
+    -fx-background-color: #ffd5cd;
 
 }
 #gpane{
@@ -17,7 +17,8 @@
     -fx-background-size: 800 600;
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);*/
-    -fx-background-color: #f3f3f3;
+    -fx-background-color: #f3b3c3;
+
 }
 
 #scrollpane > .viewport {
@@ -41,7 +42,7 @@
 .label{
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #CC617C;
+    -fx-text-fill: #aa1006;
     -fx-opacity: 0.6;
 }
 #regBtn{
@@ -56,10 +57,17 @@
 }
 
 #labelLogo {
-    -fx-font-size: 30pt;
+    -fx-font-size: 35pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: rgba(29, 29, 29, 0.86);
+    -fx-text-fill: rgba(16, 0, 3, 0.86);
     -fx-opacity: 1.0;
+    -fx-background-image: url('http://icons.iconarchive.com/icons/icons8/windows-8/32/Data-Timeline-icon.png');
+    -fx-background-size:30,15;
+
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
+
+
 }
 
 #createlabelLogo{
@@ -77,13 +85,13 @@
     -fx-font-size: 12pt;
     -fx-font-weight: bold;
     -fx-max-height: 15px;
-    -fx-background-color: #CC617C;
+    -fx-background-color: #59AAA9;
     -fx-text-fill: #ffffff;
     -fx-opacity: 1.0;
 }
 
 #newTimelineButton:hover{
-    -fx-background-color: #e86198;
+    -fx-background-color:  #59AAA9;
 }
 
 
@@ -150,16 +158,33 @@
 }
 
 #dayViewPane{
-    -fx-background-color: #7dd9d8;
+    -fx-background-color: #49d9d3;
+    -fx-border-color: #2bacd9;
     -fx-opacity: 0.5;
+
+    -fx-background-radius: 12px;
+
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    -fx-position: absolute;
+
+    -fx-width: 50px;
+    -fx-height: 50px;
+    -fx-padding: 13px;
+    -fx-color: #3f7dc7;
+
+
+
+
 }
 
 #dayPane{
-    -fx-background-color: #ffffff;
+    -fx-background-color: #fdffff;
+    -fx-border-color: #75ff44;
 }
 
 #dayLabel{
-    -fx-text-fill: #b15964;
+    -fx-text-fill: #ac090d;
     -fx-opacity: 1.0;
     -fx-font-weight: bold;
 }
@@ -173,4 +198,5 @@
     -fx-background-color: #59AAA9;
     -fx-text-fill: #ffffff;
     -fx-opacity: 1.0;
+
 }

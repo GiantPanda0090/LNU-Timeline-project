@@ -24,7 +24,7 @@ import org.controlsfx.control.PopOver;
 *1DV008 PROJECT IN COMPUTER SCIENCE
 *TIMELINE PROJECT
 *MITIME
-*GROUP MEMBER JOHN JOHAN AUSTIN MARKUS WASAN LI
+*GROUP MEMBER JOHN JOHAN AUSTIN WASAN LI
 *VERSION CONTROL GITHUB
 * SOME CLASS GOT IT OWN OWNER AND CREATER
 */
@@ -37,7 +37,7 @@ import org.controlsfx.control.PopOver;
 public class CreateStage {
     SessionHandler sessionHandler;
     //TimelineView timelineView;
-    int top1;
+    int top1 ;
 
     public CreateStage(SessionHandler session){
         sessionHandler = session;
@@ -57,19 +57,20 @@ public class CreateStage {
         bpane.setId("gpanemain");
         bpane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
 
-        final Label logo = new Label("MiTime");
-        logo.setId("labelLogo");
+        final Label logo = new Label("  MiTime");
+        logo.setId("createlabelLogo");
 
         // Label
         Label label = new Label("MiTime");
         label.setId("createlabelLogo");
 
         // Plus icon (as of right now, just a button)
-        final Button plusButton = new Button("New");
+        final Button plusButton = new Button("New Timeline");
         plusButton.setId("newTimelineButton");
         plusButton.setMinWidth(100);
 
         final Button newEventButton = new Button("New Event");
+        newEventButton.setId("eventButton");
         newEventButton.setMinWidth(100);
 
         /**
@@ -85,14 +86,13 @@ public class CreateStage {
         eventScrollPane.setPrefHeight(600);
         //eventScrollPane.setFitToHeight(true);
 
-        // Config button (just a button right now)
-        final Button configButton = new Button("Reload timeline");
-        configButton.setId("configButton");
-        configButton.setMinWidth(100);
+
 
         // Search field
         TextField searchTextField = new TextField();
+
         searchTextField.setPromptText("Search your timeline");
+
 
         searchTextField.setFont(new Font("System", 12));
         searchTextField.setMaxWidth(200);
@@ -122,7 +122,7 @@ public class CreateStage {
         HBox configbox = new HBox();
         configbox.setPadding(new Insets(10, 10, 10, 10));
         configbox.setSpacing(5.0);
-        configbox.getChildren().addAll(plusButton, configButton, newEventButton);
+        configbox.getChildren().addAll(plusButton, newEventButton);
 
         GenerateTimelineList generateTimelineList = new GenerateTimelineList();
         generateTimelineList.generateTimelineList(sessionHandler, timelineObservableList, timelineListView);
@@ -164,8 +164,8 @@ public class CreateStage {
 
         // Search field
         final TextField searchTextField1 = new TextField();
-        searchTextField1.setPromptText("Search your timeline");
-
+        searchTextField1.setPromptText("  Search your timeline");
+        searchTextField1.setId("search");
         searchTextField1.textProperty().addListener(
                 new ChangeListener() {
                     public void changed(ObservableValue observable,
@@ -174,64 +174,7 @@ public class CreateStage {
                     }
                 });
 
-        /*
-        final VBox stackBox = new VBox();
-        final Pane stack = new Pane();
 
-        timelineListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-            public void handle(MouseEvent mouseEvent) {
-                if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
-
-                    stackBox.getChildren().clear();
-
-                    Text nameText = new Text(("Creator: " + String.valueOf(sessionHandler.getActiveUser().getFirst_name() + " " + (String.valueOf(sessionHandler.getActiveUser().getLast_name())))));
-                    Text userText = new Text("Username: " + String.valueOf(sessionHandler.getActiveUser().getUsername()));
-                    Text emailText = new Text(("E-Mail: " + String.valueOf(sessionHandler.getActiveUser().getEmail())));
-                    Text timelineTitleText = new Text(("Timeline Name: " + String.valueOf(sessionHandler.getActiveTimeline().getTimeline_title())));
-                    Text timelineStartText = new Text(("Timeline Start: " + String.valueOf(sessionHandler.getActiveTimeline().getTimeline_start_datetime())));
-                    Text timelineEndText = new Text(("Timeline End: " + String.valueOf(sessionHandler.getActiveTimeline().getTimeline_stop_datetime())));
-
-
-                    userText.setFont(Font.font("Amble Cn", FontWeight.BOLD, 18));
-                    userText.setFill(Color.BLACK);
-
-                    timelineTitleText.setFont(Font.font("Amble Cn", FontWeight.BOLD, 18));
-                    timelineTitleText.setFill(Color.BLACK);
-
-                    timelineEndText.setFont(Font.font("Amble Cn", FontWeight.BOLD, 18));
-                    timelineEndText.setFill(Color.BLACK);
-
-                    timelineStartText.setFont(Font.font("Amble Cn", FontWeight.BOLD, 18));
-                    timelineStartText.setFill(Color.BLACK);
-
-                    emailText.setFont(Font.font("Amble Cn", FontWeight.BOLD, 18));
-                    emailText.setFill(Color.BLACK);
-
-                    nameText.setFont(Font.font("Amble Cn", FontWeight.BOLD, 18));
-                    nameText.setFill(Color.BLACK);
-
-
-
-                    stackBox.getChildren().addAll(userText, nameText, timelineTitleText, timelineStartText, timelineEndText);
-                    stack.getChildren().addAll(stackBox);
-                    stackBox.setAlignment(Pos.CENTER_LEFT);
-                        // Right-justify nodes in stack
-
-
-
-
-                    //  Label userId = sessionHandler.getTimeline_id();
-
-
-
-                        //sessionHandler.getActiveTimeline();
-                        //userInfo.setHgrow(stack, Priority.ALWAYS);    // Give stack any extra space
-                        System.out.println("right clicked");
-
-                }
-            }
-        });*/
         searchTextField.setFont(new Font("System", 12));
         searchTextField.setMaxWidth(200);
         searchTextField.setMaxHeight(30);
@@ -268,16 +211,16 @@ public class CreateStage {
         CreateTimelinePane createTimelinePane = new CreateTimelinePane();
         newTimeorEvent.setContentNode(createTimelinePane.createTimelinePane(newTimeorEvent, sessionHandler, timelineObservableList, timelineListView));
 
-                        plusButton.setOnAction(new EventHandler<ActionEvent>() {
+        plusButton.setOnAction(new EventHandler<ActionEvent>() {
 
-                            public void handle(ActionEvent event) {
+            public void handle(ActionEvent event) {
 
-                                if (!newTimeorEvent.isShowing()) {
-                                    newTimeorEvent.show(plusButton);
+                if (!newTimeorEvent.isShowing()) {
+                    newTimeorEvent.show(plusButton);
                                 }
                             }
                         });
-        top1 = 1;
+       top1 = 1;
         timelineListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Label>() {
             public void changed(ObservableValue<? extends Label> observable, Label oldValue, Label newValue) {
                 sessionHandler.setTimeline_id(Integer.parseInt(timelineListView.getSelectionModel().getSelectedItem().getId()));
@@ -289,18 +232,19 @@ public class CreateStage {
         });
 
 
-        timelineListView.setOnMousePressed(new EventHandler<MouseEvent>() {
+       timelineListView.setOnMousePressed(new EventHandler<MouseEvent>() {
            public void handle(MouseEvent click) {
-                if (click.getClickCount() == 2) {
-                    //sessionHandler.setTimeline_id(Integer.parseInt(timelineListView.getSelectionModel().getSelectedItem().getId()));
-                    PopOver popOver = new PopOver();
-                    TimelineInfoPane TimelineInfoPane = new TimelineInfoPane();
-                    Pane pane = TimelineInfoPane.TimelineInfoPane(sessionHandler, popOver, timelineObservableList, timelineListView);
-                    popOver.setContentNode(pane);
-                    popOver.show(timelineListView);
-                }
-            }
-        });
+               if (click.getClickCount() == 2) {
+                   sessionHandler.setTimeline_id(Integer.parseInt(timelineListView.getSelectionModel().getSelectedItem().getId()));
+                   PopOver popOver = new PopOver();
+                   TimelineInfoPane TimelineInfoPane = new TimelineInfoPane();
+                   Pane pane = TimelineInfoPane.TimelineInfoPane(sessionHandler, popOver,  eventScrollPane,timelineObservableList, timelineListView);
+                   popOver.setContentNode(pane);
+                   popOver.show(timelineListView);
+               }
+           }
+       });
+
 
         final PopOver newEvent = new PopOver();
         CreateEventPane createEventPane = new CreateEventPane();
@@ -311,18 +255,13 @@ public class CreateStage {
                 if (!newEvent.isShowing()) {
                     newEvent.show(newEventButton);
                 }
+
             }
         });
 
 
-        final PopOver updateEventPopOver = new PopOver();
-        configButton.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-                System.out.println("Not in use");
-                EventInfoPane eventInfoPane = new EventInfoPane();
-                eventInfoPane.eventInfoPane(sessionHandler, eventScrollPane, updateEventPopOver);
-            }
-        });
+
+
 
 
         return stage;
