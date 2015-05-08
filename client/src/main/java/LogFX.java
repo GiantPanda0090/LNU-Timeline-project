@@ -22,9 +22,11 @@ public class LogFX {
 
     /* Method */
     public static void loginfo(String info){
+
         consoleLog.info(info);
         String text = time + "INFO" + classname + info;
         CreateStage.settext(text);
+
         Alert a = new Alert(Alert.AlertType.INFORMATION);
         a.setTitle("Information");
         a.setHeaderText(info);
@@ -33,11 +35,15 @@ public class LogFX {
         String content = String.format(text);
         a.setContentText(content);
         a.showAndWait();
+
     }
+
     public static void logerror(Exception e){
         consoleLog.error(e);
+
         String text = time + "ERROR" + classname +e.getMessage();
         CreateStage.settext(text);
+
         Alert a = new Alert(Alert.AlertType.ERROR);
         a.setTitle("Error occured");
         a.setHeaderText(e.getMessage());
@@ -46,5 +52,7 @@ public class LogFX {
         String content = String.format(text);
         a.setContentText(content);
         a.showAndWait();
+
+
     }
 }

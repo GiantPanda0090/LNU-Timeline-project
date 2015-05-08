@@ -82,7 +82,8 @@ public class SessionHandler {
      */
 
     private static final Logger LOG = Logger.getLogger(SessionHandler.class);
-LogFX consollog = new LogFX(SessionHandler.class);
+
+ //LogFX consollog = new LogFX(SessionHandler.class);
 
     /*
      * Reading from config file

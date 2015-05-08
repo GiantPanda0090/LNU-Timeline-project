@@ -398,5 +398,6 @@ debugstage.show();
     }
   public static void settext(String info){
       console.appendText(info);
+
   }
 }

@@ -2142,3 +2142,14 @@ Response code:400
 2015-05-05 13:10:22 INFO  SessionHandler:203 - User successfully signed in
 2015-05-05 13:10:23 INFO  SessionHandler:268 - User found and assigned to user session
 2015-05-05 13:10:23 INFO  SessionHandler:422 - Timelines requested succesfully
+2015-05-05 15:22:39 INFO  SessionHandler:204 - User successfully signed in
+2015-05-05 15:22:39 INFO  SessionHandler:269 - User found and assigned to user session
+2015-05-05 15:22:40 INFO  SessionHandler:423 - Timelines requested succesfully
+2015-05-08 11:48:14 INFO  SessionHandler:204 - User successfully signed in
+2015-05-08 11:48:15 INFO  SessionHandler:269 - User found and assigned to user session
+2015-05-08 11:48:49 INFO  SessionHandler:204 - User successfully signed in
+2015-05-08 11:48:50 INFO  SessionHandler:269 - User found and assigned to user session
+2015-05-08 11:48:50 INFO  SessionHandler:423 - Timelines requested succesfully
+2015-05-08 11:49:24 INFO  SessionHandler:204 - User successfully signed in
+2015-05-08 11:49:24 INFO  SessionHandler:269 - User found and assigned to user session
+2015-05-08 11:49:24 INFO  SessionHandler:423 - Timelines requested succesfully
