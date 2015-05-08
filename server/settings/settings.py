@@ -54,7 +54,6 @@ INSTALLED_APPS = (
 
     'github',
 
-    'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (
