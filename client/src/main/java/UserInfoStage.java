@@ -1,24 +1,29 @@
-import backend.API;
-import backend.APIConfigReader;
 import backend.SessionHandler;
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.Optional;
 /*
 *1DV008 PROJECT IN COMPUTER SCIENCE
 *TIMELINE PROJECT
@@ -51,7 +56,7 @@ public class UserInfoStage {
         // Gridpane and settings for gridpane
         GridPane gridPane = new GridPane();
         gridPane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
-        gridPane.setPrefSize(350, 250);
+        gridPane.setPrefSize(400, 250);
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(10);
         gridPane.setVgap(10);
@@ -73,6 +78,7 @@ public class UserInfoStage {
 
         final Button saveButton = new Button("Save");
         final Button cancelButton = new Button("Cancel");
+        final Button logoutButton = new Button("Log-Out");
 
 
         gridPane.add(headerText, 1, 0);
@@ -86,8 +92,9 @@ public class UserInfoStage {
         gridPane.add(emailTextField, 1, 4);
         gridPane.add(joinedText, 0, 5);
         gridPane.add(joinedTextField, 1, 5);
-        gridPane.add(saveButton, 0, 8);
+        gridPane.add(saveButton, 2, 8);
         gridPane.add(cancelButton, 1, 8);
+        gridPane.add(logoutButton,0,8 );
 
 
 
@@ -111,6 +118,36 @@ public class UserInfoStage {
             }
         });
 
+        logoutButton.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("User: " + String.valueOf(sessionHandler.getActiveUser().getFirst_name()));
+                alert.setHeaderText("But we were having so much fun!");
+                alert.setContentText("Are you sure you want to log-out?");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+
+
+
+
+                    Platform.exit();
+                    Application.launch(LoginStage.class);
+
+
+
+
+
+                } else {
+                    alert.close();
+                }
+
+
+
+            }
+        });
+
 
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
@@ -127,6 +164,30 @@ public class UserInfoStage {
         root.getChildren().add(gridPane);
         stage.setScene(scene);
         return stage;
+    }
+
+
+
+    public void restartApplication() throws IOException, URISyntaxException {
+        final String javaBin = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
+        String path = LoginStage.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+        String decodedPath = URLDecoder.decode(path, "UTF-8");
+        final File currentJar = new File(decodedPath);
+       // final File currentJar = new File(LoginStage.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+
+  /* is it a jar file? */
+        if(!currentJar.getName().endsWith(".jar"))
+            return;
+
+  /* Build command: java -jar application.jar */
+        final ArrayList<String> command = new ArrayList<String>();
+        command.add(javaBin);
+        command.add(" -jar ");
+        command.add(currentJar.getPath());
+
+        final ProcessBuilder builder = new ProcessBuilder(command);
+        builder.start();
+        System.exit(0);
     }
 
 /*
