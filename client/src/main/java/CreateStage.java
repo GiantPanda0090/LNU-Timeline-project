@@ -238,7 +238,7 @@ public class CreateStage {
                    sessionHandler.setTimeline_id(Integer.parseInt(timelineListView.getSelectionModel().getSelectedItem().getId()));
                    PopOver popOver = new PopOver();
                    TimelineInfoPane TimelineInfoPane = new TimelineInfoPane();
-                   Pane pane = TimelineInfoPane.TimelineInfoPane(sessionHandler, popOver,  eventScrollPane,timelineObservableList, timelineListView);
+                   Pane pane = TimelineInfoPane.TimelineInfoPane(sessionHandler, popOver,timelineObservableList, timelineListView);
                    popOver.setContentNode(pane);
                    popOver.show(timelineListView);
                }
