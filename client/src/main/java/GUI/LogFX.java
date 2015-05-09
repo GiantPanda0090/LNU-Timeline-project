@@ -20,7 +20,7 @@ public class LogFX {
     public LogFX(String n){classname =n; consoleLog = Logger.getLogger(classname);}
 
     /* Method */
-    public static void loginfo(String info){
+    public static void info(String info){
 
         consoleLog.info(info);
         String text = time + "INFO" + classname + info;
@@ -37,7 +37,7 @@ public class LogFX {
 
     }
 
-    public static void logerror(Exception e){
+    public static void error(Exception e){
         consoleLog.error(e);
 
         String text = time + "ERROR" + classname +e.getMessage();
@@ -46,6 +46,24 @@ public class LogFX {
         Alert a = new Alert(Alert.AlertType.ERROR);
         a.setTitle("Error occured");
         a.setHeaderText(e.getMessage());
+        a.setResizable(true);
+        String version = System.getProperty("java.version");
+        String content = String.format(text);
+        a.setContentText(content);
+        a.showAndWait();
+
+
+    }
+
+    public static void strerror(String e){
+        consoleLog.error(e);
+
+        String text = time + "ERROR" + classname ;
+        CreateStage.settext(text);
+
+        Alert a = new Alert(Alert.AlertType.ERROR);
+        a.setTitle("Error occured");
+        a.setHeaderText(e);
         a.setResizable(true);
         String version = System.getProperty("java.version");
         String content = String.format(text);

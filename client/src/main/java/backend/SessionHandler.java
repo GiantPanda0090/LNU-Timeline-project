@@ -34,6 +34,7 @@ package backend;
  */
 
 
+import GUI.LogFX;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -81,7 +82,8 @@ public class SessionHandler {
      * Logging
      */
 
-    private static final Logger LOG = Logger.getLogger(SessionHandler.class);
+    //private static final Logger LOG = Logger.getLogger(SessionHandler.class);
+    LogFX LOG = new LogFX("SessionHandler.class");
 
  //LogFX consollog = new LogFX(SessionHandler.class);
 
@@ -289,7 +291,7 @@ CONSTRUCTOR
             }
 // eroor detected.......... http response code are not 200
             else {
-                LOG.error("Something went wrong when trying to get user.\n\t Response code: " + response_code);
+                LOG.strerror("Something went wrong when trying to get user.\n\t Response code: " + response_code);
             }
             httpURLConnection.disconnect();
         }
@@ -424,7 +426,7 @@ CONSTRUCTOR
             }
             // If respones is NOT OK!
             else {
-                LOG.error("Not possible to get timelines.\n\tResponse code: " + response_code);
+                LOG.strerror("Not possible to get timelines.\n\tResponse code: " + response_code);
             }
 
             //  connection terminated
@@ -618,7 +620,7 @@ CONSTRUCTOR
             }
             // If respones is NOT OK!
             else {
-                LOG.error("Not possible to remove timeline.\n\tResponse code: " + response_code);
+                LOG.strerror("Not possible to remove timeline.\n\tResponse code: " + response_code);
             }
 
             // connection treminated

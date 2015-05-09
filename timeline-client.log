@@ -2165,3 +2165,11 @@ Response code:400
 2015-05-08 11:54:25 INFO  SessionHandler:204 - User successfully signed in
 2015-05-08 11:54:26 INFO  SessionHandler:269 - User found and assigned to user session
 2015-05-08 11:54:26 INFO  SessionHandler:423 - Timelines requested succesfully
+2015-05-08 22:34:22 INFO  SessionHandler:204 - User successfully signed in
+2015-05-08 22:34:23 INFO  SessionHandler:269 - User found and assigned to user session
+2015-05-08 22:34:23 INFO  SessionHandler:423 - Timelines requested succesfully
+2015-05-08 22:34:27 INFO  SessionHandler:120 - Timeline_id updated.
+	New id: 3
+	Timeline start datetime: 2015-05-01T00:00
+	Timeline stop datetime: 2015-05-13T23:59
+2015-05-08 22:34:27 INFO  SessionHandler:699 - Events request succesfully
