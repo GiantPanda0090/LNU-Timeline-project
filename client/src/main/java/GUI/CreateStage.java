@@ -240,19 +240,31 @@ public class CreateStage {
         timelineVBox.getChildren().addAll(configbox, searchTextField1, timelineListView);
         eventVBox.getChildren().addAll(eventScrollPane);
 
+        console.setPrefWidth(1400);
+        console.setPrefHeight(100);
+
+        final HBox debugbutbox = new HBox();
+        debugbutbox.setPadding(new Insets(10, 10, 10, 10));
+        debugbutbox.setSpacing(5.0);
+        debugbutbox.getChildren().add(console);
+
+        bpane.setBottom(debugbutbox);
         bpane.setTop(bannerHBox);
         bpane.setLeft(timelineVBox);
         bpane.setCenter(eventVBox);
-
         stage.setScene(new Scene(bpane, 1280, 600));
         stage.setMinWidth(900);
         stage.setMinHeight(400);
 
+
+
+        //debugpopover.show();
+        /*
         Scene debugscene = new Scene(console,600,200);
         final Stage debugstage = new Stage();
         debugstage.setScene(debugscene);
         debugstage.show();
-
+*/
 
 
         /**

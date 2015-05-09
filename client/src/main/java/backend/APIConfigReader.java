@@ -15,6 +15,7 @@ package backend;
 * public static API read()
 * public static void write(String host, String port)
 */
+import GUI.LogFX;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
@@ -25,8 +26,10 @@ public class APIConfigReader {
     /*
      * LogFX intialized
      */
-    private static final Logger LOG = Logger.getLogger(SessionHandler.class);
+    //depricated
+   //private static final Logger LOG = Logger.getLogger(SessionHandler.class);
 
+   public static final LogFX LOG = new LogFX("APIConfigReader.class");
     /* METHOD */
     //*******************************************************************************************************************
     //******************************************************************************************************************

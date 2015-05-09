@@ -83,7 +83,7 @@ public class SessionHandler {
      */
 
     //private static final Logger LOG = Logger.getLogger(SessionHandler.class);
-    LogFX LOG = new LogFX("SessionHandler.class");
+    public static LogFX LOG = new LogFX("SessionHandler.class");
 
  //LogFX consollog = new LogFX(SessionHandler.class);
 
