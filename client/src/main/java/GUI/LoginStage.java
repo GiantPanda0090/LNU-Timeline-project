@@ -15,10 +15,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -45,6 +44,8 @@ public class LoginStage extends Application{
      * and operate on that.
      */
     public final SessionHandler sessionHandler = new SessionHandler();
+
+    public final TextArea console = new TextArea();
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
@@ -98,6 +99,7 @@ public class LoginStage extends Application{
 
         final Button configButton = new Button("API");
 
+
         insideLogin.getChildren().addAll(regBtn, configButton);
         login.getChildren().addAll(logo, username, password, logIn, insideLogin);
 
@@ -113,6 +115,27 @@ public class LoginStage extends Application{
         primaryStage.setMaxWidth(450);
         primaryStage.setResizable(false);
 
+        /*
+        Scene debugscene = new Scene(console,600,200);
+        final Stage debugstage = new Stage();
+        debugstage.setScene(debugscene);
+        debugstage.show();
+        */
+/*
+        Scene debugscene = new Scene(console,600,200);
+        final Stage debugstage = new Stage();
+        debugstage.setScene(debugscene);
+        final EventHandler<KeyEvent> keyEventHandler =
+                new EventHandler<KeyEvent>() {
+                    public void handle(final KeyEvent keyEvent) {
+                        if (keyEvent.getCode() == KeyCode.ESCAPE) {
+
+                            debugstage.show();
+
+                        }
+                    }
+                };
+                */
 
         /**
          * DATA FOR REGISTRATION
@@ -236,6 +259,12 @@ public class LoginStage extends Application{
         });
 
     }
+/*
+    public static void settext(String info){
+        console.appendText(info);
+
+    }
+*/
             /*
             public void enterK(KeyEvent e)
             {

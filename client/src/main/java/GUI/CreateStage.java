@@ -251,16 +251,7 @@ public class CreateStage {
         Scene debugscene = new Scene(console,600,200);
         final Stage debugstage = new Stage();
         debugstage.setScene(debugscene);
-        final EventHandler<KeyEvent> keyEventHandler =
-                new EventHandler<KeyEvent>() {
-                    public void handle(final KeyEvent keyEvent) {
-                        if (keyEvent.getCode() == KeyCode.ESCAPE) {
-
-debugstage.show();
-
-                        }
-                    }
-                };
+        debugstage.show();
 
 
 

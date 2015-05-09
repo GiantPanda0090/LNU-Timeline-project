@@ -24,8 +24,8 @@ public class LogFX {
 
         consoleLog.info(info);
         String text = time + "INFO" + classname + info;
-        CreateStage.settext(text);
-
+        CreateStage.settext(text+ "\n");
+/*
         Alert a = new Alert(Alert.AlertType.INFORMATION);
         a.setTitle("Information");
         a.setHeaderText(info);
@@ -34,15 +34,17 @@ public class LogFX {
         String content = String.format(text);
         a.setContentText(content);
         a.showAndWait();
-
+*/
     }
 
     public static void error(Exception e){
         consoleLog.error(e);
 
         String text = time + "ERROR" + classname +e.getMessage();
-        CreateStage.settext(text);
-
+        CreateStage.settext(text+ "\n");
+/*
+debug method
+ */
         Alert a = new Alert(Alert.AlertType.ERROR);
         a.setTitle("Error occured");
         a.setHeaderText(e.getMessage());
@@ -59,7 +61,7 @@ public class LogFX {
         consoleLog.error(e);
 
         String text = time + "ERROR" + classname ;
-        CreateStage.settext(text);
+        CreateStage.settext(text+ "\n");
 
         Alert a = new Alert(Alert.AlertType.ERROR);
         a.setTitle("Error occured");
