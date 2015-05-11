@@ -2517,3 +2517,149 @@ Response code:400
 2015-05-09 10:35:37 INFO  class:25 - Events request succesfully
 2015-05-09 10:35:50 INFO  class:25 - Event created successfully!
 2015-05-09 10:35:50 INFO  class:25 - Events request succesfully
+2015-05-11 14:05:35 INFO  class:25 - User successfully signed in
+2015-05-11 14:05:36 INFO  class:25 - User found and assigned to user session
+2015-05-11 14:05:36 INFO  class:25 - Timelines requested succesfully
+2015-05-11 14:05:39 INFO  class:25 - Timeline_id updated.
+	New id: 18
+	Timeline start datetime: 2015-05-01T00:00
+	Timeline stop datetime: 2015-05-22T23:59
+2015-05-11 14:05:39 INFO  class:25 - Events request succesfully
+2015-05-11 14:05:41 INFO  class:25 - Timeline_id updated.
+	New id: 17
+	Timeline start datetime: 2015-05-12T00:00
+	Timeline stop datetime: 2015-05-12T23:59
+2015-05-11 14:05:41 INFO  class:25 - Events request succesfully
+2015-05-11 14:05:42 INFO  class:25 - Timeline_id updated.
+	New id: 14
+	Timeline start datetime: 2015-05-16T00:00
+	Timeline stop datetime: 2015-05-21T23:59
+2015-05-11 14:05:42 INFO  class:25 - Events request succesfully
+2015-05-11 14:05:43 INFO  class:25 - Timeline_id updated.
+	New id: 22
+	Timeline start datetime: 2015-04-30T00:00
+	Timeline stop datetime: 2015-05-14T23:59
+2015-05-11 14:05:43 INFO  class:25 - Events request succesfully
+2015-05-11 14:05:45 INFO  class:25 - Timeline_id updated.
+	New id: 18
+	Timeline start datetime: 2015-05-01T00:00
+	Timeline stop datetime: 2015-05-22T23:59
+2015-05-11 14:05:45 INFO  class:25 - Events request succesfully
+2015-05-11 14:05:46 INFO  class:25 - Timeline_id updated.
+	New id: 4
+	Timeline start datetime: 2015-04-29T00:00
+	Timeline stop datetime: 2015-05-01T23:59
+2015-05-11 14:05:46 INFO  class:25 - Events request succesfully
+2015-05-11 14:05:46 INFO  class:25 - Timeline_id updated.
+	New id: 18
+	Timeline start datetime: 2015-05-01T00:00
+	Timeline stop datetime: 2015-05-22T23:59
+2015-05-11 14:05:46 INFO  class:25 - Events request succesfully
+2015-05-11 14:05:49 INFO  class:25 - Timeline_id updated.
+	New id: 17
+	Timeline start datetime: 2015-05-12T00:00
+	Timeline stop datetime: 2015-05-12T23:59
+2015-05-11 14:05:49 INFO  class:25 - Events request succesfully
+2015-05-11 14:06:06 INFO  class:25 - Timeline_id updated.
+	New id: 4
+	Timeline start datetime: 2015-04-29T00:00
+	Timeline stop datetime: 2015-05-01T23:59
+2015-05-11 14:06:06 INFO  class:25 - Events request succesfully
+2015-05-11 14:06:07 INFO  class:25 - Timeline_id updated.
+	New id: 17
+	Timeline start datetime: 2015-05-12T00:00
+	Timeline stop datetime: 2015-05-12T23:59
+2015-05-11 14:06:07 INFO  class:25 - Events request succesfully
+2015-05-11 14:06:08 INFO  class:25 - Timeline_id updated.
+	New id: 14
+	Timeline start datetime: 2015-05-16T00:00
+	Timeline stop datetime: 2015-05-21T23:59
+2015-05-11 14:06:08 INFO  class:25 - Events request succesfully
+2015-05-11 16:39:49 INFO  class:25 - User successfully signed in
+2015-05-11 16:39:50 INFO  class:25 - User found and assigned to user session
+2015-05-11 16:39:50 INFO  class:25 - Timelines requested succesfully
+2015-05-11 16:40:01 INFO  class:25 - Timeline_id updated.
+	New id: 26
+	Timeline start datetime: 2015-05-01T00:00
+	Timeline stop datetime: 2015-10-01T23:59
+2015-05-11 16:40:02 INFO  class:25 - Events request succesfully
+2015-05-11 16:40:02 INFO  class:25 - Timeline_id updated.
+	New id: 22
+	Timeline start datetime: 2015-04-30T00:00
+	Timeline stop datetime: 2015-05-14T23:59
+2015-05-11 16:40:02 INFO  class:25 - Events request succesfully
+2015-05-11 16:40:04 INFO  class:25 - Timeline_id updated.
+	New id: 14
+	Timeline start datetime: 2015-05-16T00:00
+	Timeline stop datetime: 2015-05-21T23:59
+2015-05-11 16:40:04 INFO  class:25 - Events request succesfully
+2015-05-11 16:40:04 INFO  class:25 - Timeline_id updated.
+	New id: 17
+	Timeline start datetime: 2015-05-12T00:00
+	Timeline stop datetime: 2015-05-12T23:59
+2015-05-11 16:40:04 INFO  class:25 - Events request succesfully
+2015-05-11 16:40:05 INFO  class:25 - Timeline_id updated.
+	New id: 22
+	Timeline start datetime: 2015-04-30T00:00
+	Timeline stop datetime: 2015-05-14T23:59
+2015-05-11 16:40:05 INFO  class:25 - Events request succesfully
+2015-05-11 16:40:06 INFO  class:25 - Timeline_id updated.
+	New id: 29
+	Timeline start datetime: 2015-05-05T00:00
+	Timeline stop datetime: 2017-07-01T23:59
+2015-05-11 16:40:06 INFO  class:25 - Events request succesfully
+2015-05-11 16:40:06 INFO  class:25 - Timeline_id updated.
+	New id: 33
+	Timeline start datetime: 2015-05-06T00:00
+	Timeline stop datetime: 2015-07-08T23:59
+2015-05-11 16:40:07 INFO  class:25 - Events request succesfully
+2015-05-11 16:40:07 INFO  class:25 - Timeline_id updated.
+	New id: 28
+	Timeline start datetime: 2015-05-11T00:00
+	Timeline stop datetime: 2016-05-23T23:59
+2015-05-11 16:40:07 INFO  class:25 - Events request succesfully
+2015-05-11 16:40:07 INFO  class:25 - Timeline_id updated.
+	New id: 23
+	Timeline start datetime: 2015-05-01T00:00
+	Timeline stop datetime: 2015-08-13T23:59
+2015-05-11 16:40:07 INFO  class:25 - Events request succesfully
+2015-05-11 16:40:08 INFO  class:25 - Timeline_id updated.
+	New id: 28
+	Timeline start datetime: 2015-05-11T00:00
+	Timeline stop datetime: 2016-05-23T23:59
+2015-05-11 16:40:08 INFO  class:25 - Events request succesfully
+2015-05-11 16:40:09 INFO  class:25 - Timeline_id updated.
+	New id: 23
+	Timeline start datetime: 2015-05-01T00:00
+	Timeline stop datetime: 2015-08-13T23:59
+2015-05-11 16:40:09 INFO  class:25 - Events request succesfully
+2015-05-11 16:40:09 INFO  class:25 - Timeline_id updated.
+	New id: 28
+	Timeline start datetime: 2015-05-11T00:00
+	Timeline stop datetime: 2016-05-23T23:59
+2015-05-11 16:40:09 INFO  class:25 - Events request succesfully
+2015-05-11 16:40:10 INFO  class:25 - Timeline_id updated.
+	New id: 23
+	Timeline start datetime: 2015-05-01T00:00
+	Timeline stop datetime: 2015-08-13T23:59
+2015-05-11 16:40:10 INFO  class:25 - Events request succesfully
+2015-05-11 16:40:10 INFO  class:25 - Timeline_id updated.
+	New id: 28
+	Timeline start datetime: 2015-05-11T00:00
+	Timeline stop datetime: 2016-05-23T23:59
+2015-05-11 16:40:10 INFO  class:25 - Events request succesfully
+2015-05-11 16:40:11 INFO  class:25 - Timeline_id updated.
+	New id: 26
+	Timeline start datetime: 2015-05-01T00:00
+	Timeline stop datetime: 2015-10-01T23:59
+2015-05-11 16:40:11 INFO  class:25 - Events request succesfully
+2015-05-11 16:40:17 INFO  class:25 - Timeline_id updated.
+	New id: 29
+	Timeline start datetime: 2015-05-05T00:00
+	Timeline stop datetime: 2017-07-01T23:59
+2015-05-11 16:40:17 INFO  class:25 - Events request succesfully
+2015-05-11 16:40:17 INFO  class:25 - Timeline_id updated.
+	New id: 33
+	Timeline start datetime: 2015-05-06T00:00
+	Timeline stop datetime: 2015-07-08T23:59
+2015-05-11 16:40:17 INFO  class:25 - Events request succesfully
