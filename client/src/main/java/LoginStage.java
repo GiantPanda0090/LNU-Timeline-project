@@ -7,19 +7,16 @@
 * SOME CLASS GOT IT OWN OWNER AND CREATER
 */
 import backend.SessionHandler;
-import backend.UserRegistration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -31,11 +28,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.PopOver;
-import javafx.animation.Animation;
-
-import java.awt.*;
-import java.awt.event.InputEvent;
-import java.io.IOException;
 
 /**
  * Created by Johan on 2015-04-20.
@@ -66,6 +58,7 @@ public class LoginStage extends Application{
         final VBox login = new VBox();
         login.setPadding(new Insets(20, 20, 20, 80));
         login.setId("loginBox");
+
         HBox insideLogin = new HBox();
         insideLogin.setPadding(new Insets(0, 0, 0, 30));
         insideLogin.setSpacing(50);
@@ -99,6 +92,7 @@ public class LoginStage extends Application{
         password.setMaxWidth(200);
 
         final Button logIn = new Button("Log in");
+        logIn.setDefaultButton(true);
         logIn.setMinWidth(200);
 
         final Label regBtn = new Label("Sign up");
@@ -270,7 +264,7 @@ public class LoginStage extends Application{
             {
                 if(e.getCode() == KeyCode.ENTER)
                 {
-                    System.out.println("jkb");
+                    System.out.println("jhg");
                 }
             }
             /*
