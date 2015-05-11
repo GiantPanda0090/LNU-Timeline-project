@@ -74,6 +74,12 @@ public class CreateEventPane {
                                     setDisable(true);
                                     setStyle("-fx-background-color: #ffc0cb;");
                                 }
+                                if (item.isAfter(
+                                        LocalDate.from(sessionHandler.getActiveTimeline().getTimeline_stop_datetime().toLocalDate()))
+                                        ) {
+                                    setDisable(true);
+                                    setStyle("-fx-background-color: #ffc0cb;");
+                                }
 
                             }
                         };
@@ -95,6 +101,13 @@ public class CreateEventPane {
                                 if (item.isAfter(
                                         LocalDate.from(sessionHandler.getActiveTimeline().getTimeline_stop_datetime().toLocalDate()))
                                         ) {
+                                    setDisable(true);
+                                    setStyle("-fx-background-color: #ffc0cb;");
+                                }
+
+                                if (item.isBefore(
+                                        firstDate.getValue().plusDays(0)))
+                                         {
                                     setDisable(true);
                                     setStyle("-fx-background-color: #ffc0cb;");
                                 }
@@ -133,7 +146,7 @@ public class CreateEventPane {
                 timelineView.addEventsDay();
                 textFieldName.setText("Name your event");
                 descTextField.setText("Event description...");
-                firstDate.setValue(null);
+               // firstDate.setValue(null);
                 secondDate.setValue(null);
 
             }
@@ -144,7 +157,7 @@ public class CreateEventPane {
             public void handle(ActionEvent event) {
                 textFieldName.setText("Name your event");
                 descTextField.setText("Event description...");
-                firstDate.setValue(null);
+             //   firstDate.setValue(null);
                 secondDate.setValue(null);
                 popOver.hide();
             }
