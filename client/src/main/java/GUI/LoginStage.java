@@ -15,6 +15,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -58,6 +63,7 @@ public class LoginStage extends Application{
         final VBox login = new VBox();
         login.setPadding(new Insets(20, 20, 20, 80));
         login.setId("loginBox");
+
         HBox insideLogin = new HBox();
         insideLogin.setPadding(new Insets(0, 0, 0, 30));
         insideLogin.setSpacing(50);
@@ -78,9 +84,9 @@ public class LoginStage extends Application{
 
         login.setSpacing(20);
 
-        Label logo = new Label("MiTime");
+        Label logo = new Label(" MiTime");
         logo.setId("labelLogo");
-        logo.setPadding(new Insets(0, 0, 0, 20));
+        logo.setPadding(new Insets(0,-40,0, 20));
 
         final TextField username = new TextField("user");
         username.setFont(new Font("System", 18));
@@ -91,6 +97,7 @@ public class LoginStage extends Application{
         password.setMaxWidth(200);
 
         final Button logIn = new Button("Log in");
+        logIn.setDefaultButton(true);
         logIn.setMinWidth(200);
 
         final Label regBtn = new Label("Sign up");
@@ -115,27 +122,6 @@ public class LoginStage extends Application{
         primaryStage.setMaxWidth(450);
         primaryStage.setResizable(false);
 
-        /*
-        Scene debugscene = new Scene(console,600,200);
-        final Stage debugstage = new Stage();
-        debugstage.setScene(debugscene);
-        debugstage.show();
-        */
-/*
-        Scene debugscene = new Scene(console,600,200);
-        final Stage debugstage = new Stage();
-        debugstage.setScene(debugscene);
-        final EventHandler<KeyEvent> keyEventHandler =
-                new EventHandler<KeyEvent>() {
-                    public void handle(final KeyEvent keyEvent) {
-                        if (keyEvent.getCode() == KeyCode.ESCAPE) {
-
-                            debugstage.show();
-
-                        }
-                    }
-                };
-                */
 
         /**
          * DATA FOR REGISTRATION
@@ -204,13 +190,21 @@ public class LoginStage extends Application{
         });
         */
 
+        logIn.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                                  public void handle(KeyEvent event) {
+                                      if (event.getCode() == KeyCode.ENTER) {
+
+                                      }
+                                  }
+                              });
+
 
         logIn.setOnAction(new EventHandler<ActionEvent>() {
 
 
             int x = 0;
 
-            public void shake(){
+            public void shake() {
 
 
                 Timeline timelineX = new Timeline(new KeyFrame(Duration.seconds(0.05), new EventHandler<ActionEvent>() {
@@ -218,15 +212,14 @@ public class LoginStage extends Application{
                     public void handle(ActionEvent t) {
 
 
-                            if (x == 0) {
+                        if (x == 0) {
 
-                                primaryStage.setX(primaryStage.getX() + 10);
-                                x = 1;
-                            } else {
-                                primaryStage.setX(primaryStage.getX() - 10);
-                                x = 0;
-                            }
-
+                            primaryStage.setX(primaryStage.getX() + 10);
+                            x = 1;
+                        } else {
+                            primaryStage.setX(primaryStage.getX() - 10);
+                            x = 0;
+                        }
 
 
                     }
@@ -238,6 +231,19 @@ public class LoginStage extends Application{
 
 
             }
+
+            public void Enter(KeyEvent event) {
+
+                if (event.getCode() == KeyCode.ENTER) {
+                    CreateStage create = new CreateStage(sessionHandler);
+                    try {
+                        create.start().show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                }
 
             public void handle(ActionEvent event) {
                 if (sessionHandler.loginUser(username.getText(), password.getText())) {
@@ -258,6 +264,7 @@ public class LoginStage extends Application{
             }
         });
 
+
     }
 /*
     public static void settext(String info){
@@ -265,6 +272,13 @@ public class LoginStage extends Application{
 
     }
 */
+            public void Enter(KeyEvent e)
+            {
+                if(e.getCode() == KeyCode.ENTER)
+                {
+                    System.out.println("jhg");
+                }
+            }
             /*
             public void enterK(KeyEvent e)
             {

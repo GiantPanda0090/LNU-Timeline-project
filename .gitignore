@@ -20,3 +20,12 @@ log/
 target/
 
 *.sqlite3
+
+# Log files
+*.log
+
+# Database
+db.sqlite3
+
+# Manifest
+*.MF
