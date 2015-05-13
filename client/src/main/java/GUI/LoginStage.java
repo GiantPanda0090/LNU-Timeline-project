@@ -236,6 +236,7 @@ public class LoginStage extends Application{
 
                 if (event.getCode() == KeyCode.ENTER) {
                     CreateStage create = new CreateStage(sessionHandler);
+                    //add tips box
                     try {
                         create.start().show();
                     } catch (Exception e) {
@@ -248,8 +249,11 @@ public class LoginStage extends Application{
             public void handle(ActionEvent event) {
                 if (sessionHandler.loginUser(username.getText(), password.getText())) {
                     CreateStage create = new CreateStage(sessionHandler);
+                    Tips tips = new Tips();
+                    //add tips box
                     try {
                         create.start().show();
+                        tips.start().show();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
