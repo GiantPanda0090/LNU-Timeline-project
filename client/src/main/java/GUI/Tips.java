@@ -83,7 +83,7 @@ public class Tips {
             centre.setPadding(new Insets(0,0,10,10));
             centre.setSpacing(5.0);
 
-            Label label2 = new Label("Do you know that you can use MiTime to record life track of a famouse history person?" +
+            Label label2 = new Label("Do you know that you can use MiTime to record life track of a famous history person?" +
                     "Like Thomas Edison, Albert Einstein or even yourself XD.");
             label2.setWrapText(true);
             label2.setFont(new Font("Cambria", 15));

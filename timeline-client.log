@@ -2812,3 +2812,6 @@ Response code:400
 2015-05-14 14:56:26 INFO  class:25 - User successfully signed in
 2015-05-14 14:56:27 INFO  class:25 - User found and assigned to user session
 2015-05-14 14:56:27 INFO  class:25 - Timelines requested succesfully
+2015-05-14 14:58:23 INFO  class:25 - User successfully signed in
+2015-05-14 14:58:23 INFO  class:25 - User found and assigned to user session
+2015-05-14 14:58:24 INFO  class:25 - Timelines requested succesfully
