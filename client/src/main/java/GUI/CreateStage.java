@@ -199,7 +199,7 @@ public class CreateStage {
         stage.setScene(new Scene(bpane, 1280, 600));
         stage.setMinWidth(900);
         stage.setMinHeight(400);
-
+stage.setMaximized(true);
 
 
         //debugpopover.show();
@@ -212,7 +212,7 @@ public class CreateStage {
 
 
         /**
-         * Plus creates a new PopUp to add timeline or event(?)
+         * Plus Fes a new PopUp to add timeline or event(?)
          * createTimelinePane have following arguments:
          *   PopOver
          *   VBox
