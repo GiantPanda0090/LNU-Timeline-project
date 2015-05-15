@@ -86,37 +86,7 @@ public class CreateEventPane {
                     }
                 };
         firstDate.setDayCellFactory(dayCellFactory);
-
-
-
-        Callback<DatePicker, DateCell> dayCellFactory2 =
-                new Callback<DatePicker, DateCell>() {
-
-                    public DateCell call(final DatePicker datePicker) {
-                        return new DateCell() {
-
-                            public void updateItem(LocalDate item, boolean empty) {
-                                super.updateItem(item, empty);
-
-                                if (item.isAfter(
-                                        LocalDate.from(sessionHandler.getActiveTimeline().getTimeline_stop_datetime().toLocalDate()))
-                                        ) {
-                                    setDisable(true);
-                                    setStyle("-fx-background-color: #ffc0cb;");
-                                }
-
-                                if (item.isBefore(
-                                        firstDate.getValue().plusDays(0)))
-                                         {
-                                    setDisable(true);
-                                    setStyle("-fx-background-color: #ffc0cb;");
-                                }
-
-                            }
-                        };
-                    }
-                };
-        secondDate.setDayCellFactory(dayCellFactory2);
+        secondDate.setDayCellFactory(dayCellFactory);
 
 
 
@@ -146,7 +116,7 @@ public class CreateEventPane {
                 timelineView.addEventsDay();
                 textFieldName.setText("Name your event");
                 descTextField.setText("Event description...");
-               // firstDate.setValue(null);
+                firstDate.setValue(null);
                 secondDate.setValue(null);
 
             }
@@ -157,7 +127,7 @@ public class CreateEventPane {
             public void handle(ActionEvent event) {
                 textFieldName.setText("Name your event");
                 descTextField.setText("Event description...");
-             //   firstDate.setValue(null);
+                firstDate.setValue(null);
                 secondDate.setValue(null);
                 popOver.hide();
             }

@@ -6,7 +6,10 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 import org.controlsfx.control.PopOver;
+
+import java.time.LocalDate;
 /*
 *1DV008 PROJECT IN COMPUTER SCIENCE
 *TIMELINE PROJECT
@@ -48,6 +51,36 @@ public class EventInfoPane {
         firstDate.setValue(sessionHandler.getActiveEvent().getEvent_start_datetime().toLocalDate());
         final DatePicker secondDate = new DatePicker();
         secondDate.setValue(sessionHandler.getActiveEvent().getEvent_stop_datetime().toLocalDate());
+
+        Callback<DatePicker, DateCell> dayCellFactory =
+                new Callback<DatePicker, DateCell>() {
+
+                    public DateCell call(final DatePicker datePicker) {
+                        return new DateCell() {
+
+                            public void updateItem(LocalDate item, boolean empty) {
+                                super.updateItem(item, empty);
+
+                                if (item.isBefore(
+                                        LocalDate.from(sessionHandler.getActiveTimeline().getTimeline_start_datetime().toLocalDate()))
+                                        ) {
+                                    setDisable(true);
+                                    setStyle("-fx-background-color: #ffc0cb;");
+                                }
+                                if (item.isAfter(
+                                        LocalDate.from(sessionHandler.getActiveTimeline().getTimeline_stop_datetime().toLocalDate()))
+                                        ) {
+                                    setDisable(true);
+                                    setStyle("-fx-background-color: #ffc0cb;");
+                                }
+
+                            }
+                        };
+                    }
+                };
+        firstDate.setDayCellFactory(dayCellFactory);
+        secondDate.setDayCellFactory(dayCellFactory);
+
 
 
         // first label
