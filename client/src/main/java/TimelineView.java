@@ -28,7 +28,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
@@ -45,7 +44,8 @@ public class TimelineView {
 
     SessionHandler sessionHandler;
     GridPane dayPane;
-    StackPane stackPane;
+    GridPane yearPane;
+    GridPane monthPane;
     ArrayList<Button> nodeEventsArrayList = new ArrayList<Button>();
     ScrollPane scrollPaneWithAllGrids;
     /**
@@ -63,31 +63,143 @@ public class TimelineView {
      */
 
     public int amountOfDays(){
-        int startDateLong = sessionHandler.getActiveTimeline().getTimeline_start_datetime().getDayOfYear();
-        int endDateLong = sessionHandler.getActiveTimeline().getTimeline_stop_datetime().getDayOfYear();
-        return endDateLong - startDateLong;
+        LocalDateTime first = sessionHandler.getActiveTimeline().getTimeline_start_datetime();
+        LocalDateTime second = sessionHandler.getActiveTimeline().getTimeline_stop_datetime();
+        int startDateLong = first.getDayOfYear();
+        int endDateLong = second.getDayOfYear();
+
+        int quickFixAccountForYears = 0;
+        while(first.getYear() < second.getYear()){
+            quickFixAccountForYears += 365;
+            first = first.plusYears(1);
+        }
+
+        return Math.abs(endDateLong-startDateLong + quickFixAccountForYears);
 
     }
 
-    public int amountOfMonths(DatePicker first, DatePicker second){
-        int startMonthInt = sessionHandler.timelineArrayList.get(sessionHandler.getTimeline_id()).getTimeline_start_datetime().getMonthValue();
-        int endMonthInt = sessionHandler.timelineArrayList.get(sessionHandler.getTimeline_id()).getTimeline_stop_datetime().getMonthValue();
-        return endMonthInt - startMonthInt;
+    public int amountOfMonths(){
+        LocalDateTime first = sessionHandler.getActiveTimeline().getTimeline_start_datetime();
+        LocalDateTime second = sessionHandler.getActiveTimeline().getTimeline_stop_datetime();
+        int startMonthInt = first.getMonthValue();
+        int endMonthInt = second.getMonthValue();
+
+        int quickFixAccountForYears = 0;
+        while(first.getYear() < second.getYear()){
+            quickFixAccountForYears += 12;
+            first = first.plusYears(1);
+        }
+        return Math.abs(endMonthInt - startMonthInt + quickFixAccountForYears);
     }
 
-    public int amountOfYears(DatePicker first, DatePicker second){
-        int startYearInt = sessionHandler.timelineArrayList.get(sessionHandler.getTimeline_id()).getTimeline_start_datetime().getYear();
-        int endYearInt = sessionHandler.timelineArrayList.get(sessionHandler.getTimeline_id()).getTimeline_stop_datetime().getYear();
-        return  startYearInt - endYearInt;
+    public int amountOfYears(){
+        int startYearLong = sessionHandler.getActiveTimeline().getTimeline_start_datetime().getYear();
+        int endYearLong = sessionHandler.getActiveTimeline().getTimeline_stop_datetime().getYear();
+        return endYearLong - startYearLong;
     }
 
-    //  public GridPane drawYears(){
+    public void drawYears(){
+        VBox vboxMainBoxTimeline = new VBox();
+        vboxMainBoxTimeline.getStylesheets().add(this.getClass().getResource("TimelineCSS.css").toExternalForm());
+        GridPane yearViewPane = new GridPane();
+        yearViewPane.setId("dayViewPane");
+        sessionHandler.getEvents();
+        yearPane = new GridPane();
+        yearPane.setId("dayPane");
+        yearPane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
+        long columnsInt = amountOfYears();
+        if(columnsInt == 0)
+            columnsInt++;
+        long rowsInt = 10;
 
-    // }
+        for (int i = 0; i < columnsInt; i++){
+            ColumnConstraints columnConstraints = new ColumnConstraints();
+            columnConstraints.setMinWidth(50);
+            columnConstraints.setPercentWidth(100.0);
+            yearPane.getColumnConstraints().add(columnConstraints);
+        }
+        for (int i = 0; i < rowsInt; i++){
+            RowConstraints rowConstraints = new RowConstraints();
+            rowConstraints.setPercentHeight(100.0);
+            yearPane.getRowConstraints().add(rowConstraints);
+        }
 
-    // public GridPane drawMonths() hej{
+        for (int i = 0; i < columnsInt; i++){
+            ColumnConstraints columnConstraints = new ColumnConstraints();
+            columnConstraints.setMinWidth(50);
+            columnConstraints.setPercentWidth(100.0);
+            yearViewPane.getColumnConstraints().add(columnConstraints);
+        }
+        RowConstraints rowConstraints = new RowConstraints();
+        rowConstraints.setPercentHeight(100);
+        rowConstraints.setMinHeight(100);
+        yearViewPane.getRowConstraints().add(rowConstraints);
 
-    //}
+        LocalDateTime years = sessionHandler.getActiveTimeline().getTimeline_start_datetime();
+
+        for (int i = 0; i < columnsInt; i++){
+            years.plusYears(i);
+            Label dayLabel = new Label(((Integer) years.toLocalDate().plusYears(i).getYear()).toString());
+            dayLabel.setId("dayLabel");
+            dayLabel.setPadding(new Insets(20, 20, 20, 20));
+            yearViewPane.add(dayLabel, i, 0);
+        }
+
+        vboxMainBoxTimeline.getChildren().addAll(yearViewPane, yearPane);
+        scrollPaneWithAllGrids.setContent(vboxMainBoxTimeline);
+    }
+
+    public void drawMonths(){
+        VBox vboxMainBoxTimeline = new VBox();
+        vboxMainBoxTimeline.getStylesheets().add(this.getClass().getResource("TimelineCSS.css").toExternalForm());
+        GridPane monthViewPane = new GridPane();
+        monthPane = new GridPane();
+        monthViewPane.setId("dayViewPane");
+        sessionHandler.getEvents();
+        monthPane.setId("dayPane");
+        monthPane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
+        int columnsInt = amountOfMonths();
+        if(columnsInt == 0)
+            columnsInt++;
+        long rowsInt = 10;
+
+        for (int i = 0; i < columnsInt; i++){
+            ColumnConstraints columnConstraints = new ColumnConstraints();
+            columnConstraints.setMinWidth(50);
+            columnConstraints.setPercentWidth(100.0);
+            monthPane.getColumnConstraints().add(columnConstraints);
+        }
+        for (int i = 0; i < rowsInt; i++){
+            RowConstraints rowConstraints = new RowConstraints();
+            rowConstraints.setPercentHeight(100.0);
+            monthPane.getRowConstraints().add(rowConstraints);
+        }
+
+        for (int i = 0; i < columnsInt; i++){
+            ColumnConstraints columnConstraints = new ColumnConstraints();
+            columnConstraints.setMinWidth(50);
+            columnConstraints.setPercentWidth(100.0);
+            monthViewPane.getColumnConstraints().add(columnConstraints);
+        }
+        RowConstraints rowConstraints = new RowConstraints();
+        rowConstraints.setPercentHeight(100);
+        rowConstraints.setMinHeight(100);
+        monthViewPane.getRowConstraints().add(rowConstraints);
+
+        LocalDateTime months = sessionHandler.getActiveTimeline().getTimeline_start_datetime();
+
+        for (int i = 0; i < columnsInt; i++){
+            months.plusMonths(i);
+            System.out.println(months.getMonth().toString());
+            Label dayLabel = new Label((months.toLocalDate().plusMonths(i).getMonth().toString()));
+            dayLabel.setId("dayLabel");
+            dayLabel.setPadding(new Insets(20, 20, 20, 20));
+            monthViewPane.add(dayLabel, i, 0);
+        }
+
+        vboxMainBoxTimeline.getChildren().addAll(monthViewPane, monthPane);
+        scrollPaneWithAllGrids.setContent(vboxMainBoxTimeline);
+    }
 
     /**
      * Returns a VBox containing two gridpanes.
@@ -170,7 +282,7 @@ public class TimelineView {
 
             nodeEventsArrayList.add(rect);
 
-            int eventColumnSpanSize = event.getEvent_stop_datetime().getDayOfYear() - event.getEvent_start_datetime().getDayOfYear();
+            int eventColumnSpanSize = event.getEvent_stop_datetime().getDayOfYear() - event.getEvent_start_datetime().getDayOfYear() + 1;
             if (eventColumnSpanSize == 0){
                 eventColumnSpanSize = 1;
             }
@@ -188,6 +300,103 @@ public class TimelineView {
                     rowInt++;
                 }
                 else if(event.getEvent_start_datetime().getDayOfYear() == sessionHandler.eventArrayList.get(j).getEvent_stop_datetime().getDayOfYear()){
+                    rowInt++;
+                }
+            }
+        }
+    }
+
+    public void addEventsYear(){
+        int rowInt = 1;
+        for(int i = 0; i < sessionHandler.eventArrayList.size(); i++){
+            Event event = sessionHandler.eventArrayList.get(i);
+
+            final Button rect = new Button(event.getEvent_title());
+            rect.setId(Integer.toString(event.getId())); // sets the event id to the buttons id !
+            rect.setPadding(new Insets(30, 0, 30, 0));
+            rect.setMaxWidth(Double.POSITIVE_INFINITY);
+
+            rect.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    System.out.println(rect.getId());
+                    sessionHandler.setEvent_id(Integer.parseInt(rect.getId()));
+                    PopOver popOver = new PopOver();
+                    EventInfoPane eventInfoPane = new EventInfoPane();
+                    Pane pane = eventInfoPane.eventInfoPane(sessionHandler, scrollPaneWithAllGrids, popOver);
+                    popOver.setContentNode(pane);
+                    popOver.show(rect);
+                }
+            });
+
+            nodeEventsArrayList.add(rect);
+
+            int eventColumnSpanSize = event.getEvent_stop_datetime().getYear() - event.getEvent_start_datetime().getYear() + 1;
+            System.out.println("Event Column Size: "+eventColumnSpanSize);
+            if (eventColumnSpanSize == 0){
+                eventColumnSpanSize = 1;
+            }
+            yearPane.setColumnSpan(rect, eventColumnSpanSize);
+            yearPane.setFillWidth(rect, true);
+            yearPane.add(rect, event.getEvent_start_datetime().getYear() - sessionHandler.getActiveTimeline().getTimeline_start_datetime().getYear(), rowInt);
+
+            // Messy if statements, better solution would be appriciated.
+
+            for(int j = i + 1; j < sessionHandler.eventArrayList.size(); j++){
+                if(event.getEvent_start_datetime().getYear() == sessionHandler.eventArrayList.get(j).getEvent_start_datetime().getYear()){
+                    rowInt++;
+                }
+                else if(event.getEvent_stop_datetime().getYear() > sessionHandler.eventArrayList.get(j).getEvent_start_datetime().getYear() && event.getEvent_start_datetime().getYear() < sessionHandler.eventArrayList.get(j).getEvent_stop_datetime().getYear()){
+                    rowInt++;
+                }
+                else if(event.getEvent_start_datetime().getYear() == sessionHandler.eventArrayList.get(j).getEvent_stop_datetime().getYear()){
+                    rowInt++;
+                }
+            }
+        }
+    }
+
+    public void addEventsMonth(){
+        int rowInt = 1;
+        for(int i = 0; i < sessionHandler.eventArrayList.size(); i++){
+            Event event = sessionHandler.eventArrayList.get(i);
+
+            final Button rect = new Button(event.getEvent_title());
+            rect.setId(Integer.toString(event.getId())); // sets the event id to the buttons id !
+            rect.setPadding(new Insets(30, 0, 30, 0));
+            rect.setMaxWidth(Double.POSITIVE_INFINITY);
+
+            rect.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    System.out.println(rect.getId());
+                    sessionHandler.setEvent_id(Integer.parseInt(rect.getId()));
+                    PopOver popOver = new PopOver();
+                    EventInfoPane eventInfoPane = new EventInfoPane();
+                    Pane pane = eventInfoPane.eventInfoPane(sessionHandler, scrollPaneWithAllGrids, popOver);
+                    popOver.setContentNode(pane);
+                    popOver.show(rect);
+                }
+            });
+
+            nodeEventsArrayList.add(rect);
+
+            int eventColumnSpanSize = event.getEvent_stop_datetime().getMonthValue() - event.getEvent_start_datetime().getMonthValue() + 1;
+            if (eventColumnSpanSize == 0){
+                eventColumnSpanSize = 1;
+            }
+            monthPane.setColumnSpan(rect, eventColumnSpanSize);
+            monthPane.setFillWidth(rect, true);
+            monthPane.add(rect, event.getEvent_start_datetime().getMonthValue() - sessionHandler.getActiveTimeline().getTimeline_start_datetime().getMonthValue(), rowInt);
+
+            // Messy if statements, better solution would be appriciated.
+
+            for(int j = i + 1; j < sessionHandler.eventArrayList.size(); j++){
+                if(event.getEvent_start_datetime().getMonthValue() == sessionHandler.eventArrayList.get(j).getEvent_start_datetime().getMonthValue()){
+                    rowInt++;
+                }
+                else if(event.getEvent_stop_datetime().getMonthValue() > sessionHandler.eventArrayList.get(j).getEvent_start_datetime().getMonthValue() && event.getEvent_start_datetime().getMonthValue() < sessionHandler.eventArrayList.get(j).getEvent_stop_datetime().getMonthValue()){
+                    rowInt++;
+                }
+                else if(event.getEvent_start_datetime().getMonthValue() == sessionHandler.eventArrayList.get(j).getEvent_stop_datetime().getMonthValue()){
                     rowInt++;
                 }
             }

@@ -2139,3 +2139,64 @@ Response code:400
 	New id: 5
 2015-04-23 11:53:32 INFO  SessionHandler:461 - Events request succesfully
 2015-04-23 11:53:32 INFO  SessionHandler:461 - Events request succesfully
+2015-05-18 14:20:34 INFO  SessionHandler:203 - User successfully signed in
+2015-05-18 14:20:35 INFO  SessionHandler:268 - User found and assigned to user session
+2015-05-18 14:20:35 INFO  SessionHandler:422 - Timelines requested succesfully
+2015-05-18 14:20:36 INFO  SessionHandler:119 - Timeline_id updated.
+	New id: 18
+	Timeline start datetime: 2015-05-01T00:00
+	Timeline stop datetime: 2015-05-14T23:59
+2015-05-18 14:20:36 INFO  SessionHandler:698 - Events request succesfully
+2015-05-18 14:20:36 INFO  SessionHandler:698 - Events request succesfully
+2015-05-18 14:21:11 INFO  SessionHandler:203 - User successfully signed in
+2015-05-18 14:21:11 INFO  SessionHandler:268 - User found and assigned to user session
+2015-05-18 14:21:11 INFO  SessionHandler:422 - Timelines requested succesfully
+2015-05-18 14:21:14 INFO  SessionHandler:119 - Timeline_id updated.
+	New id: 18
+	Timeline start datetime: 2015-05-01T00:00
+	Timeline stop datetime: 2015-05-14T23:59
+2015-05-18 14:21:15 INFO  SessionHandler:698 - Events request succesfully
+2015-05-18 14:21:15 INFO  SessionHandler:698 - Events request succesfully
+2015-05-18 14:21:15 INFO  SessionHandler:119 - Timeline_id updated.
+	New id: 36
+	Timeline start datetime: 2015-05-12T00:00
+	Timeline stop datetime: 2015-05-29T23:59
+2015-05-18 14:21:15 INFO  SessionHandler:698 - Events request succesfully
+2015-05-18 14:21:15 INFO  SessionHandler:698 - Events request succesfully
+2015-05-18 14:21:16 INFO  SessionHandler:119 - Timeline_id updated.
+	New id: 38
+	Timeline start datetime: 2015-05-05T00:00
+	Timeline stop datetime: 2019-07-17T23:59
+2015-05-18 14:21:16 INFO  SessionHandler:698 - Events request succesfully
+2015-05-18 14:21:16 INFO  SessionHandler:698 - Events request succesfully
+2015-05-18 14:21:17 INFO  SessionHandler:119 - Timeline_id updated.
+	New id: 36
+	Timeline start datetime: 2015-05-12T00:00
+	Timeline stop datetime: 2015-05-29T23:59
+2015-05-18 14:21:17 INFO  SessionHandler:698 - Events request succesfully
+2015-05-18 14:21:18 INFO  SessionHandler:698 - Events request succesfully
+2015-05-18 14:21:19 INFO  SessionHandler:119 - Timeline_id updated.
+	New id: 37
+	Timeline start datetime: 2015-05-01T00:00
+	Timeline stop datetime: 2015-05-27T23:59
+2015-05-18 14:21:19 INFO  SessionHandler:698 - Events request succesfully
+2015-05-18 14:21:19 INFO  SessionHandler:698 - Events request succesfully
+2015-05-18 14:23:07 INFO  SessionHandler:203 - User successfully signed in
+2015-05-18 14:23:07 INFO  SessionHandler:268 - User found and assigned to user session
+2015-05-18 14:23:08 INFO  SessionHandler:422 - Timelines requested succesfully
+2015-05-18 14:23:12 INFO  SessionHandler:119 - Timeline_id updated.
+	New id: 36
+	Timeline start datetime: 2015-05-12T00:00
+	Timeline stop datetime: 2015-05-29T23:59
+2015-05-18 14:23:12 INFO  SessionHandler:698 - Events request succesfully
+2015-05-18 14:23:12 INFO  SessionHandler:698 - Events request succesfully
+2015-05-18 14:23:13 INFO  SessionHandler:119 - Timeline_id updated.
+	New id: 38
+	Timeline start datetime: 2015-05-05T00:00
+	Timeline stop datetime: 2019-07-17T23:59
+2015-05-18 14:23:13 INFO  SessionHandler:698 - Events request succesfully
+2015-05-18 14:23:13 INFO  SessionHandler:698 - Events request succesfully
+2015-05-18 14:23:19 INFO  SessionHandler:698 - Events request succesfully
+2015-05-18 14:23:20 INFO  SessionHandler:698 - Events request succesfully
+2015-05-18 14:23:23 INFO  SessionHandler:698 - Events request succesfully
+2015-05-18 14:23:24 INFO  SessionHandler:698 - Events request succesfully

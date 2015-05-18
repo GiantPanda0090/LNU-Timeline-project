@@ -1,25 +1,16 @@
 import backend.SessionHandler;
-import backend.Timeline;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.SVGPath;
-import javafx.scene.text.Font;
 import javafx.util.Callback;
 import org.controlsfx.control.PopOver;
 
-import javax.management.StringValueExp;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 /*
 *1DV008 PROJECT IN COMPUTER SCIENCE
 *TIMELINE PROJECT
@@ -34,6 +25,47 @@ import java.time.temporal.ChronoUnit;
  */
 public class CreateEventPane {
 
+    // first datepicker
+    final DatePicker firstDate = new DatePicker();
+
+    // second datePicker
+    final DatePicker secondDate = new DatePicker();
+
+
+    // first label
+    final Label firstLbl = new Label("Start date");
+
+    public Label getSecondLabel() {
+        return secondLabel;
+    }
+
+    public TextField getTextFieldName() {
+        return textFieldName;
+    }
+
+    public TextField getDescTextField() {
+        return descTextField;
+    }
+
+    public DatePicker getSecondDate() {
+        return secondDate;
+    }
+
+    public DatePicker getFirstDate() {
+        return firstDate;
+    }
+
+    public Label getFirstLbl() {
+        return firstLbl;
+    }
+
+    // second label
+    final Label secondLabel = new Label("End date");
+
+    final TextField textFieldName = new TextField("Name your event");
+    final TextField  descTextField = new TextField("Event description...");
+
+
     public Pane createEventPane(SessionHandler sessionHandlerIn, PopOver popOverIn, final ScrollPane scrollPaneIn){
         final SessionHandler sessionHandler = sessionHandlerIn;
         final PopOver popOver = popOverIn;
@@ -42,22 +74,9 @@ public class CreateEventPane {
         popPane.setMinSize(300, 200);
         popPane.getStylesheets().add(this.getClass().getResource("popover.css").toExternalForm());
 
-        final TextField textFieldName = new TextField("Name your event");
-        final TextField  descTextField = new TextField("Event description...");
-
-        // first label
-        final Label firstLbl = new Label("Start date");
         firstLbl.setId("timelineLabel");
 
-        // second label
-        final Label secondLabel = new Label("End date");
         secondLabel.setId("timelineLabel");
-
-        // first datepicker
-       final DatePicker firstDate = new DatePicker();
-
-        // second datePicker
-        final DatePicker secondDate = new DatePicker();
 
         Callback<DatePicker, DateCell> dayCellFactory =
                 new Callback<DatePicker, DateCell>() {

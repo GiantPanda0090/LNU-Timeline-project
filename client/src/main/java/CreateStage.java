@@ -11,13 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.controlsfx.control.PopOver;
 /*
@@ -36,12 +32,13 @@ import org.controlsfx.control.PopOver;
  */
 public class CreateStage {
     SessionHandler sessionHandler;
-    //TimelineView timelineView;
     int top1 ;
 
     public CreateStage(SessionHandler session){
         sessionHandler = session;
     };
+
+    TimelineView timelineView;
 
     double top = 0;
     ListView<Label> timelineListView = new ListView<Label>();
@@ -87,7 +84,6 @@ public class CreateStage {
         //eventScrollPane.setFitToHeight(true);
 
 
-
         // Search field
         TextField searchTextField = new TextField();
 
@@ -119,6 +115,7 @@ public class CreateStage {
         HBox bottomFill = new HBox();
         bottomFill.setMinHeight(200);
         bottomFill.setMaxHeight(10);
+
         HBox configbox = new HBox();
         configbox.setPadding(new Insets(10, 10, 10, 10));
         configbox.setSpacing(5.0);
@@ -149,8 +146,8 @@ public class CreateStage {
             public void handle(MouseEvent event) {
                 UserInfoStage userInfoStage = new UserInfoStage();
                 userInfoStage.userInfoStage(sessionHandler).show();
-        }
-    });
+            }
+        });
                 /*
         Button userInfoButton = new Button(sessionHandler.getUser().getUsername());
         userInfoButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -179,9 +176,34 @@ public class CreateStage {
         searchTextField.setMaxWidth(200);
         searchTextField.setMaxHeight(30);
 
+        final RadioButton yearRadioBtn = new RadioButton("Year");
+        final RadioButton monthRadioBtn = new RadioButton("Month");
+        final RadioButton dayRadioBtn = new RadioButton("Day");
+        dayRadioBtn.setSelected(true);
+        monthRadioBtn.setDisable(true);
+        yearRadioBtn.setDisable(true);
+
+        ToggleGroup toggleGroup = new ToggleGroup();
+        toggleGroup.getToggles().addAll(yearRadioBtn, monthRadioBtn, dayRadioBtn);
+        toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            @Override
+            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+                if(newValue.equals(dayRadioBtn)){
+                    timelineView.drawDays();
+                    timelineView.addEventsDay();
+                }else if(newValue.equals(monthRadioBtn)){
+                    timelineView.drawMonths();
+                    timelineView.addEventsMonth();
+                }else if(newValue.equals(yearRadioBtn)){
+                    timelineView.drawYears();
+                    timelineView.addEventsYear();
+                }
+            }
+        });
+
         bannerHBox.getChildren().addAll(logo,stackImg);
         timelineVBox.getChildren().addAll(configbox, searchTextField1, timelineListView);
-        eventVBox.getChildren().addAll(eventScrollPane);
+        eventVBox.getChildren().addAll(yearRadioBtn, monthRadioBtn, dayRadioBtn, eventScrollPane);
 
         bpane.setTop(bannerHBox);
         bpane.setLeft(timelineVBox);
@@ -217,33 +239,45 @@ public class CreateStage {
 
                 if (!newTimeorEvent.isShowing()) {
                     newTimeorEvent.show(plusButton);
-                                }
-                            }
-                        });
-       top1 = 1;
+                }
+            }
+        });
+        top1 = 1;
         timelineListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Label>() {
             public void changed(ObservableValue<? extends Label> observable, Label oldValue, Label newValue) {
                 sessionHandler.setTimeline_id(Integer.parseInt(timelineListView.getSelectionModel().getSelectedItem().getId()));
-                TimelineView timelineView = new TimelineView(sessionHandler, eventScrollPane);
-                timelineView.drawDays();
-                timelineView.addEventsDay();
+                timelineView = new TimelineView(sessionHandler, eventScrollPane);
+                yearRadioBtn.setDisable(false);
+                monthRadioBtn.setDisable(false);
+                if(yearRadioBtn.isSelected()){
+                    timelineView.drawYears();
+                    timelineView.addEventsYear();
+                }
+                else if(monthRadioBtn.isSelected()){
+                    timelineView.drawMonths();
+                    timelineView.addEventsMonth();
+                }
+                else if(dayRadioBtn.isSelected()){
+                    timelineView.drawDays();
+                    timelineView.addEventsDay();
+                }
 
             }
         });
 
 
-       timelineListView.setOnMousePressed(new EventHandler<MouseEvent>() {
-           public void handle(MouseEvent click) {
-               if (click.getClickCount() == 2) {
-                   sessionHandler.setTimeline_id(Integer.parseInt(timelineListView.getSelectionModel().getSelectedItem().getId()));
-                   PopOver popOver = new PopOver();
-                   TimelineInfoPane TimelineInfoPane = new TimelineInfoPane();
-                   Pane pane = TimelineInfoPane.TimelineInfoPane(sessionHandler, popOver,timelineObservableList, timelineListView);
-                   popOver.setContentNode(pane);
-                   popOver.show(timelineListView);
-               }
-           }
-       });
+        timelineListView.setOnMousePressed(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent click) {
+                if (click.getClickCount() == 2) {
+                    sessionHandler.setTimeline_id(Integer.parseInt(timelineListView.getSelectionModel().getSelectedItem().getId()));
+                    PopOver popOver = new PopOver();
+                    TimelineInfoPane TimelineInfoPane = new TimelineInfoPane();
+                    Pane pane = TimelineInfoPane.TimelineInfoPane(sessionHandler, popOver,timelineObservableList, timelineListView);
+                    popOver.setContentNode(pane);
+                    popOver.show(timelineListView);
+                }
+            }
+        });
 
 
         final PopOver newEvent = new PopOver();
