@@ -65,13 +65,13 @@ public class EventInfoPane {
                                         LocalDate.from(sessionHandler.getActiveTimeline().getTimeline_start_datetime().toLocalDate()))
                                         ) {
                                     setDisable(true);
-                                    setStyle("-fx-background-color: #ffc0cb;");
+                                  //  setStyle("-fx-background-color: #ffc0cb;");
                                 }
                                 if (item.isAfter(
                                         LocalDate.from(sessionHandler.getActiveTimeline().getTimeline_stop_datetime().toLocalDate()))
                                         ) {
                                     setDisable(true);
-                                    setStyle("-fx-background-color: #ffc0cb;");
+                                  //  setStyle("-fx-background-color: #ffc0cb;");
                                 }
 
                             }
