@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1586.5408549783542" y="1575.0">GUI.CreateEventPane</node>
+    <node x="597.0783279220773" y="0.0">GUI.LogFX</node>
+    <node x="696.4186958874453" y="287.0">backend.User</node>
+    <node x="2392.869994588744" y="1351.0">GUI.GenerateTimelineList</node>
+    <node x="789.9186958874452" y="2044.0">GUI.LoginStage</node>
+    <node x="3349.040854978354" y="375.5">GUI.Tips</node>
+    <node x="965.4186958874453" y="287.0">backend.Event</node>
+    <node x="322.0" y="2253.0">GUI.test</node>
+    <node x="0.0" y="872.5">GUI.RegistraionBorderPane</node>
+    <node x="2826.540854978354" y="1575.0">GUI.CreateTimelinePane</node>
+    <node x="1873.9186958874454" y="1698.0">GUI.CreateStage</node>
+    <node x="676.625" y="607.0">backend.SessionHandler</node>
+    <node x="1979.5408549783542" y="1564.0">GUI.UserInfoStage</node>
+    <node x="1376.9186958874454" y="861.0">backend.CreateTimeline</node>
+    <node x="501.4186958874453" y="342.0">backend.APIConfigReader</node>
+    <node x="1563.9186958874454" y="872.5">GUI.EventInfoPane</node>
+    <node x="88.74012445887388" y="56.0">backend.API</node>
+    <node x="1465.0408549783542" y="1240.0">GUI.TimelineView</node>
+    <node x="0.0" y="2253.0">GUI.SearchTimeline</node>
+    <node x="1241.4186958874454" y="276.0">backend.Timeline</node>
+    <node x="2268.540854978354" y="1575.0">GUI.TimelineInfoPane</node>
+    <node x="314.0" y="872.5">GUI.ConfigStage</node>
+    <node x="143.4186958874452" y="342.0">backend.UserRegistration</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="backend.APIConfigReader" target="GUI.LogFX">
+      <point x="58.0" y="-59.5" />
+      <point x="646.4186958874453" y="246.0" />
+      <point x="729.0783279220773" y="246.0" />
+      <point x="0.0" y="93.0" />
+    </edge>
+    <edge source="backend.SessionHandler" target="backend.Timeline">
+      <point x="264.0" y="-291.5" />
+      <point x="1237.625" y="587.0" />
+      <point x="1350.9186958874454" y="587.0" />
+      <point x="-36.5" y="125.5" />
+    </edge>
+    <edge source="backend.UserRegistration" target="backend.API">
+      <point x="-62.66666666666666" y="-59.5" />
+      <point x="174.75202922077847" y="256.0" />
+      <point x="154.74012445887388" y="256.0" />
+      <point x="0.0" y="37.0" />
+    </edge>
+    <edge source="GUI.EventInfoPane" target="GUI.TimelineView">
+      <point x="90.5" y="26.0" />
+      <point x="1835.4186958874454" y="1220.0" />
+      <point x="1814.207521645021" y="1220.0" />
+      <point x="139.66666666666674" y="-137.0" />
+    </edge>
+    <edge source="backend.SessionHandler" target="backend.API">
+      <point x="-264.0" y="-291.5" />
+      <point x="709.625" y="577.0" />
+      <point x="110.74012445887388" y="577.0" />
+      <point x="-44.0" y="37.0" />
+    </edge>
+    <edge source="GUI.LoginStage" target="backend.SessionHandler">
+      <point x="-26.583333333333258" y="-82.0" />
+      <point x="922.835362554112" y="2024.0" />
+      <point x="943.9186958874453" y="2024.0" />
+      <point x="943.9186958874453" y="1220.0" />
+      <point x="750.875" y="1220.0" />
+      <point x="-222.75" y="291.5" />
+    </edge>
+    <edge source="GUI.Tips" target="GUI.LogFX">
+      <point x="0.0" y="-26.0" />
+      <point x="3408.040854978354" y="246.0" />
+      <point x="842.2211850649344" y="246.0" />
+      <point x="113.14285714285711" y="93.0" />
+    </edge>
+    <edge source="GUI.TimelineView" target="GUI.EventInfoPane">
+      <point x="0.0" y="-137.0" />
+      <point x="1674.5408549783542" y="1220.0" />
+      <point x="1654.4186958874454" y="1220.0" />
+      <point x="-90.5" y="26.0" />
+    </edge>
+    <edge source="GUI.LoginStage" target="GUI.Tips">
+      <point x="132.91666666666674" y="-82.0" />
+      <point x="1082.335362554112" y="2024.0" />
+      <point x="3408.040854978354" y="2024.0" />
+      <point x="0.0" y="26.0" />
+    </edge>
+    <edge source="backend.SessionHandler" target="GUI.LogFX">
+      <point x="-132.0" y="-291.5" />
+      <point x="841.625" y="557.0" />
+      <point x="685.9186958874453" y="557.0" />
+      <point x="685.9186958874453" y="256.0" />
+      <point x="766.7926136363631" y="256.0" />
+      <point x="37.71428571428578" y="93.0" />
+    </edge>
+    <edge source="GUI.CreateTimelinePane" target="GUI.GenerateTimelineList">
+      <point x="0.0" y="-26.0" />
+      <point x="3112.040854978354" y="1539.0" />
+      <point x="2809.5366612554103" y="1539.0" />
+      <point x="166.66666666666652" y="26.0" />
+    </edge>
+    <edge source="GUI.CreateStage" target="GUI.CreateTimelinePane">
+      <point x="188.14285714285734" y="-148.0" />
+      <point x="2281.561553030303" y="1678.0" />
+      <point x="3112.040854978354" y="1678.0" />
+      <point x="0.0" y="26.0" />
+    </edge>
+    <edge source="GUI.LoginStage" target="GUI.ConfigStage">
+      <point x="-79.75" y="-82.0" />
+      <point x="869.6686958874452" y="2014.0" />
+      <point x="454.5" y="2014.0" />
+      <point x="0.0" y="26.0" />
+    </edge>
+    <edge source="backend.SessionHandler" target="backend.Event">
+      <point x="0.0" y="-291.5" />
+      <point x="973.625" y="587.0" />
+      <point x="1029.1686958874452" y="587.0" />
+      <point x="-63.75" y="114.5" />
+    </edge>
+    <edge source="GUI.CreateStage" target="GUI.CreateEventPane">
+      <point x="-62.71428571428578" y="-148.0" />
+      <point x="2030.7044101731597" y="1658.0" />
+      <point x="1773.0408549783542" y="1658.0" />
+      <point x="0.0" y="26.0" />
+    </edge>
+    <edge source="GUI.TimelineInfoPane" target="GUI.GenerateTimelineList">
+      <point x="0.0" y="-26.0" />
+      <point x="2537.540854978354" y="1539.0" />
+      <point x="2642.869994588744" y="1539.0" />
+      <point x="0.0" y="26.0" />
+    </edge>
+    <edge source="GUI.TimelineView" target="backend.SessionHandler">
+      <point x="-139.66666666666652" y="-137.0" />
+      <point x="1534.8741883116877" y="1220.0" />
+      <point x="1196.375" y="1220.0" />
+      <point x="222.75" y="291.5" />
+    </edge>
+    <edge source="GUI.CreateEventPane" target="GUI.TimelineView">
+      <point x="0.0" y="-26.0" />
+      <point x="1773.0408549783542" y="1539.0" />
+      <point x="1779.2908549783542" y="1539.0" />
+      <point x="104.75" y="137.0" />
+    </edge>
+    <edge source="GUI.LoginStage" target="GUI.RegistraionBorderPane">
+      <point x="-132.91666666666663" y="-82.0" />
+      <point x="816.5020292207786" y="2024.0" />
+      <point x="147.0" y="2024.0" />
+      <point x="0.0" y="26.0" />
+    </edge>
+    <edge source="GUI.LoginStage" target="GUI.CreateStage">
+      <point x="79.75" y="-82.0" />
+      <point x="1029.1686958874452" y="2014.0" />
+      <point x="2093.418695887445" y="2014.0" />
+      <point x="0.0" y="148.0" />
+    </edge>
+    <edge source="backend.SessionHandler" target="backend.APIConfigReader">
+      <point x="-198.0" y="-291.5" />
+      <point x="775.625" y="567.0" />
+      <point x="631.9186958874453" y="567.0" />
+      <point x="43.5" y="59.5" />
+    </edge>
+    <edge source="GUI.CreateStage" target="GUI.TimelineInfoPane">
+      <point x="125.42857142857156" y="-148.0" />
+      <point x="2218.8472673160168" y="1668.0" />
+      <point x="2537.540854978354" y="1668.0" />
+      <point x="0.0" y="26.0" />
+    </edge>
+    <edge source="GUI.CreateStage" target="GUI.GenerateTimelineList">
+      <point x="62.71428571428578" y="-148.0" />
+      <point x="2156.1329816017314" y="1658.0" />
+      <point x="2258.040854978354" y="1658.0" />
+      <point x="2258.040854978354" y="1539.0" />
+      <point x="2476.2033279220773" y="1539.0" />
+      <point x="-166.66666666666652" y="26.0" />
+    </edge>
+    <edge source="GUI.CreateStage" target="GUI.UserInfoStage">
+      <point x="0.0" y="-148.0" />
+      <point x="2093.418695887445" y="1678.0" />
+      <point x="2113.540854978354" y="1678.0" />
+      <point x="0.0" y="37.0" />
+    </edge>
+    <edge source="GUI.ConfigStage" target="backend.APIConfigReader">
+      <point x="0.0" y="-26.0" />
+      <point x="454.5" y="587.0" />
+      <point x="544.9186958874453" y="587.0" />
+      <point x="-43.5" y="59.5" />
+    </edge>
+    <edge source="backend.SessionHandler" target="backend.User">
+      <point x="-66.0" y="-291.5" />
+      <point x="907.625" y="547.0" />
+      <point x="820.9186958874453" y="547.0" />
+      <point x="0.0" y="114.5" />
+    </edge>
+    <edge source="backend.UserRegistration" target="GUI.LogFX">
+      <point x="62.666666666666686" y="-59.5" />
+      <point x="300.08536255411195" y="226.0" />
+      <point x="653.6497564935058" y="226.0" />
+      <point x="-75.42857142857144" y="93.0" />
+    </edge>
+    <edge source="backend.APIConfigReader" target="backend.API">
+      <point x="-58.0" y="-59.5" />
+      <point x="530.4186958874453" y="206.0" />
+      <point x="198.74012445887388" y="206.0" />
+      <point x="44.0" y="37.0" />
+    </edge>
+    <edge source="GUI.RegistraionBorderPane" target="backend.UserRegistration">
+      <point x="0.0" y="-26.0" />
+      <point x="147.0" y="587.0" />
+      <point x="237.4186958874452" y="587.0" />
+      <point x="0.0" y="59.5" />
+    </edge>
+    <edge source="backend.CreateTimeline" target="backend.Timeline">
+      <point x="41.75" y="-37.5" />
+      <point x="1502.1686958874454" y="587.0" />
+      <point x="1496.9186958874454" y="587.0" />
+      <point x="109.5" y="125.5" />
+    </edge>
+    <edge source="GUI.CreateStage" target="backend.SessionHandler">
+      <point x="-188.1428571428571" y="-148.0" />
+      <point x="1905.2758387445883" y="1678.0" />
+      <point x="965.9186958874453" y="1678.0" />
+      <point x="965.9186958874453" y="1220.0" />
+      <point x="1047.875" y="1220.0" />
+      <point x="74.25" y="291.5" />
+    </edge>
+    <edge source="GUI.CreateStage" target="GUI.TimelineView">
+      <point x="-125.42857142857133" y="-148.0" />
+      <point x="1967.990124458874" y="1668.0" />
+      <point x="1576.0408549783542" y="1668.0" />
+      <point x="1576.0408549783542" y="1539.0" />
+      <point x="1569.7908549783542" y="1539.0" />
+      <point x="-104.75" y="137.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.23369565217391305" x="788.325581395349" y="1186.0" />
+  <SelectedNodes>
+    <node>backend.UserRegistration</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Constructors</Category>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
