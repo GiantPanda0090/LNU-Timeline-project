@@ -61,6 +61,13 @@ public class RegistraionBorderPane {
                     UserRegistration newUser = new UserRegistration();
                     newUser.register(newUserName.getText().toString(), firstPassword.getText().toString(), secondPassword.getText().toString(), userEmail.getText().toString());
                     regPop.hide();
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Thank you for signing up with MiTime!");
+                    alert.setHeaderText(null);
+                    alert.setContentText("An email has been sent!");
+
+                    alert.showAndWait();
                 }
 
                      else {
