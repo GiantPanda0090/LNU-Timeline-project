@@ -100,13 +100,13 @@ public class TimelineView {
 
     public void drawYears(){
         VBox vboxMainBoxTimeline = new VBox();
-        vboxMainBoxTimeline.getStylesheets().add(this.getClass().getResource("TimelineCSS.css").toExternalForm());
+        vboxMainBoxTimeline.getStylesheets().add("TimelineCSS.css");
         GridPane yearViewPane = new GridPane();
         yearViewPane.setId("dayViewPane");
         sessionHandler.getEvents();
         yearPane = new GridPane();
         yearPane.setId("dayPane");
-        yearPane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
+        yearPane.getStylesheets().add("css.css");
         long columnsInt = amountOfYears();
         if(columnsInt == 0)
             columnsInt++;
@@ -151,13 +151,13 @@ public class TimelineView {
 
     public void drawMonths(){
         VBox vboxMainBoxTimeline = new VBox();
-        vboxMainBoxTimeline.getStylesheets().add(this.getClass().getResource("TimelineCSS.css").toExternalForm());
+        vboxMainBoxTimeline.getStylesheets().add("TimelineCSS.css");
         GridPane monthViewPane = new GridPane();
         monthPane = new GridPane();
         monthViewPane.setId("dayViewPane");
         sessionHandler.getEvents();
         monthPane.setId("dayPane");
-        monthPane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
+        monthPane.getStylesheets().add("css.css");
         int columnsInt = amountOfMonths();
         if(columnsInt == 0)
             columnsInt++;
@@ -208,13 +208,13 @@ public class TimelineView {
 
     public void drawDays(){
         VBox vboxMainBoxTimeline = new VBox();
-        vboxMainBoxTimeline.getStylesheets().add(this.getClass().getResource("TimelineCSS.css").toExternalForm());
+        vboxMainBoxTimeline.getStylesheets().add("TimelineCSS.css");
         GridPane dayViewPane = new GridPane();
         dayViewPane.setId("dayViewPane");
         sessionHandler.getEvents();
         dayPane = new GridPane();
         dayPane.setId("dayPane");
-        dayPane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
+        dayPane.getStylesheets().add("css.css");
         long columnsInt = amountOfDays();
         if(columnsInt == 0)
             columnsInt++;
