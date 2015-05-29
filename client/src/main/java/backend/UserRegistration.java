@@ -27,6 +27,7 @@ import org.json.JSONObject;
  */
 public class UserRegistration {
 
+    public int response_code;
     /*
      * Reading from config file
      */
@@ -68,7 +69,7 @@ public class UserRegistration {
             HttpResponse response = httpClient.execute(request);
 
             // response code intialized
-            int response_code = response.getStatusLine().getStatusCode();
+            response_code = response.getStatusLine().getStatusCode();
 
              /*
             * Active different  event when different http server code been responsed from the server

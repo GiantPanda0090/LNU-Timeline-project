@@ -62,15 +62,24 @@ public class RegistraionBorderPane {
                     newUser.register(newUserName.getText().toString(), firstPassword.getText().toString(), secondPassword.getText().toString(), userEmail.getText().toString());
                     regPop.hide();
 
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Thank you for signing up with MiTime!");
-                    alert.setHeaderText(null);
-                    alert.setContentText("An email has been sent!");
+                    if (newUser.response_code == 201) {
+                        // If response from server says OK
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Thank you for signing up with MiTime!");
+                        alert.setHeaderText(null);
+                        alert.setContentText("An email has been sent!");
+                        alert.showAndWait();
+                    }
+                    else{
+                        // If response from server is NOT OK
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Something is wrong i registration form!");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Password must be a least 6 characters or the username is already taken");
+                        alert.showAndWait();
+                    }
 
-                    alert.showAndWait();
-                }
-
-                     else {
+                } else {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Warning!");
                     alert.setHeaderText("Password Mismatch");
