@@ -27,5 +27,3 @@ target/
 # Database
 db.sqlite3
 
-# Manifest
-*.MF
