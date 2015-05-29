@@ -13,7 +13,8 @@ class TimeStampedModel(models.Model):
         abstract = True
         get_latest_by = 'modified'
         ordering = ('-modified', '-created')
-                                
+
+
 class Timeline(TimeStampedModel):
     '''
     Timeline model
