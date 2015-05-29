@@ -1,3 +1,5 @@
+package GUI;
+
 import backend.SessionHandler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -11,9 +13,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.controlsfx.control.PopOver;
 /*
@@ -24,7 +30,6 @@ import org.controlsfx.control.PopOver;
 *VERSION CONTROL GITHUB
 * SOME CLASS GOT IT OWN OWNER AND CREATER
 */
-
 
 
 /**
@@ -44,6 +49,8 @@ public class CreateStage {
     ListView<Label> timelineListView = new ListView<Label>();
     ObservableList<Label> timelineObservableList = FXCollections.observableArrayList();
 
+    public static TextArea console = new TextArea();
+
     public Stage start() throws Exception {
         Stage stage = new Stage();
         final BorderPane bpane = new BorderPane();
@@ -52,7 +59,7 @@ public class CreateStage {
         stage.setMinHeight(100);
 
         bpane.setId("gpanemain");
-        bpane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
+        bpane.getStylesheets().add("css.css");
 
         final Label logo = new Label("  MiTime");
         logo.setId("createlabelLogo");
@@ -167,7 +174,7 @@ public class CreateStage {
                 new ChangeListener() {
                     public void changed(ObservableValue observable,
                                         Object oldVal, Object newVal) {
-                        handleSearchByKey2((String)oldVal, (String)newVal);
+                        handleSearchByKey2((String) oldVal, (String) newVal);
                     }
                 });
 
@@ -186,37 +193,58 @@ public class CreateStage {
         ToggleGroup toggleGroup = new ToggleGroup();
         toggleGroup.getToggles().addAll(yearRadioBtn, monthRadioBtn, dayRadioBtn);
         toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            @Override
+
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-                if(newValue.equals(dayRadioBtn)){
+                if (newValue.equals(dayRadioBtn)) {
                     timelineView.drawDays();
                     timelineView.addEventsDay();
-                }else if(newValue.equals(monthRadioBtn)){
+                } else if (newValue.equals(monthRadioBtn)) {
                     timelineView.drawMonths();
                     timelineView.addEventsMonth();
-                }else if(newValue.equals(yearRadioBtn)){
+                } else if (newValue.equals(yearRadioBtn)) {
                     timelineView.drawYears();
                     timelineView.addEventsYear();
                 }
             }
         });
 
+        final HBox tbox = new HBox();
+        tbox.setPadding(new Insets(10, 10, 10, 10));
+        tbox.setSpacing(5.0);
+        tbox.getChildren().addAll(yearRadioBtn, monthRadioBtn, dayRadioBtn);
+
         bannerHBox.getChildren().addAll(logo,stackImg);
         timelineVBox.getChildren().addAll(configbox, searchTextField1, timelineListView);
-        eventVBox.getChildren().addAll(yearRadioBtn, monthRadioBtn, dayRadioBtn, eventScrollPane);
+        eventVBox.getChildren().addAll(tbox, eventScrollPane);
 
+        console.setPrefWidth(1400);
+        console.setPrefHeight(100);
+
+        final HBox debugbutbox = new HBox();
+        debugbutbox.setPadding(new Insets(10, 10, 10, 10));
+        debugbutbox.setSpacing(5.0);
+        debugbutbox.getChildren().add(console);
+
+        bpane.setBottom(debugbutbox);
         bpane.setTop(bannerHBox);
         bpane.setLeft(timelineVBox);
         bpane.setCenter(eventVBox);
-
         stage.setScene(new Scene(bpane, 1280, 600));
         stage.setMinWidth(900);
         stage.setMinHeight(400);
+stage.setMaximized(true);
 
 
+        //debugpopover.show();
+        /*
+        Scene debugscene = new Scene(console,600,200);
+        final Stage debugstage = new Stage();
+        debugstage.setScene(debugscene);
+        debugstage.show();
+*/
 
         /**
-         * Plus creates a new PopUp to add timeline or event(?)
+         * Plus Fes a new PopUp to add timeline or event(?)
          * createTimelinePane have following arguments:
          *   PopOver
          *   VBox
@@ -352,4 +380,8 @@ public class CreateStage {
     private void reloadTimelines(ObservableList<String> observableList, SessionHandler sessionHandler){
         observableList.remove(0, observableList.size());
     }
+  public static void settext(String info){
+      console.appendText(info);
+
+  }
 }

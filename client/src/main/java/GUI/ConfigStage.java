@@ -1,3 +1,5 @@
+package GUI;
+
 import backend.API;
 import backend.APIConfigReader;
 import backend.SessionHandler;
@@ -14,7 +16,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import org.controlsfx.control.PopOver;
 /*
 *1DV008 PROJECT IN COMPUTER SCIENCE
@@ -59,7 +60,7 @@ public class ConfigStage {
 
         // Gridpane and settings for gridpane
         GridPane gridPane = new GridPane();
-        gridPane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
+        gridPane.getStylesheets().add("css.css");
         gridPane.setPrefSize(350, 250);
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(10);

@@ -1,3 +1,5 @@
+package GUI;
+
 import backend.SessionHandler;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.controlsfx.control.PopOver;
+
 /**
  * Created by Administrator on 30/04/2015.
  */

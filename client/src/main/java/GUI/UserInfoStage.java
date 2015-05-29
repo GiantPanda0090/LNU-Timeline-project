@@ -1,3 +1,5 @@
+package GUI;
+
 import backend.SessionHandler;
 import javafx.application.Application;
 import javafx.application.Platform;

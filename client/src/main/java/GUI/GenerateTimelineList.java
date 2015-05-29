@@ -1,11 +1,9 @@
+package GUI;
+
 import backend.SessionHandler;
-import backend.Timeline;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.VBox;
 /*
 *1DV008 PROJECT IN COMPUTER SCIENCE
 *TIMELINE PROJECT

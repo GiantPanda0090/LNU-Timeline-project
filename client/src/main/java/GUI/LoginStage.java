@@ -1,4 +1,4 @@
-/*
+package GUI;/*
 *1DV008 PROJECT IN COMPUTER SCIENCE
 *TIMELINE PROJECT
 *MITIME
@@ -6,6 +6,7 @@
 *VERSION CONTROL GITHUB
 * SOME CLASS GOT IT OWN OWNER AND CREATER
 */
+
 import backend.SessionHandler;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -18,6 +19,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -47,13 +50,15 @@ public class LoginStage extends Application{
      */
     public final SessionHandler sessionHandler = new SessionHandler();
 
+    public final TextArea console = new TextArea();
+
     @Override
     public void start(final Stage primaryStage) throws Exception {
 
         BorderPane pane = new BorderPane();
         pane.setId("gpane");
         Scene scene = new Scene(pane, 400, 400);
-        pane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
+        pane.getStylesheets().add("css.css");
 
         final VBox login = new VBox();
         login.setPadding(new Insets(20, 20, 20, 80));
@@ -100,6 +105,7 @@ public class LoginStage extends Application{
         regBtn.setPadding(new Insets(0, 0, 0, -25));
 
         final Button configButton = new Button("API");
+
 
         insideLogin.getChildren().addAll(regBtn, configButton);
         login.getChildren().addAll(logo, username, password, logIn, insideLogin);
@@ -230,6 +236,7 @@ public class LoginStage extends Application{
 
                 if (event.getCode() == KeyCode.ENTER) {
                     CreateStage create = new CreateStage(sessionHandler);
+                    //add tips box
                     try {
                         create.start().show();
                     } catch (Exception e) {
@@ -242,8 +249,11 @@ public class LoginStage extends Application{
             public void handle(ActionEvent event) {
                 if (sessionHandler.loginUser(username.getText(), password.getText())) {
                     CreateStage create = new CreateStage(sessionHandler);
+                    Tips tips = new Tips();
+                    //add tips box
                     try {
                         create.start().show();
+                        tips.start().show();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -260,6 +270,12 @@ public class LoginStage extends Application{
 
 
     }
+/*
+    public static void settext(String info){
+        console.appendText(info);
+
+    }
+*/
             public void Enter(KeyEvent e)
             {
                 if(e.getCode() == KeyCode.ENTER)

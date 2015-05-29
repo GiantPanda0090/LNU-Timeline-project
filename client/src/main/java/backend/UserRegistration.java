@@ -12,6 +12,7 @@ package backend;
 /* METHOD INDEX */
 /* USE CTRL+F TO SEARCH METHOD IN IDE */
 
+import GUI.LogFX;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -36,8 +37,8 @@ public class UserRegistration {
     /*
      * Logger
      */
-    private static final Logger LOG = Logger.getLogger(UserRegistration.class);
-
+   // private static final Logger LOG = Logger.getLogger(UserRegistration.class);
+    public static LogFX LOG = new LogFX("UserRegistration.class");
 /*
 *register function
 * @param String username, String password1, String password2, String email
@@ -82,7 +83,7 @@ public class UserRegistration {
             }
             //issues happend
             else {
-                LOG.error("Something whent wrong in registration\nResponse code:"+response_code);
+                LOG.strerror("Something whent wrong in registration\nResponse code:"+response_code);
             }
 
         }

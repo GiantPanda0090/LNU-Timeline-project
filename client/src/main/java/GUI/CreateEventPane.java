@@ -1,3 +1,5 @@
+package GUI;
+
 import backend.SessionHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,7 +33,7 @@ public class CreateEventPane {
         popOver.setDetachedTitle("New Event");
         final GridPane popPane = new GridPane();
         popPane.setMinSize(300, 200);
-        popPane.getStylesheets().add(this.getClass().getResource("popover.css").toExternalForm());
+        popPane.getStylesheets().addAll("popover.css");
 
         final TextField textFieldName = new TextField("Name your event");
         final TextField  descTextField = new TextField("Event description...");

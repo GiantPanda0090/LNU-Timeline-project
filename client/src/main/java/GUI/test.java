@@ -1,5 +1,4 @@
-import java.lang.System;
-import java.util.Date;
+package GUI;
 /*
 *1DV008 PROJECT IN COMPUTER SCIENCE
 *TIMELINE PROJECT
