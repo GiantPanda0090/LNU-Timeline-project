@@ -23,7 +23,7 @@ public class LogFX {
     public static void info(String info){
 
         consoleLog.info(info);
-        String text = time + "INFO" + classname + info;
+        String text = time + " INFO " + classname+" " + info;
         CreateStage.settext(text+ "\n");
 /*
         Alert a = new Alert(Alert.AlertType.INFORMATION);
@@ -40,7 +40,7 @@ public class LogFX {
     public static void error(Exception e){
         consoleLog.error(e);
 
-        String text = time + "ERROR" + classname +e.getMessage();
+        String text = time + " ERROR " + classname+" " +e.getMessage();
         CreateStage.settext(text+ "\n");
 /*
 debug method

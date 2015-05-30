@@ -2896,3 +2896,24 @@ Response code:400
 	Timeline stop datetime: 2015-05-29T23:59
 2015-05-29 17:53:30 INFO  class:25 - Events request succesfully
 2015-05-29 17:53:30 INFO  class:25 - Events request succesfully
+2015-05-29 18:12:15 INFO  class:25 - User successfully signed in
+2015-05-29 18:12:16 INFO  class:25 - User found and assigned to user session
+2015-05-29 18:12:16 INFO  class:25 - Timelines requested succesfully
+2015-05-29 18:12:23 INFO  class:25 - Timeline_id updated.
+	New id: 1
+	Timeline start datetime: 2015-05-08T00:00
+	Timeline stop datetime: 2015-05-29T23:59
+2015-05-29 18:12:23 INFO  class:25 - Events request succesfully
+2015-05-29 18:12:23 INFO  class:25 - Events request succesfully
+2015-05-29 18:12:26 INFO  class:25 - Events request succesfully
+2015-05-29 18:12:27 INFO  class:25 - Events request succesfully
+2015-05-29 18:12:29 INFO  class:25 - Events request succesfully
+2015-05-30 14:37:02 INFO  class:25 - User successfully signed in
+2015-05-30 14:37:02 INFO  class:25 - User found and assigned to user session
+2015-05-30 14:37:02 INFO  class:25 - Timelines requested succesfully
+2015-05-30 14:37:13 INFO  class:25 - Timeline_id updated.
+	New id: 1
+	Timeline start datetime: 2015-05-08T00:00
+	Timeline stop datetime: 2015-05-29T23:59
+2015-05-30 14:37:13 INFO  class:25 - Events request succesfully
+2015-05-30 14:37:13 INFO  class:25 - Events request succesfully
