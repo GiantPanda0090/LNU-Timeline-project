@@ -57,7 +57,7 @@ public class UserInfoStage {
 
         // Gridpane and settings for gridpane
         GridPane gridPane = new GridPane();
-        gridPane.getStylesheets().add(this.getClass().getResource("css.css").toExternalForm());
+        gridPane.getStylesheets().add("css.css");
         gridPane.setPrefSize(400, 250);
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(10);
