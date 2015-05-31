@@ -49,7 +49,7 @@ public class CreateStage {
     ListView<Label> timelineListView = new ListView<Label>();
     ObservableList<Label> timelineObservableList = FXCollections.observableArrayList();
 
-    public static TextArea console = new TextArea();
+    //public static TextArea console = new TextArea();
 
     public Stage start() throws Exception {
         Stage stage = new Stage();
@@ -217,15 +217,20 @@ public class CreateStage {
         timelineVBox.getChildren().addAll(configbox, searchTextField1, timelineListView);
         eventVBox.getChildren().addAll(tbox, eventScrollPane);
 
+        /*
         console.setPrefWidth(1400);
         console.setPrefHeight(100);
 
+*/
+
+        /*
         final HBox debugbutbox = new HBox();
         debugbutbox.setPadding(new Insets(10, 10, 10, 10));
         debugbutbox.setSpacing(5.0);
         debugbutbox.getChildren().add(console);
 
         bpane.setBottom(debugbutbox);
+        */
         bpane.setTop(bannerHBox);
         bpane.setLeft(timelineVBox);
         bpane.setCenter(eventVBox);
@@ -380,8 +385,10 @@ stage.setMaximized(true);
     private void reloadTimelines(ObservableList<String> observableList, SessionHandler sessionHandler){
         observableList.remove(0, observableList.size());
     }
+    /*
   public static void settext(String info){
       console.appendText(info);
 
   }
+  */
 }

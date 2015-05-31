@@ -2917,3 +2917,15 @@ Response code:400
 	Timeline stop datetime: 2015-05-29T23:59
 2015-05-30 14:37:13 INFO  class:25 - Events request succesfully
 2015-05-30 14:37:13 INFO  class:25 - Events request succesfully
+2015-05-31 16:59:33 INFO  class:25 - User successfully signed in
+2015-05-31 16:59:33 INFO  class:25 - User found and assigned to user session
+2015-05-31 16:59:33 INFO  class:25 - Timelines requested succesfully
+2015-05-31 17:02:32 INFO  class:25 - Timeline_id updated.
+	New id: 1
+	Timeline start datetime: 2015-05-08T00:00
+	Timeline stop datetime: 2015-05-29T23:59
+2015-05-31 17:02:33 INFO  class:25 - Events request succesfully
+2015-05-31 17:02:33 INFO  class:25 - Events request succesfully
+2015-05-31 18:22:59 INFO  class:25 - User successfully signed in
+2015-05-31 18:22:59 INFO  class:25 - User found and assigned to user session
+2015-05-31 18:22:59 INFO  class:25 - Timelines requested succesfully
