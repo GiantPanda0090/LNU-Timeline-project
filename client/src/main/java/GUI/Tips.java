@@ -29,7 +29,7 @@ public class Tips {
         tipstage.setMinHeight(250);
         Scene tipsscene = new Scene(bpane, 300, 200);
         tipstage.setScene(tipsscene);
-        tipstage.setResizable(false);
+        tipstage.setResizable(true);
         //bpane.setId("tips");
         //bpane.getStylesheets().add("css.css");
 
