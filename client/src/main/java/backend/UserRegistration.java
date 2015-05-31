@@ -46,7 +46,7 @@ public class UserRegistration {
     public void register(String username, String password1, String password2, String email){
         //url reigistered
         String url = "http://"+apiConfig.getHost()+":"+apiConfig.getPort()+"/rest-auth/registration/";
-// connection and communication to the server intialized
+        // connection and communication to the server intialized
         HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead
 
         try {
