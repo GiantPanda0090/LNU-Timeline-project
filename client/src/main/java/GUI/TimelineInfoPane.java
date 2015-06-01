@@ -17,7 +17,7 @@ import org.controlsfx.control.PopOver;
  */
 public class TimelineInfoPane {
     public Pane TimelineInfoPane(SessionHandler sessionHandlerIn,PopOver popOverIn , final ObservableList<Label> observableListIn,
-                                 final ListView<Label> labelListView){
+                                 final ListView<Label> labelListView, ScrollPane mainTimelineScrollPaneIn){
 
         // sessionHandler from create stage
         final SessionHandler sessionHandler = sessionHandlerIn;
@@ -28,7 +28,7 @@ public class TimelineInfoPane {
         // popover from create stage
         final PopOver popOver = popOverIn;
 
-
+        final ScrollPane mainTimelineScrollPane = mainTimelineScrollPaneIn;
 
         Text nameText = new Text(("Creator: " + String.valueOf(sessionHandler.getActiveUser().getFirst_name() + " " + (String.valueOf(sessionHandler.getActiveUser().getLast_name())))));
         Text userText = new Text("Username: " + String.valueOf(sessionHandler.getActiveUser().getUsername()));
@@ -38,7 +38,7 @@ public class TimelineInfoPane {
         Pane pane = new Pane();
         pane.setMinSize(300, 200);
         //   pane.getStylesheets().addAll(this.getClass().getResource("color.css").toExternalForm());
-        pane.getStylesheets().add(this.getClass().getResource("popover.css").toExternalForm());
+        pane.getStylesheets().add("popover.css");
 
         // nodes
         final TextField titleTextField = new TextField();
@@ -84,6 +84,9 @@ public class TimelineInfoPane {
                 popOver.hide();
                 GenerateTimelineList list = new GenerateTimelineList();
                 list.generateTimelineList(sessionHandler, observableList, timelineListView);
+                TimelineView timelineView = new TimelineView(sessionHandler, mainTimelineScrollPane);
+                timelineView.drawDays();
+                timelineView.addEventsDay();
 
             }
         });
