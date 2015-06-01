@@ -54,6 +54,7 @@ public class EventInfoPane {
         final DatePicker secondDate = new DatePicker();
         secondDate.setValue(sessionHandler.getActiveEvent().getEvent_stop_datetime().toLocalDate());
 
+
         Callback<DatePicker, DateCell> dayCellFactory =
                 new Callback<DatePicker, DateCell>() {
 
