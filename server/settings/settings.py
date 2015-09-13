@@ -139,15 +139,15 @@ REST_FRAMEWORK = {
 }
 
 # Email settings
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'jherrlin@gmail.com'
-EMAIL_HOST_PASSWORD = 'Gjoher(#2717)'
-DEFAULT_FROM_EMAIL = 'jherrlin@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'  # Google SMTP
+EMAIL_PORT = 587               # Email port
+EMAIL_USE_TLS = True           # Encryption
+EMAIL_HOST_USER = 'USER'
+EMAIL_HOST_PASSWORD = 'PASSWORD'
+DEFAULT_FROM_EMAIL = 'EMAIL'
 
-GITHUB_USER = 'jherrlin'
-GITHUB_PASSWORD = 'Gjoher(#2717)'
+GITHUB_USER = 'USERNAME'
+GITHUB_PASSWORD = 'PASSWORD'
 
 
 LOGIN_URL = '/account/login/'
